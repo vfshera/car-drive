@@ -29,7 +29,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files":[
-            "Helpers\\GlobalFunctions.php"
+            "Helpers\\GlobalFunctions.php",
+            "Helpers\\CarData.php"
         ]
     },
     "autoload-dev": {
