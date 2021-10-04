@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+//THEMIFY
+@import "../themify-icons/themify-icons.css";
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// GLOBAL
+
+.app-wrapper {
+    @apply min-h-screen flex flex-col;
+}
+
+.footer-wrapper {
+    @apply mt-auto;
+}
+// GLOBALEND
+
+// LOADER
+
+
+// LOADER END
+
+// INPUT GLOBAL STYLES
+
+.radio-group {
+    @apply flex items-center justify-between w-4/5 my-5 lg:w-3/5;
+    /* width: 55%; */
+}
+
+.input-group {
+    @apply flex flex-col my-5;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="number"],
+.input-group input[type="password"] {
+    @apply appearance-none;
+    background: linear-gradient(90deg, #059669, #064e3b) center bottom/0 2px
+            no-repeat,
+        linear-gradient(90deg, #11111144, #11111144) left bottom/100% 2px
+            no-repeat,
+        linear-gradient(90deg, #f3f4f633, #f3f4f633) left bottom/100% no-repeat;
+
+    transition: background-size 0.3s ease;
+    padding: 12px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: none;
+    outline: none;
+}
+
+.input-group input[type="file"] {
+    @apply appearance-none;
+    padding: 12px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 3px #f3f4f6cc solid;
+    outline: none;
+}
+
+.input-group select {
+    @apply my-2 appearance-none;
+
+    padding: 12px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border: 3px #f3f4f6cc solid;
+    outline: none;
+}
+
+.input-group label {
+    @apply text-xl font-semibold text-gray-800;
+}
+
+.field-errors {
+    @apply text-xs text-red-600 italic;
+}
+
+.input-group label .hint-box {
+    @apply text-sm ml-2 italic font-normal;
+}
+
+.input-group {
+    --anim-duration: 0.2s;
+    --anim-easing: ease-out;
+}
+
+.input-group textarea {
+    border: #11111144 2px solid;
+    padding: 12px;
+    outline: none;
+    border-radius: 3px;
+    background-color: #f3f4f633;
+    transition: border-left-color var(--anim-duration) var(--anim-easing),
+        border-top-color var(--anim-duration) var(--anim-easing)
+            calc(var(--anim-duration) * 1),
+        border-right-color var(--anim-duration) var(--anim-easing)
+            calc(var(--anim-duration) * 2),
+        border-bottom-color var(--anim-duration) var(--anim-easing)
+            calc(var(--anim-duration) * 3);
+}
+
+.input-group textarea:focus {
+    border: #f27323 2px solid;
+    transition: border-bottom-color var(--anim-duration) var(--anim-easing),
+        border-right-color var(--anim-duration) var(--anim-easing)
+            calc(var(--anim-duration) * 1),
+        border-top-color var(--anim-duration) var(--anim-easing)
+            calc(var(--anim-duration) * 2),
+        border-left-color var(--anim-duration) var(--anim-easing)
+            calc(var(--anim-duration) * 3);
+}
+
+.input-group input:focus {
+    background-size: 100% 2px, 100% 2px, 100%;
+}
+
+.input-group input,
+.input-group textarea {
+    @apply flex flex-col mt-3 mb-6;
+}
+
+// INPUT GLOBAL STYLES END
+
+.navbar-wrapper {
+    @apply bg-green-900 h-16 text-white px-10 flex justify-between items-center;
+
+    span {
+        @apply font-bold;
+    }
+
+    nav {
+        @apply flex items-center gap-4;
+
+        ul.link-list {
+            @apply flex gap-3 items-center;
+
+            li {
+                @apply border-b border-transparent hover:border-green-200 transition-all delay-100;
+            }
+
+            &.guest-routes {
+                @apply flex gap-3 items-center ml-10;
+
+                li {
+                    @apply border border-green-200 hover:bg-green-700 hover:border-transparent px-4 py-2 rounded-md;
+
+                    a {
+                        @apply font-bold;
+                    }
+                }
+            }
+
+            &.auth-routes {
+                @apply ml-10;
+                span {
+                }
+            }
+        }
+    }
+}
+
+.footer-wrapper {
+    footer {
+        @apply text-green-900 text-center h-20 flex justify-center items-center;
+    }
+}
+
+.home-page,
+.about-page,
+.contact-page {
+    @apply flex flex-col justify-center items-center;
+
+    h1 {
+        @apply text-green-900 text-xl font-bold;
+    }
+}
+
+.login-page,
+.register-page {
+    @apply flex flex-col justify-center items-center pt-20;
+
+    h1 {
+        @apply text-green-900 text-3xl font-bold;
+    }
+
+    form {
+        @apply w-2/5 flex flex-col justify-center;
+
+        button {
+            @apply bg-green-900 rounded text-green-50 w-1/3 flex items-center justify-center py-4 hover:rounded-xl hover:bg-green-800;
+        }
+    }
+}
