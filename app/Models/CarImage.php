@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Car extends Model
+class CarImage extends Model
 {
     use HasFactory;
 
 
-    public function carImages(){
-        return $this->hasMany(CarImage::class);
+
+    public function car(){
+        return $this->belongsTo(Car::class);
     }
+
+
+    
 }
