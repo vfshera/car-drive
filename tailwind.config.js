@@ -9,7 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-       
+       brand:{
+         1: "#14213d",
+         2: "#fca311",
+         3: "#14213d",
+         4: "#e5e5e5",
+       }
       }
     },
   },

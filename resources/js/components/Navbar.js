@@ -87,7 +87,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar-wrapper ">
-            <span>Laravel React Starter</span>
+            <span>Car Drive</span>
             <nav>
                 <ul className="link-list">
                     <li>
