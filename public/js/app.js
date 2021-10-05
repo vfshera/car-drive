@@ -4741,18 +4741,20 @@ var loginUser = function loginUser(user) {
                 type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.USER_LOGIN_SUCCESS,
                 payload: _loggedUser.data
               });
-              dispatch({
-                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
-              });
-              _context.next = 19;
+              _context.next = 18;
               break;
 
-            case 16:
-              _context.prev = 16;
+            case 15:
+              _context.prev = 15;
               _context.t0 = _context["catch"](0);
               dispatch({
                 type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.USER_LOGIN_FAIL,
                 error: _context.t0
+              });
+
+            case 18:
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
               });
 
             case 19:
@@ -4760,7 +4762,7 @@ var loginUser = function loginUser(user) {
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 16]]);
+      }, _callee, null, [[0, 15]]);
     }));
 
     return function (_x) {
@@ -4794,7 +4796,7 @@ var socialLogin = function socialLogin(code, provider) {
             case 6:
               res = _context2.sent;
               _context2.next = 9;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/auth/profile");
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().get("/auth/profile");
 
             case 9:
               loggedClient = _context2.sent;
@@ -4809,26 +4811,29 @@ var socialLogin = function socialLogin(code, provider) {
                 type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.USER_LOGIN_SUCCESS,
                 payload: loggedUser.data
               });
-              dispatch({
-                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
-              });
               _context2.next = 18;
               break;
 
-            case 15:
-              _context2.prev = 15;
+            case 14:
+              _context2.prev = 14;
               _context2.t0 = _context2["catch"](0);
+              console.log(_context2.t0);
               dispatch({
                 type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.USER_LOGIN_FAIL,
-                error: _context2.t0
+                error: "Social Login Failed!"
               });
 
             case 18:
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
+              });
+
+            case 19:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 15]]);
+      }, _callee2, null, [[0, 14]]);
     }));
 
     return function (_x2) {
@@ -4853,25 +4858,27 @@ var registerUser = function registerUser(user) {
                 type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.LOADING
               });
               _context3.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/api/register", user);
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/register", user);
 
             case 5:
               _data2 = _context3.sent;
               dispatch({
                 type: USER_REGISTER_SUCCESS
               });
-              dispatch({
-                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
-              });
-              _context3.next = 13;
+              _context3.next = 12;
               break;
 
-            case 10:
-              _context3.prev = 10;
+            case 9:
+              _context3.prev = 9;
               _context3.t0 = _context3["catch"](0);
               dispatch({
                 type: USER_REGISTER_FAIL,
                 payload: _context3.t0
+              });
+
+            case 12:
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
               });
 
             case 13:
@@ -4879,7 +4886,7 @@ var registerUser = function registerUser(user) {
               return _context3.stop();
           }
         }
-      }, _callee3, null, [[0, 10]]);
+      }, _callee3, null, [[0, 9]]);
     }));
 
     return function (_x3) {
@@ -4896,6 +4903,9 @@ var refreshUser = function refreshUser() {
             case 0:
               dispatch({
                 type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.TIME_RESET
+              });
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.LOADING
               });
               axios__WEBPACK_IMPORTED_MODULE_3___default().get("/auth/refresh-token").then(function (res) {
                 if (res.status == 200) {
@@ -4919,8 +4929,11 @@ var refreshUser = function refreshUser() {
                   payload: "Unauthenticated!"
                 });
               });
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
+              });
 
-            case 2:
+            case 4:
             case "end":
               return _context4.stop();
           }
@@ -4954,14 +4967,15 @@ var logoutUser = function logoutUser() {
 
               if (status == 200) {
                 dispatch({
-                  type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
-                });
-                dispatch({
                   type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.USER_LOGOUT
                 });
               }
 
-            case 6:
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
+              });
+
+            case 7:
             case "end":
               return _context5.stop();
           }
@@ -5066,11 +5080,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var Footer = function Footer() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "footer-wrapper",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("footer", {
-      children: "\xA9 2021"
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("footer", {
+      children: ["CarDrive \xA9", new Date().getFullYear()]
     })
   });
 };
@@ -5220,8 +5235,12 @@ var Navbar = function Navbar() {
   }, [auth]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "navbar-wrapper ",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-      children: "Car Drive"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "branding",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+        src: "/storage/images/cardrive.png",
+        alt: "Car Drive Logo"
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
         className: "link-list",
@@ -5885,9 +5904,9 @@ var Register = function Register() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
 
   var register = function register(formData) {
-    axios__WEBPACK_IMPORTED_MODULE_4___default().post('/register', formData).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_4___default().post("/register", formData).then(function (res) {
       if (res.status == 201) {
-        hist.push('/login');
+        hist.push("/login");
       }
     })["catch"](function (err) {
       console.log(err);
@@ -5914,8 +5933,8 @@ var Register = function Register() {
     }
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (auth && JSON.stringify(loggedInUser) != '{}') {
-      hist.push('/dashboard');
+    if (auth && JSON.stringify(loggedInUser) != "{}") {
+      hist.push("/dashboard");
     }
   }, [loggedInUser, auth]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -5964,9 +5983,25 @@ var Register = function Register() {
         value: formik.values.password,
         onChange: formik.handleChange,
         errors: formik.errors.password && formik.touched.password && formik.errors.password
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-        type: "submit",
-        children: "Register"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "form-btns",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          type: "submit",
+          children: "Register"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("button", {
+          className: "social-login-btn",
+          onClick: function onClick(e) {
+            e.preventDefault();
+            hist.push("/login-with-social");
+          },
+          children: ["Social Login", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+            className: "ti-github"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+            className: "ti-google"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+            className: "ti-facebook"
+          })]
+        })]
       })]
     })]
   });
@@ -6107,9 +6142,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _actions_AuthActions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/AuthActions */ "./resources/js/actions/AuthActions.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _actions_AuthActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/AuthActions */ "./resources/js/actions/AuthActions.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -6120,20 +6155,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProviderLoginResolve = function ProviderLoginResolve(_ref) {
   var location = _ref.location;
-  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   var hist = (0,react_router__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
 
   var _useParams = (0,react_router__WEBPACK_IMPORTED_MODULE_4__.useParams)(),
       provider = _useParams.provider;
 
-  var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+  var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
   });
   var auth = authUser.auth;
 
   var loginCallback = function loginCallback() {
     var searchParams = new URLSearchParams(location.search);
-    dispatch((0,_actions_AuthActions__WEBPACK_IMPORTED_MODULE_1__.socialLogin)({
+    dispatch((0,_actions_AuthActions__WEBPACK_IMPORTED_MODULE_2__.socialLogin)({
       code: searchParams.get("code")
     }, provider));
   };
@@ -6149,9 +6184,9 @@ var ProviderLoginResolve = function ProviderLoginResolve(_ref) {
     loginCallback();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-    className: "login-resolve-page vh-100 bg-brand-1 text-white flex items-center justify-center",
+    className: "login-resolve-page",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h1", {
-      children: ["Checking Your Credentials with ", provider, " .."]
+      children: ["Checking Your Credentials with ", provider.charAt(0).toUpperCase() + provider.slice(1), "..."]
     })
   });
 };

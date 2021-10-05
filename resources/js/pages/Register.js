@@ -1,40 +1,33 @@
-import React,{useEffect} from 'react'
-import { useHistory } from 'react-router';
-import { useDispatch , useSelector} from "react-redux";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import axios from 'axios'
-
+import axios from "axios";
 
 import InputField from "../components/form-elements/InputField";
 
-
-import {  refreshUser } from '../actions/AuthActions'
-
+import { refreshUser } from "../actions/AuthActions";
 
 const Register = () => {
- 
     const hist = useHistory();
     const authUser = useSelector((state) => state.authUser);
-    const{ auth , loggedInUser , loading} = authUser;
+    const { auth, loggedInUser, loading } = authUser;
     const dispatch = useDispatch();
 
-    const register = (formData) =>{
-        
-       axios.post('/register', formData)
-        .then(res => {
-            if(res.status == 201){
-
-                hist.push('/login')
-
-            }
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
-
+    const register = (formData) => {
+        axios
+            .post("/register", formData)
+            .then((res) => {
+                if (res.status == 201) {
+                    hist.push("/login");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -57,28 +50,21 @@ const Register = () => {
                 .required("Password is Required!"),
         }),
         onSubmit: (values, { setSubmitting, resetForm }) => {
-            register(values)
-            resetForm()
-            setSubmitting(false)
+            register(values);
+            resetForm();
+            setSubmitting(false);
         },
     });
 
-
-    
     useEffect(() => {
-        
-        if(auth && (JSON.stringify(loggedInUser) != '{}')){
-            hist.push('/dashboard')
+        if (auth && JSON.stringify(loggedInUser) != "{}") {
+            hist.push("/dashboard");
         }
-        
-     }, [loggedInUser,auth])
+    }, [loggedInUser, auth]);
 
-
-    
     useEffect(() => {
-        dispatch(refreshUser())
-     }, [])
-
+        dispatch(refreshUser());
+    }, []);
 
     return (
         <div className="register-page">
@@ -137,11 +123,24 @@ const Register = () => {
                     }
                 />
 
-                <button type="submit">Register</button>
-
+                <div className="form-btns">
+                    <button type="submit">Register</button>
+                    <button
+                        className="social-login-btn"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            hist.push("/login-with-social");
+                        }}
+                    >
+                        Social Login
+                        <i className="ti-github"></i>
+                        <i className="ti-google"></i>
+                        <i className="ti-facebook"></i>
+                    </button>
+                </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default Register
+export default Register;

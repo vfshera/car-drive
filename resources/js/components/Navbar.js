@@ -87,7 +87,9 @@ const Navbar = () => {
 
     return (
         <div className="navbar-wrapper ">
-            <span>Car Drive</span>
+            <div className="branding">
+            <img src="/storage/images/cardrive.png" alt="Car Drive Logo" />
+            </div>
             <nav>
                 <ul className="link-list">
                     <li>

@@ -11,10 +11,10 @@ use App\Http\Controllers\{
 
 //LARAVEL SOCIALITE SOCIAL LOGIN
 
-Route::prefix('/social-login')->group(function (){
+Route::prefix('/social-login/authorize')->group(function (){
     
-    Route::get('/authorize/{provider}/callback' , [AuthController::class , 'handleProvider']);
-    Route::get('/authorize/{provider}/redirect' , [AuthController::class , 'redirectToProvider']);
+    Route::get('/{provider}/callback' , [AuthController::class , 'handleProvider']);
+    Route::get('/{provider}/redirect' , [AuthController::class , 'redirectToProvider']);
 
 });
 // SOCIAL LOGIN END

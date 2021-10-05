@@ -60,7 +60,6 @@ export const loginUser = (user) => async (dispatch) => {
             payload: loggedUser.data,
         });
 
-        dispatch({ type: NOT_LOADING});
 
 
     } catch (error) {
@@ -69,6 +68,9 @@ export const loginUser = (user) => async (dispatch) => {
             error: error,
         });
     }
+
+    dispatch({ type: NOT_LOADING});
+
 };
 
 
@@ -85,7 +87,7 @@ export const socialLogin = (code, provider) => async (dispatch) => {
             params: code,
         });
 
-        const loggedClient = await axios.post("/auth/profile");
+        const loggedClient = await axios.get("/auth/profile");
 
         dispatch({type: TIME_SUCCESS,
             payload: { tst: data.tst, overtime :data.overtime}
@@ -97,15 +99,20 @@ export const socialLogin = (code, provider) => async (dispatch) => {
             payload: loggedUser.data,
         });
 
-        dispatch({ type: NOT_LOADING});
 
         
     } catch (error) {
+
+        console.log(error);
+
         dispatch({
             type: USER_LOGIN_FAIL,
-            error: error,
+            error: "Social Login Failed!",
         });
     }
+
+    dispatch({ type: NOT_LOADING});
+
 };
 
 
@@ -118,10 +125,9 @@ export const registerUser = (user) => async (dispatch) => {
         dispatch({ type: LOADING});
 
 
-        const data = await axios.post("/api/register", user);
+        const data = await axios.post("/register", user);
 
         dispatch({ type: USER_REGISTER_SUCCESS });
-        dispatch({ type: NOT_LOADING});
 
     } catch (error) {
         dispatch({
@@ -129,6 +135,9 @@ export const registerUser = (user) => async (dispatch) => {
             payload: error,
         });
     }
+
+    dispatch({ type: NOT_LOADING});
+
 };
 
 
@@ -140,6 +149,9 @@ export const registerUser = (user) => async (dispatch) => {
 export const refreshUser = () =>   async (dispatch) => {
   
     dispatch({ type: TIME_RESET });
+       
+    dispatch({ type: LOADING});
+
 
     axios.get("/auth/refresh-token")
         .then((res) => {
@@ -165,6 +177,8 @@ export const refreshUser = () =>   async (dispatch) => {
 
         });
 
+        dispatch({ type: NOT_LOADING});
+
         
 };
 
@@ -177,10 +191,12 @@ export const logoutUser = () => async (dispatch) => {
     const { status } = await axios.post("/auth/logout");
 
     if (status == 200) {
-        dispatch({ type: NOT_LOADING});
 
         dispatch({ type: USER_LOGOUT });
     }
+
+    dispatch({ type: NOT_LOADING});
+
 };
 
 

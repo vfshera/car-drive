@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import { socialLogin } from "../../actions/AuthActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
+
+
+import { socialLogin } from "../../actions/AuthActions";
+
 
 const ProviderLoginResolve = ({ location }) => {
     const dispatch = useDispatch();
@@ -37,13 +40,14 @@ const ProviderLoginResolve = ({ location }) => {
         document.querySelector("title").text = "Car Drive | Login Redirect...";
 
         loginCallback();
+
     }, []);
 
 
 
     return (
-        <div className="login-resolve-page vh-100 bg-brand-1 text-white flex items-center justify-center">
-            <h1>Checking Your Credentials with {provider} ..</h1>
+        <div className="login-resolve-page">
+            <h1>Checking Your Credentials with {provider.charAt(0).toUpperCase() + provider.slice(1)}...</h1>
         </div>
     );
 };

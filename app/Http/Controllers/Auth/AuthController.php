@@ -135,6 +135,9 @@ class AuthController extends Controller
 
             $user = Socialite::driver($provider)->stateless()->user();
 
+
+            
+
             if(!$user->token){
                 return response()->json([ "message" => "User Not Found!"]);
             }

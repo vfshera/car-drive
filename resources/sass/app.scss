@@ -33,11 +33,11 @@ body {
 
 // LOADER
 .loader{
-    height: 5px;
-    width: 100%;
+    
 
     .loading{
-        @apply bg-brand-2 w-full h-full;
+        @apply bg-brand-2 w-full;
+        height: 5px;
         background: linear-gradient(90deg, #fca311, #fca311) center bottom/0 5px no-repeat;
         animation: loaderLoading 1.2s ease infinite;
     }
@@ -162,8 +162,11 @@ body {
 .navbar-wrapper {
     @apply bg-brand-1 h-16 text-white px-10 flex justify-between items-center;
 
-    span {
-        @apply font-bold;
+    .branding {
+        
+        img{
+            @apply h-8;
+        }
     }
 
     nav {
@@ -199,7 +202,7 @@ body {
 
 .footer-wrapper {
     footer {
-        @apply text-brand-1 text-center h-20 flex justify-center items-center;
+        @apply text-brand-1 text-center font-bold h-20 flex justify-center items-center;
     }
 }
 
@@ -292,5 +295,14 @@ body {
        .note{
             @apply text-brand-1 opacity-80 text-sm mt-4 text-center ;
         }
+    }
+}
+
+
+.login-resolve-page{
+    @apply  flex items-center justify-center min-h-1/2;
+
+    h1{
+        @apply text-brand-1 font-bold ;
     }
 }
