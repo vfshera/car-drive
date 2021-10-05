@@ -34576,13 +34576,13 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html, body{
+html, body, *{
   margin: 0px;
   padding: 0px;
 }
 
 html,
-body{
+body, *{
   box-sizing: border-box;
 }
 
@@ -34644,10 +34644,6 @@ body{
   .radio-group{
     width: 60%;
   }
-}
-
-.radio-group{
-  /* width: 55%; */
 }
 
 .input-group {
@@ -34847,8 +34843,8 @@ body{
 }
 
 .home-page section.hero {
-  --tw-bg-opacity: 1;
-  background-color: rgba(229, 229, 229, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
   height: 70vh;
 }
 

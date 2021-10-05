@@ -5660,6 +5660,7 @@ var Home = function Home() {
       pagination = _useState4[0],
       setPagination = _useState4[1];
 
+  var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get('/cars').then(function (res) {
       var _res$data = res.data,
@@ -5675,7 +5676,14 @@ var Home = function Home() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "home-page",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
-      className: "hero"
+      className: "hero",
+      style: {
+        backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")"),
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
       className: "car-list car-drive-container",
       children: carData.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {

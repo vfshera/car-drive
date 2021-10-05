@@ -6,6 +6,11 @@ const Home = () => {
     const[carData,setCarData] = useState([]);
     const[pagination,setPagination] = useState();
 
+const homeImages = [
+    "car-one.jpg",
+    "car-two.jpg",
+    "car-three.jpg"
+];
 
     useEffect(() =>{
 
@@ -30,7 +35,16 @@ const Home = () => {
     return (
         <div className="home-page">
             
-            <section className="hero">
+            <section 
+            className="hero" 
+            style={{
+                 backgroundImage: `url(/storage/images/${homeImages[Math.floor(Math.random() * 2) + 1]})`,
+                 backgroundRepeat: 'no-repeat',
+                 backgroundSize: 'cover',
+                 backgroundPosition: 'center',
+                 backgroundAttachment: 'fixed',
+                 }}>
+            
             
             
             </section>

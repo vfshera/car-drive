@@ -10,7 +10,7 @@
 
 
 html,
-body {
+body , *{
     @apply p-0 m-0;
     box-sizing: border-box;
     
@@ -56,11 +56,14 @@ body {
 
 // LOADER END
 
+
+
 // INPUT GLOBAL STYLES
 
 .radio-group {
     @apply flex items-center justify-between w-4/5 my-5 lg:w-3/5;
-    /* width: 55%; */
+
+    
 }
 
 .input-group {
@@ -208,7 +211,7 @@ body {
 
 .home-page{
     section.hero{
-        @apply  bg-brand-3;
+        @apply  text-white;
         height: 70vh;
     }
 
@@ -218,8 +221,8 @@ body {
         @apply  flex my-14 flex-wrap gap-2;
 
         .car-card{
-            @apply w-1/3  bg-brand-1;
 
+            @apply w-1/3  bg-brand-1;
             height: 400px;
            
         }
