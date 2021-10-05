@@ -1,30 +1,23 @@
-import React,{useEffect} from "react";
-import { useHistory } from 'react-router';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router";
 import { useFormik } from "formik";
-import { useDispatch , useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 
 import InputField from "../components/form-elements/InputField";
 
-
-import { loginUser , refreshUser } from '../actions/AuthActions'
+import { loginUser, refreshUser } from "../actions/AuthActions";
 import Loader from "../components/Loader";
 
 const Login = () => {
-
     const hist = useHistory();
     const authUser = useSelector((state) => state.authUser);
-    const{ auth , loggedInUser , loading} = authUser;
+    const { auth, loggedInUser, loading } = authUser;
     const dispatch = useDispatch();
 
-
-    const login = (userData) =>{
-
+    const login = (userData) => {
         dispatch(loginUser(userData));
-
-     }
-
-
+    };
 
     const formik = useFormik({
         initialValues: {
@@ -42,36 +35,26 @@ const Login = () => {
                 .required("Password is Required!"),
         }),
         onSubmit: (values, { setSubmitting, resetForm }) => {
-            login(values)
-            resetForm()
-            setSubmitting(false)
+            login(values);
+            resetForm();
+            setSubmitting(false);
         },
     });
 
-
-
-
-    
     useEffect(() => {
-        
-        if(auth && (JSON.stringify(loggedInUser) != '{}')){
-            hist.push('/dashboard')
+        if (auth && JSON.stringify(loggedInUser) != "{}") {
+            hist.push("/dashboard");
         }
-        
-     }, [loggedInUser,auth])
+    }, [loggedInUser, auth]);
 
-
-    
     useEffect(() => {
-        dispatch(refreshUser())
-     }, [])
-
+        dispatch(refreshUser());
+    }, []);
 
     return (
         <div className="login-page">
             <h1>Login</h1>
-           
-           
+
             <form action="" onSubmit={formik.handleSubmit}>
                 <InputField
                     labelText="Email"
@@ -109,14 +92,22 @@ const Login = () => {
                     }
                 />
 
-                <button type="submit">Login</button>
-
+                <div className="form-btns">
+                    <button type="submit">Login</button>
+                    <button
+                        className="social-login-btn"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            hist.push("/login-with-social");
+                        }}
+                    >
+                        Social Login
+                        <i className="ti-github"></i>
+                        <i className="ti-google"></i>
+                        <i className="ti-facebook"></i>
+                    </button>
+                </div>
             </form>
-
-            <button onClick={e =>{
-                e.preventDefault();
-                hist.push('/login-with-social')
-            }}>Social Login</button>
         </div>
     );
 };

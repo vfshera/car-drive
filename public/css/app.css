@@ -34909,25 +34909,59 @@ body{
   justify-content: center;
 }
 
-.login-page form button, .register-page form button{
+.login-page form .form-btns, .register-page form .form-btns{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-page form .form-btns button[type=submit], .register-page form .form-btns button[type=submit]{
   display: flex;
   width: 33.333333%;
   align-items: center;
   justify-content: center;
 }
 
-.login-page form button:hover, .register-page form button:hover{
+.login-page form .form-btns button[type=submit]:hover, .register-page form .form-btns button[type=submit]:hover{
   border-radius: 0.75rem;
 }
 
-.login-page form button, .register-page form button{
+.login-page form .form-btns button[type=submit], .register-page form .form-btns button[type=submit]{
   --tw-bg-opacity: 1;
   background-color: rgba(20, 33, 61, var(--tw-bg-opacity));
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-weight: 700;
   --tw-text-opacity: 1;
-  color: rgba(236, 253, 245, var(--tw-text-opacity));
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.login-page form .form-btns button.social-login-btn, .register-page form .form-btns button.social-login-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 1px;
+}
+
+.login-page form .form-btns button.social-login-btn:hover, .register-page form .form-btns button.social-login-btn:hover{
+  --tw-border-opacity: 1;
+  border-color: rgba(20, 33, 61, var(--tw-border-opacity));
+}
+
+.login-page form .form-btns button.social-login-btn, .register-page form .form-btns button.social-login-btn{
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgba(20, 33, 61, var(--tw-text-opacity));
+}
+
+.login-page form .form-btns button.social-login-btn i, .register-page form .form-btns button.social-login-btn i{
+  margin-left: 0.5rem;
 }
 
 .social-login-providers-page {

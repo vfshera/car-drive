@@ -8,9 +8,12 @@ import {
     AuthSessionReducer
 } from "./reducers/AuthReducer";
 
+import { LoadingStateReducer } from "./reducers/GeneralAppReducers";
+
 const reducer = combineReducers({
     authUser: LoginReducer,
-    userTime: AuthSessionReducer
+    userTime: AuthSessionReducer,
+    appLoading: LoadingStateReducer 
 });
 
 const initialState = {};

@@ -8,7 +8,7 @@ import {
     TIME_RESET
    } from '../constants/AuthConstants'
    
-   
+   import { LOADING, NOT_LOADING} from '../constants/AppConstants';
    
 
 import axios from "axios";
@@ -40,6 +40,8 @@ export const loginUser = (user) => async (dispatch) => {
 
         dispatch({ type: USER_LOGIN_REQUEST });
         dispatch({ type: TIME_RESET });
+
+        dispatch({ type: LOADING});
         
 
         const { data } = await axios.post("/login", user);   
@@ -58,6 +60,9 @@ export const loginUser = (user) => async (dispatch) => {
             payload: loggedUser.data,
         });
 
+        dispatch({ type: NOT_LOADING});
+
+
     } catch (error) {
         dispatch({
             type: USER_LOGIN_FAIL,
@@ -73,6 +78,8 @@ export const socialLogin = (code, provider) => async (dispatch) => {
 
         dispatch({ type: USER_LOGIN_REQUEST });
         dispatch({ type: TIME_RESET });
+        dispatch({ type: LOADING});
+
 
         const res = await axios.get(`/social-login/authorize/${provider}/callback`, {
             params: code,
@@ -89,6 +96,9 @@ export const socialLogin = (code, provider) => async (dispatch) => {
             type: USER_LOGIN_SUCCESS,
             payload: loggedUser.data,
         });
+
+        dispatch({ type: NOT_LOADING});
+
         
     } catch (error) {
         dispatch({
@@ -105,10 +115,14 @@ export const socialLogin = (code, provider) => async (dispatch) => {
 export const registerUser = (user) => async (dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST });
+        dispatch({ type: LOADING});
+
 
         const data = await axios.post("/api/register", user);
 
         dispatch({ type: USER_REGISTER_SUCCESS });
+        dispatch({ type: NOT_LOADING});
+
     } catch (error) {
         dispatch({
             type: USER_REGISTER_FAIL,
@@ -159,9 +173,12 @@ export const refreshUser = () =>   async (dispatch) => {
     
 
 export const logoutUser = () => async (dispatch) => {
+    dispatch({ type: LOADING});
     const { status } = await axios.post("/auth/logout");
 
     if (status == 200) {
+        dispatch({ type: NOT_LOADING});
+
         dispatch({ type: USER_LOGOUT });
     }
 };
