@@ -28,7 +28,8 @@ class CarFactory extends Factory
             'make' => $carWithModel[0],
             'model' => $carWithModel[1],
             'year' => $this->faker->biasedNumberBetween(1998,2020, 'sqrt'),
-            'show_location'=> $this->faker->randomFloat($nbMaxDecimals = 4, $min = 0, $max = 20).",".$this->faker->randomFloat($nbMaxDecimals = 4, $min = 0, $max = 20)
+            'show_location' => $this->faker->randomFloat($nbMaxDecimals = 4, $min = 0, $max = 20).",".$this->faker->randomFloat($nbMaxDecimals = 4, $min = 0, $max = 20),
+            'user_id' => rand(2,21)  //incase the first user is the default admin => admin@cardrive.com in DatabaseSeeder
         ];
     }
 }

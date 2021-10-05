@@ -26,9 +26,12 @@ import NotFound from './pages/NotFound';
 
 // AUTH PAGES
 import ProtectedRoute from './components/ProtectedRoute'
+import ProviderLoginResolve from './pages/auth/ProviderLoginResolve'
+import SocialLogin from './pages/SocialLogin'
 
 
 import Dashboard from './pages/auth/Dashboard';
+import Loader from './components/Loader'
 
 
 
@@ -77,6 +80,8 @@ function App() {
 
          <Navbar/>
 
+         <Loader/>
+
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/about" exact component={About}/>
@@ -84,6 +89,10 @@ function App() {
             <Route path="/login" exact component={Login}/>
             <Route path="/register" exact component={Register}/>
             <ProtectedRoute path="/dashboard" exact component={Dashboard}/>
+            
+            <Route path="/social/authorize/:provider" exact component={ProviderLoginResolve}/>
+            <Route path="/login-with-social" exact component={SocialLogin}/>
+
             <Route component={NotFound}/>
           </Switch>
 

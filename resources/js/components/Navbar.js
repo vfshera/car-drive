@@ -106,7 +106,7 @@ const Navbar = () => {
                 {auth ? (
                     <>
                         <ul className="link-list auth-routes">
-                            <span><i className="ti-settings"></i> {loggedInUser.name}</span>
+                            <span><i className="ti-alarm-clock"></i> {loggedInUser.name}</span>
 
                             <li>
                                 <button onClick={logout}> Logout</button>

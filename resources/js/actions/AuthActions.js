@@ -68,31 +68,35 @@ export const loginUser = (user) => async (dispatch) => {
 
 
 
-// export const socialLogin = (code, provider) => async (dispatch) => {
-//     try {
-//         dispatch({ type: CLIENT_LOGIN_REQUEST });
-//         dispatch({ type: TIME_RESET });
+export const socialLogin = (code, provider) => async (dispatch) => {
+    try {
 
-//         const res = await axios.get(`/api/soc/authorize/${provider}/callback`, {
-//             params: code,
-//         });
+        dispatch({ type: USER_LOGIN_REQUEST });
+        dispatch({ type: TIME_RESET });
 
-//         const loggedClient = await axios.post("/api/auth/client");
+        const res = await axios.get(`/social-login/authorize/${provider}/callback`, {
+            params: code,
+        });
 
-//         dispatch({type: TIME_SUCCESS,
-//             payload: { tst: res.data.tst, overtime: res.data.overtime}
-//         })
-//         dispatch({
-//             type: CLIENT_LOGIN_SUCCESS,
-//             payload: loggedClient.data,
-//         });
-//     } catch (error) {
-//         dispatch({
-//             type: CLIENT_LOGIN_FAIL,
-//             error: error,
-//         });
-//     }
-// };
+        const loggedClient = await axios.post("/auth/profile");
+
+        dispatch({type: TIME_SUCCESS,
+            payload: { tst: data.tst, overtime :data.overtime}
+        })
+        
+
+        dispatch({
+            type: USER_LOGIN_SUCCESS,
+            payload: loggedUser.data,
+        });
+        
+    } catch (error) {
+        dispatch({
+            type: USER_LOGIN_FAIL,
+            error: error,
+        });
+    }
+};
 
 
 

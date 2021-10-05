@@ -112,6 +112,11 @@ const Login = () => {
                 <button type="submit">Login</button>
 
             </form>
+
+            <button onClick={e =>{
+                e.preventDefault();
+                hist.push('/login-with-social')
+            }}>Social Login</button>
         </div>
     );
 };
