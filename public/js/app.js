@@ -4991,6 +4991,125 @@ var logoutUser = function logoutUser() {
 
 /***/ }),
 
+/***/ "./resources/js/actions/GeneralAppActions.js":
+/*!***************************************************!*\
+  !*** ./resources/js/actions/GeneralAppActions.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setAppLoading": () => (/* binding */ setAppLoading),
+/* harmony export */   "loadCars": () => (/* binding */ loadCars)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/AppConstants */ "./resources/js/constants/AppConstants.js");
+var _excluded = ["data"];
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var setAppLoading = function setAppLoading(isLoading) {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(dispatch) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              if (isLoading) {
+                dispatch({
+                  type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__.LOADING
+                });
+              } else {
+                dispatch({
+                  type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__.NOT_LOADING
+                });
+              }
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+var loadCars = function loadCars() {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch) {
+      var res, _res$data, data, pagination;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__.LOADING
+              });
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__.GET_CAR_REQUEST
+              });
+              _context2.next = 5;
+              return axios.get("/cars");
+
+            case 5:
+              res = _context2.sent;
+              _res$data = res.data, data = _res$data.data, pagination = _objectWithoutProperties(_res$data, _excluded);
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__.GET_CAR_SUCCESS,
+                payload: {
+                  cars: data,
+                  pagination: pagination
+                }
+              });
+              _context2.next = 13;
+              break;
+
+            case 10:
+              _context2.prev = 10;
+              _context2.t0 = _context2["catch"](0);
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__.GET_CAR_FAIL,
+                error: _context2.t0
+              });
+
+            case 13:
+              dispatch({
+                type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_1__.NOT_LOADING
+              });
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 10]]);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -5061,6 +5180,61 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/CarCard.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/CarCard.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var CarCard = function CarCard(_ref) {
+  var car = _ref.car,
+      index = _ref.index,
+      bgImg = _ref.bgImg;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "car-card",
+    style: {
+      backgroundImage: bgImg,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "center"
+    },
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "caption-wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "caption",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "title",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+            children: car.make
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "description",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+            children: car.model
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+            children: car.year
+          })]
+        })]
+      })
+    })
+  }, index);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CarCard);
 
 /***/ }),
 
@@ -5512,10 +5686,16 @@ var InputField = function InputField(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "LOADING": () => (/* binding */ LOADING),
-/* harmony export */   "NOT_LOADING": () => (/* binding */ NOT_LOADING)
+/* harmony export */   "NOT_LOADING": () => (/* binding */ NOT_LOADING),
+/* harmony export */   "GET_CAR_REQUEST": () => (/* binding */ GET_CAR_REQUEST),
+/* harmony export */   "GET_CAR_SUCCESS": () => (/* binding */ GET_CAR_SUCCESS),
+/* harmony export */   "GET_CAR_FAIL": () => (/* binding */ GET_CAR_FAIL)
 /* harmony export */ });
 var LOADING = 'LOADING';
 var NOT_LOADING = 'NOT_LOADING';
+var GET_CAR_REQUEST = "GET_CAR_REQUEST";
+var GET_CAR_SUCCESS = "GET_CAR_SUCCESS";
+var GET_CAR_FAIL = "GET_CAR_FAIL";
 
 /***/ }),
 
@@ -5624,24 +5804,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _excluded = ["data"];
+/* harmony import */ var _components_CarCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/CarCard */ "./resources/js/components/CarCard.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/GeneralAppActions */ "./resources/js/actions/GeneralAppActions.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -5650,15 +5818,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Home = function Home() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      carData = _useState2[0],
-      setCarData = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
-      _useState4 = _slicedToArray(_useState3, 2),
-      pagination = _useState4[0],
-      setPagination = _useState4[1];
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useDispatch)();
+  var AppCars = (0,react_redux__WEBPACK_IMPORTED_MODULE_3__.useSelector)(function (state) {
+    return state.appCars;
+  });
+  var cars = AppCars.cars,
+      pagination = AppCars.pagination; // const [carData, setCarData] = useState([]);
+  // const [pagination, setPagination] = useState();
 
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
@@ -5668,20 +5834,20 @@ var Home = function Home() {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/cars").then(function (res) {
-      var _res$data = res.data,
-          data = _res$data.data,
-          pagination = _objectWithoutProperties(_res$data, _excluded);
-
-      setCarData(data);
-      setPagination(pagination);
-    })["catch"](function (err) {
-      console.log(err);
-    });
+    dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_4__.loadCars)()); // axios
+    //     .get("/cars")
+    //     .then((res) => {
+    //         const { data, ...pagination } = res.data;
+    //         setCarData(data);
+    //         setPagination(pagination);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err);
+    //     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "home-page",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
       className: "hero",
       style: {
         backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")"),
@@ -5689,38 +5855,15 @@ var Home = function Home() {
         backgroundSize: "cover",
         backgroundPosition: "center"
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
       className: "car-list car-drive-container",
-      children: carData.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-        children: carData.map(function (car, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "car-card",
-            style: {
-              backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")"),
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              backgroundPosition: "center"
-            },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "caption-wrapper",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "caption",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "title",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-                    children: car.make
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                  className: "description",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
-                    children: car.model
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-                    children: car.year
-                  })]
-                })]
-              })
-            })
-          }, index);
+      children: cars.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: cars.map(function (car, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            car: car,
+            index: index,
+            bgImg: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")")
+          });
         })
       })
     })]
@@ -6313,7 +6456,8 @@ var AuthSessionReducer = function AuthSessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "LoadingStateReducer": () => (/* binding */ LoadingStateReducer)
+/* harmony export */   "LoadingStateReducer": () => (/* binding */ LoadingStateReducer),
+/* harmony export */   "CarsReducer": () => (/* binding */ CarsReducer)
 /* harmony export */ });
 /* harmony import */ var _constants_AppConstants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants/AppConstants */ "./resources/js/constants/AppConstants.js");
 
@@ -6332,6 +6476,37 @@ var LoadingStateReducer = function LoadingStateReducer() {
     case _constants_AppConstants__WEBPACK_IMPORTED_MODULE_0__.NOT_LOADING:
       return {
         loading: false
+      };
+
+    default:
+      return state;
+  }
+};
+var CarsReducer = function CarsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    cars: [],
+    pagination: {}
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _constants_AppConstants__WEBPACK_IMPORTED_MODULE_0__.GET_CAR_REQUEST:
+      return {
+        cars: [],
+        pagination: {}
+      };
+
+    case _constants_AppConstants__WEBPACK_IMPORTED_MODULE_0__.GET_CAR_SUCCESS:
+      return {
+        cars: action.payload.cars,
+        pagination: action.payload.pagination
+      };
+
+    case _constants_AppConstants__WEBPACK_IMPORTED_MODULE_0__.GET_CAR_FAIL:
+      return {
+        cars: [],
+        pagination: {},
+        error: action.payload
       };
 
     default:
@@ -6365,7 +6540,8 @@ __webpack_require__.r(__webpack_exports__);
 var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   authUser: _reducers_AuthReducer__WEBPACK_IMPORTED_MODULE_2__.LoginReducer,
   userTime: _reducers_AuthReducer__WEBPACK_IMPORTED_MODULE_2__.AuthSessionReducer,
-  appLoading: _reducers_GeneralAppReducers__WEBPACK_IMPORTED_MODULE_3__.LoadingStateReducer
+  appLoading: _reducers_GeneralAppReducers__WEBPACK_IMPORTED_MODULE_3__.LoadingStateReducer,
+  appCars: _reducers_GeneralAppReducers__WEBPACK_IMPORTED_MODULE_3__.CarsReducer
 });
 var initialState = {};
 var middleware = [redux_thunk__WEBPACK_IMPORTED_MODULE_0__["default"]];

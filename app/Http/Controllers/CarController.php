@@ -11,7 +11,7 @@ class CarController extends Controller
 {
     public function index(){
 
-        $cars = Car::with(['user','carImages'])->paginate(10);
+        $cars = Car::with(['user','carImages'])->paginate(12);
         
         return response($cars, Response::HTTP_OK);
     }
