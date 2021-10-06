@@ -7,6 +7,12 @@ const Home = () => {
 
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
+    const trimTitle = (make, model) => {
+        let title = make + model;
+
+        return model + "/" + title.length;
+    };
+
     useEffect(() => {
         axios
             .get("/cars")
@@ -53,10 +59,16 @@ const Home = () => {
                                     backgroundPosition: "center",
                                 }}
                             >
-                                <div className="caption">
-                                    <h1>{car.make}</h1>
-                                    <h3>{car.model}</h3>
-                                    <h5>{car.year}</h5>
+                                <div className="caption-wrapper">
+                                    <div className="caption">
+                                        <div className="title">
+                                            <h2>{car.make}</h2>
+                                        </div>
+                                        <div className="description">
+                                            <h2>{car.model}</h2>
+                                            <h3>{car.year}</h3>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         ))}

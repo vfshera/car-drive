@@ -213,13 +213,43 @@ body,
         @apply my-14 grid grid-cols-3  gap-8;
 
         .car-card {
-            @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out;
+            @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out hover:rounded-md hover:shadow;
 
             height: 300px;
 
-            &:hover{
-                .caption{
-                    @apply bg-brand-2 text-brand-1;
+            .caption-wrapper {
+                @apply flex justify-end h-full w-full;
+
+                .caption {
+                    @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
+
+                    .title {
+                        @apply border-r-2 border-brand-2;
+
+                        h2 {
+                            @apply font-bold text-xl;
+                            line-height: 1;
+                        }
+                    }
+
+                    .description {
+                        @apply flex flex-row items-center;
+
+                        h2 {
+                            @apply text-lg;
+                            line-height: 1;
+                        }
+
+                        h3 {
+                            @apply ml-2 text-lg;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                .caption-wrapper .caption {
+                    @apply hover:rounded-tl;
                 }
             }
         }
