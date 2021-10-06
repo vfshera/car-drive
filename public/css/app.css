@@ -7742,6 +7742,26 @@ video {
   height: 24rem;
 }
 
+.h-100{
+  height: 100px;
+}
+
+.h-150{
+  height: 150px;
+}
+
+.h-200{
+  height: 200px;
+}
+
+.h-300{
+  height: 300px;
+}
+
+.h-400{
+  height: 400px;
+}
+
 .h-auto{
   height: auto;
 }
@@ -34598,8 +34618,22 @@ body,
 }
 
 .car-drive-container {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 640px){
+  .car-drive-container{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px){
+  .car-drive-container{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 .loader .loading {
@@ -35018,10 +35052,24 @@ body,
 }
 
 section.car-list-wrapper {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 640px){
+  section.car-list-wrapper{
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper{
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
 }
 
 section.car-list-wrapper .list-header {
@@ -35031,19 +35079,38 @@ section.car-list-wrapper .list-header {
 }
 
 section.car-list-wrapper .list-header h1 {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgba(20, 33, 61, var(--tw-text-opacity));
 }
 
+@media (min-width: 768px){
+  section.car-list-wrapper .list-header h1{
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper .list-header h1{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
 section.car-list-wrapper .list-header span {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 600;
   --tw-text-opacity: 1;
   color: rgba(20, 33, 61, var(--tw-text-opacity));
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper .list-header span{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 
 section.car-list-wrapper .list-header a {
@@ -35077,11 +35144,25 @@ section.car-list-wrapper .list-header a:hover i {
 section.car-list-wrapper section.car-list {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px){
+  section.car-list-wrapper section.car-list{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper section.car-list{
+    gap: 2rem;
+  }
 }
 
 section.car-list-wrapper section.car-list a .car-card {
+  height: 150px;
   cursor: pointer;
 }
 
@@ -35105,7 +35186,18 @@ section.car-list-wrapper section.car-list a .car-card{
   transition-duration: 150ms;
   transition-delay: 100ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  height: 300px;
+}
+
+@media (min-width: 768px){
+  section.car-list-wrapper section.car-list a .car-card{
+    height: 200px;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper section.car-list a .car-card{
+    height: 300px;
+  }
 }
 
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper {
@@ -35117,10 +35209,9 @@ section.car-list-wrapper section.car-list a .car-card .caption-wrapper {
 
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption {
   display: flex;
-  height: 20%;
-  width: 40%;
+  height: 25%;
+  width: 50%;
   flex-direction: column;
-  justify-content: space-between;
   align-self: flex-end;
 }
 
@@ -35131,9 +35222,26 @@ section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption:
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption{
   --tw-bg-opacity: 1;
   background-color: rgba(229, 229, 229, var(--tw-bg-opacity));
-  padding: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   --tw-text-opacity: 1;
   color: rgba(20, 33, 61, var(--tw-text-opacity));
+}
+
+@media (min-width: 640px){
+  section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption{
+    height: 20%;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption{
+    width: 40%;
+    justify-content: space-between;
+    padding: 0.5rem;
+  }
 }
 
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .title {
@@ -35143,9 +35251,19 @@ section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption 
 }
 
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .title h2 {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 700;
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .title h2{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .title h2{
   line-height: 1;
 }
 
@@ -35156,15 +35274,32 @@ section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption 
 }
 
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .description h2 {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .description h2{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .description h2{
   line-height: 1;
 }
 
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .description h3 {
   margin-left: 0.5rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption .description h3{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 
 section.car-list-wrapper section.car-list a .car-card:hover {
@@ -35194,10 +35329,10 @@ section.car-list-wrapper .pagination button:hover{
 }
 
 section.car-list-wrapper .pagination button{
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   font-weight: 600;
   --tw-text-opacity: 1;
   color: rgba(20, 33, 61, var(--tw-text-opacity));
@@ -35213,18 +35348,27 @@ section.car-list-wrapper .pagination button{
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+@media (min-width: 640px){
+  section.car-list-wrapper .pagination button{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper .pagination button{
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
 section.car-list-wrapper .pagination button.disabled {
   --tw-bg-opacity: 1;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-weight: 600;
   --tw-text-opacity: 1;
   color: rgba(156, 163, 175, var(--tw-text-opacity));
-  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 section.car-list-wrapper .pagination .page-numbers button {
@@ -35240,11 +35384,10 @@ section.car-list-wrapper .pagination .page-numbers button:hover{
 }
 
 section.car-list-wrapper .pagination .page-numbers button{
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  font-weight: 600;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
   --tw-text-opacity: 1;
   color: rgba(229, 229, 229, var(--tw-text-opacity));
 }
@@ -35257,6 +35400,21 @@ section.car-list-wrapper .pagination .page-numbers button:hover{
 section.car-list-wrapper .pagination .page-numbers button{
   --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@media (min-width: 640px){
+  section.car-list-wrapper .pagination .page-numbers button{
+    font-weight: 600;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper .pagination .page-numbers button{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
 }
 
 .single-car-page .single-car-wrapper {
@@ -41106,6 +41264,26 @@ section.car-list-wrapper .pagination .page-numbers button{
 
   .sm\:h-96{
     height: 24rem;
+  }
+
+  .sm\:h-100{
+    height: 100px;
+  }
+
+  .sm\:h-150{
+    height: 150px;
+  }
+
+  .sm\:h-200{
+    height: 200px;
+  }
+
+  .sm\:h-300{
+    height: 300px;
+  }
+
+  .sm\:h-400{
+    height: 400px;
   }
 
   .sm\:h-auto{
@@ -73595,6 +73773,26 @@ section.car-list-wrapper .pagination .page-numbers button{
     height: 24rem;
   }
 
+  .md\:h-100{
+    height: 100px;
+  }
+
+  .md\:h-150{
+    height: 150px;
+  }
+
+  .md\:h-200{
+    height: 200px;
+  }
+
+  .md\:h-300{
+    height: 300px;
+  }
+
+  .md\:h-400{
+    height: 400px;
+  }
+
   .md\:h-auto{
     height: auto;
   }
@@ -106080,6 +106278,26 @@ section.car-list-wrapper .pagination .page-numbers button{
 
   .lg\:h-96{
     height: 24rem;
+  }
+
+  .lg\:h-100{
+    height: 100px;
+  }
+
+  .lg\:h-150{
+    height: 150px;
+  }
+
+  .lg\:h-200{
+    height: 200px;
+  }
+
+  .lg\:h-300{
+    height: 300px;
+  }
+
+  .lg\:h-400{
+    height: 400px;
   }
 
   .lg\:h-auto{
@@ -138569,6 +138787,26 @@ section.car-list-wrapper .pagination .page-numbers button{
     height: 24rem;
   }
 
+  .xl\:h-100{
+    height: 100px;
+  }
+
+  .xl\:h-150{
+    height: 150px;
+  }
+
+  .xl\:h-200{
+    height: 200px;
+  }
+
+  .xl\:h-300{
+    height: 300px;
+  }
+
+  .xl\:h-400{
+    height: 400px;
+  }
+
   .xl\:h-auto{
     height: auto;
   }
@@ -171054,6 +171292,26 @@ section.car-list-wrapper .pagination .page-numbers button{
 
   .\32xl\:h-96{
     height: 24rem;
+  }
+
+  .\32xl\:h-100{
+    height: 100px;
+  }
+
+  .\32xl\:h-150{
+    height: 150px;
+  }
+
+  .\32xl\:h-200{
+    height: 200px;
+  }
+
+  .\32xl\:h-300{
+    height: 300px;
+  }
+
+  .\32xl\:h-400{
+    height: 400px;
   }
 
   .\32xl\:h-auto{

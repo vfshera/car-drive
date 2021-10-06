@@ -26,7 +26,7 @@ body,
 }
 
 .car-drive-container {
-    @apply px-10;
+    @apply px-3 sm:px-5 lg:px-10;
 }
 
 // GLOBALEND
@@ -285,17 +285,17 @@ body,
 
 // CAR LISTING COMPONENT
 section.car-list-wrapper {
-    @apply my-10 flex flex-col;
+    @apply my-4 sm:my-7 lg:my-10 flex flex-col;
 
     .list-header {
         @apply flex justify-between items-center;
 
         h1 {
-            @apply text-3xl text-brand-1 font-bold;
+            @apply md:text-2xl lg:text-3xl text-brand-1 font-bold;
         }
 
         span {
-            @apply text-lg text-brand-1 font-semibold;
+            @apply text-base lg:text-lg text-brand-1 font-semibold;
         }
 
         a {
@@ -314,25 +314,25 @@ section.car-list-wrapper {
     }
 
     section.car-list {
-        @apply mt-4 grid grid-cols-3  gap-8;
+        @apply mt-4 grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-8;
 
         a {
             .car-card {
-                @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
+                @apply bg-brand-1 cursor-pointer h-150 md:h-200 lg:h-300 transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
 
-                height: 300px;
+
 
                 .caption-wrapper {
                     @apply flex justify-end h-full w-full;
 
                     .caption {
-                        @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
+                        @apply bg-brand-3 text-brand-1 w-1/2 lg:w-2/5 h-1/4 sm:h-1/5  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between hover:rounded-tl;
 
                         .title {
                             @apply border-r-2 border-brand-2;
 
                             h2 {
-                                @apply font-bold text-xl;
+                                @apply font-bold text-base lg:text-xl;
                                 line-height: 1;
                             }
                         }
@@ -341,12 +341,12 @@ section.car-list-wrapper {
                             @apply flex flex-row items-center;
 
                             h2 {
-                                @apply text-lg;
+                                @apply text-xs lg:text-lg;
                                 line-height: 1;
                             }
 
                             h3 {
-                                @apply ml-2 text-lg;
+                                @apply ml-2 text-xs lg:text-lg;
                             }
                         }
                     }
@@ -368,15 +368,17 @@ section.car-list-wrapper {
         @apply flex justify-between items-center mt-10;
 
         button {
-            @apply bg-gray-200 text-brand-1 font-semibold shadow  px-10 py-2 hover:bg-brand-1 hover:text-brand-3;
+            @apply bg-gray-200 text-brand-1 font-semibold  shadow px-4 sm:px-5 py-1 lg:px-10 lg:py-2 hover:bg-brand-1 hover:text-brand-3;
+
+            &.disabled {
+                @apply bg-gray-200 text-gray-400;
+            }
         }
-        button.disabled {
-            @apply bg-gray-200 text-gray-400 font-semibold shadow  px-10 py-2;
-        }
+
 
         .page-numbers {
             button {
-                @apply bg-brand-1 text-brand-3 font-semibold shadow mx-1  px-5 py-2 hover:bg-gray-200 hover:text-brand-1;
+                @apply bg-brand-1 text-brand-3 sm:font-semibold shadow mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-gray-200 hover:text-brand-1;
             }
         }
     }

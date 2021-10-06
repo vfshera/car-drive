@@ -5,7 +5,7 @@ module.exports = {
     './resources/**/*.js'
 
   ],
-  darkMode: false, 
+  darkMode: false,
   theme: {
     extend: {
       colors:{
@@ -16,12 +16,20 @@ module.exports = {
        }
       },
       minHeight: {
-        '0': '0', 
-        '1/4': '25vh', 
-        '1/2': '50vh', 
-        '3/4': '75vh', 
+        '0': '0',
+        '1/4': '25vh',
+        '1/2': '50vh',
+        '3/4': '75vh',
         'full': '100vh',
-       }
+       },
+        height: {
+
+            100: '100px',
+            150: '150px',
+            200: '200px',
+            300: '300px',
+            400: '400px',
+        }
     },
   },
   variants: {
