@@ -1,8 +1,15 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 const CarCard = ({ car, index, bgImg }) => {
+
+    let viewlink = `${car.id}-${car.slug}`
+
+
     return (
-        <div
+       <Link to={viewlink}>
+       
+       <div
             className="car-card"
             key={index}
             style={{
@@ -24,6 +31,8 @@ const CarCard = ({ car, index, bgImg }) => {
                 </div>
             </div>
         </div>
+       
+       </Link>
     );
 };
 

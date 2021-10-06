@@ -322,6 +322,7 @@ section.car-list-wrapper {
     section.car-list {
         @apply mt-4 grid grid-cols-3  gap-8;
 
+       a{
         .car-card {
             @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
 
@@ -366,6 +367,7 @@ section.car-list-wrapper {
                 }
             }
         }
+       }
     }
 
 
@@ -390,3 +392,49 @@ section.car-list-wrapper {
     }
 }
 // CAR LISTING COMPONENT END
+
+
+// SINGLE CAR PAGE
+
+.single-car-page{
+
+    .single-car-wrapper{
+        @apply flex flex-col mt-10;
+
+        .title{
+
+            @apply flex text-brand-1 items-center mb-3;
+            a{
+                @apply text-2xl font-bold;
+            }
+            span{
+                @apply text-brand-2 px-2 text-3xl ;
+            }
+
+            h2{
+
+                @apply text-2xl font-bold;
+            }
+
+            h3{
+@apply text-2xl ml-2;
+            }
+
+        }
+
+        .details{
+            @apply flex justify-between ;
+            height: 70vh;
+
+            .car-photo{
+@apply w-4/5 h-full;
+            }
+
+            .description{
+@apply w-1/5 bg-brand-2;
+            }
+        }
+    }
+}
+
+// SINGLE CAR PAGE END

@@ -33,6 +33,7 @@ import SocialLogin from './pages/SocialLogin'
 import Dashboard from './pages/auth/Dashboard';
 import Loader from './components/Loader'
 import CarListing from './pages/CarListing'
+import SingleCar from './pages/SingleCar'
 
 
 
@@ -86,6 +87,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/listing" exact component={CarListing}/>
+            <Route path="/:carID-:carSlug" exact component={SingleCar}/>
             <Route path="/about" exact component={About}/>
             <Route path="/contact" exact component={Contact}/>
             <Route path="/login" exact component={Login}/>

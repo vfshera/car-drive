@@ -45,8 +45,8 @@ const CarListing = ({ fullMode = true }) => {
                         More <i className="ti-arrow-right"></i>
                     </Link>
                 ) : (
-                    <span>{`Page ${pagination.current_page ?? "First"} of ${
-                        pagination.last_page ?? "Last"
+                    <span>{`Page ${pagination?.meta?.current_page ?? "First"} of ${
+                        pagination?.meta?.last_page ?? "Last"
                     }`}</span>
                 )}
             </div>
@@ -69,20 +69,20 @@ const CarListing = ({ fullMode = true }) => {
             {fullMode && (
                 <section className="pagination car-drive-container">
                     <button
-                        className={!pagination.prev_page_url && "disabled"}
+                        className={(!pagination?.links?.prev) && "disabled"}
                         onClick={(e) => {
                             e.preventDefault();
-                            pagination.prev_page_url &&
-                                getPage(pagination.prev_page_url);
+                            pagination?.links?.prev &&
+                                getPage(pagination?.links?.next);
                         }}
                     >
                         PREV
                     </button>
                     <section className="page-numbers">
-                        {pagination?.links?.map((pageLink , index) => {
+                        {pagination?.meta?.links?.map((pageLink , index) => {
 
 
-                            if (index != 0 && index != pagination.links.length - 1 ) {
+                            if (index != 0 && index != pagination.meta.links.length - 1 ) {
                                 return (
                                     <button
                                         onClick={(e) => {
@@ -99,11 +99,11 @@ const CarListing = ({ fullMode = true }) => {
                         })}
                     </section>
                     <button
-                        className={!pagination.next_page_url && "disabled"}
+                        className={(!pagination?.links?.next) && "disabled"}
                         onClick={(e) => {
                             e.preventDefault();
-                            pagination.next_page_url &&
-                                getPage(pagination.next_page_url);
+                            pagination?.links?.next &&
+                                getPage(pagination?.links?.next);
                         }}
                     >
                         NEXT

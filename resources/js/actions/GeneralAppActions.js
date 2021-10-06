@@ -21,11 +21,13 @@ export const loadCars = (carUrl = "/cars") => async (dispatch) => {
         
 
         const res = await axios.get(carUrl);
-        const { data, ...pagination } = res.data;
+
+        // console.log(res.da);
+        // const { data, ...pagination } = res.data;
 
         dispatch({
             type: GET_CAR_SUCCESS,
-            payload: { cars: data, pagination: pagination },
+            payload: { cars: res.data.data, pagination: { links:res.data.links , meta: res.data.meta } },
         });
     } catch (error) {
 
