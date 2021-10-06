@@ -233,7 +233,7 @@ body,
     }
 
     form {
-        @apply w-2/5 flex flex-col justify-center;
+        @apply w-10/12 sm:w-3/5 lg:w-2/5 flex flex-col justify-center;
 
         .form-btns {
             @apply flex justify-between items-center;
@@ -243,7 +243,7 @@ body,
             }
 
             button.social-login-btn {
-                @apply bg-gray-200 font-bold text-brand-1  flex items-center justify-center py-4 px-8 border hover:border-brand-1;
+                @apply bg-gray-200 font-bold text-brand-1  flex items-center justify-center py-4 px-4 sm:px-8 border hover:border-brand-1;
 
                 i {
                     @apply ml-2;

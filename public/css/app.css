@@ -34944,9 +34944,21 @@ body,
 
 .login-page form, .register-page form{
   display: flex;
-  width: 40%;
+  width: 83.333333%;
   flex-direction: column;
   justify-content: center;
+}
+
+@media (min-width: 640px){
+  .login-page form, .register-page form{
+    width: 60%;
+  }
+}
+
+@media (min-width: 1024px){
+  .login-page form, .register-page form{
+    width: 40%;
+  }
 }
 
 .login-page form .form-btns, .register-page form .form-btns{
@@ -34991,13 +35003,20 @@ body,
 .login-page form .form-btns button.social-login-btn, .register-page form .form-btns button.social-login-btn{
   --tw-bg-opacity: 1;
   background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgba(20, 33, 61, var(--tw-text-opacity));
+}
+
+@media (min-width: 640px){
+  .login-page form .form-btns button.social-login-btn, .register-page form .form-btns button.social-login-btn{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .login-page form .form-btns button.social-login-btn i, .register-page form .form-btns button.social-login-btn i{
