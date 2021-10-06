@@ -158,7 +158,7 @@ body,
 // INPUT GLOBAL STYLES END
 
 .navbar-wrapper {
-    @apply bg-brand-1 h-16 text-white px-10 flex justify-between items-center;
+    @apply bg-brand-1 h-16 text-white  flex justify-between items-center;
 
     .branding {
         img {
@@ -166,8 +166,14 @@ body,
         }
     }
 
+
+    i.nav-toggle{
+        @apply text-brand-2 text-xl sm:hidden cursor-pointer;
+    }
+
+
     nav {
-        @apply flex items-center gap-4;
+        @apply hidden sm:flex sm:items-center sm:gap-4;
 
         ul.link-list {
             @apply flex gap-8 items-center;
@@ -183,7 +189,7 @@ body,
                     @apply border border-brand-2 hover:bg-brand-2 hover:border-transparent px-4 py-1.5 rounded-md;
 
                     a {
-                        @apply font-bold;
+                        @apply sm:font-semibold lg:font-bold;
                     }
                 }
             }

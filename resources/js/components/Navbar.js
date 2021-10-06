@@ -11,14 +11,34 @@ import { logoutUser , refreshUser} from "../actions/AuthActions";
 const Navbar = () => {
     const dispatch = useDispatch();
 
+
     const[sessionTimer,setTimer] = useState(0)
     const [isOpen, setIsOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const authUser = useSelector((state) => state.authUser);
     const { auth, loggedInUser, loading } = authUser;
 
 
     const userTime = useSelector((state) => state.userTime);
+
+
+
+    let toggleClasses = "ti-menu ";
+
+    const toggleHamburger = (e) =>{
+        e.preventDefault();
+        setMenuOpen(!menuOpen);
+
+        if(menuOpen){
+            toggleClasses = "ti-close menu-opened"
+        } else{
+            toggleClasses = "ti-menu"
+        }
+
+
+    }
+
 
 
     const logout = (e) => {
@@ -45,7 +65,7 @@ const Navbar = () => {
         setIsOpen(true);
     }
 
-    
+
     const checkAuth = (rem) => {
         if (rem < 0) {
 
@@ -61,7 +81,7 @@ const Navbar = () => {
 
             return rem;
 
-        } else {            
+        } else {
             setIsOpen(true);
 
             return rem;
@@ -69,27 +89,28 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-       
+
         if(auth){
             setInterval(() => {
-                let currTime = Math.floor(Date.now() / 1000);   
-    
+                let currTime = Math.floor(Date.now() / 1000);
+
                 let remaining = (userTime.overtime * 60) - (currTime - userTime.tst);
-   
+
                 setTimer(checkAuth(remaining));
-    
+
             }, 1000);
 
-        
+
         }
-        
+
     }, [auth])
 
     return (
-        <div className="navbar-wrapper ">
+        <div className="navbar-wrapper car-drive-container">
             <div className="branding">
             <img src="/storage/images/cardrive.png" alt="Car Drive Logo" />
             </div>
+            <i className={`nav-toggle  ${toggleClasses}`} onClick={toggleHamburger}></i>
             <nav>
                 <ul className="link-list">
                     <li>

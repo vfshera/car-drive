@@ -5370,6 +5370,11 @@ var Navbar = function Navbar() {
       isOpen = _useState4[0],
       setIsOpen = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      menuOpen = _useState6[0],
+      setMenuOpen = _useState6[1];
+
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
   });
@@ -5379,6 +5384,18 @@ var Navbar = function Navbar() {
   var userTime = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.userTime;
   });
+  var toggleClasses = "ti-menu ";
+
+  var toggleHamburger = function toggleHamburger(e) {
+    e.preventDefault();
+    setMenuOpen(!menuOpen);
+
+    if (menuOpen) {
+      toggleClasses = "ti-close menu-opened";
+    } else {
+      toggleClasses = "ti-menu";
+    }
+  };
 
   var logout = function logout(e) {
     e.preventDefault();
@@ -5424,13 +5441,16 @@ var Navbar = function Navbar() {
     }
   }, [auth]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "navbar-wrapper ",
+    className: "navbar-wrapper car-drive-container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "branding",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
         src: "/storage/images/cardrive.png",
         alt: "Car Drive Logo"
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+      className: "nav-toggle  ".concat(toggleClasses),
+      onClick: toggleHamburger
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("nav", {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
         className: "link-list",
