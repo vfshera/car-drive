@@ -34,8 +34,8 @@ if(res.status == 200){
             <h3>{car.model}</h3>
             </div>
             <div className="details">
-            <div 
-            className="car-photo" 
+            <div
+            className="car-photo"
             style={{
                 backgroundImage: `url(/storage/images/${homeImages[Math.floor(Math.random() * 2)]})`,
                 backgroundRepeat: "no-repeat",
@@ -44,7 +44,27 @@ if(res.status == 200){
             }}
             />
             <div className="description">
-            DESC
+                <p>Make <span>{car.make}</span></p>
+                <p>Model <span>{car.model}</span></p>
+                <p>Year <span>{car.year}</span></p>
+                <p>Owner <span>{car?.user?.name}</span></p>
+
+                <div className="photos">
+
+                    {car?.car_images?.length != 0 && car?.car_images?.map((carImg,index) => (
+
+                            <div className="photo" style={{
+                                backgroundImage: `url(/storage/images/${homeImages[Math.floor(Math.random() * 2)]})`,
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                            }}>
+
+                            </div>
+
+                    ))}
+
+                </div>
             </div>
             </div>
             </div>

@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom'
 
 const CarCard = ({ car, index, bgImg }) => {
 
-    let viewlink = `${car.id}-${car.slug}`
-
+    let viewlink = `${car.id}-${car.slug}`;
 
     return (
        <Link to={viewlink}>
-       
+
        <div
             className="car-card"
             key={index}
@@ -31,7 +30,7 @@ const CarCard = ({ car, index, bgImg }) => {
                 </div>
             </div>
         </div>
-       
+
        </Link>
     );
 };

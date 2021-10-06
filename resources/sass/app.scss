@@ -205,10 +205,9 @@ body,
 
 .home-page {
     section.hero {
-        @apply text-white;
+        @apply text-white bg-brand-1;
         height: 70vh;
     }
-   
 }
 .about-page,
 .contact-page {
@@ -284,154 +283,157 @@ body,
     }
 }
 
-
-
-
 // CAR LISTING COMPONENT
 section.car-list-wrapper {
     @apply my-10 flex flex-col;
 
-    .list-header{
+    .list-header {
         @apply flex justify-between items-center;
 
-        h1{
+        h1 {
             @apply text-3xl text-brand-1 font-bold;
         }
 
-        span{
+        span {
             @apply text-lg text-brand-1 font-semibold;
         }
 
-        a{
+        a {
             @apply text-xl text-brand-1 font-bold hover:text-brand-2 transition-all delay-100;
 
-            i{
+            i {
                 @apply hidden;
             }
 
-            &:hover{
-                i{
+            &:hover {
+                i {
                     @apply inline-block;
                 }
             }
         }
-
     }
-
 
     section.car-list {
         @apply mt-4 grid grid-cols-3  gap-8;
 
-       a{
-        .car-card {
-            @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
+        a {
+            .car-card {
+                @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
 
-            height: 300px;
+                height: 300px;
 
-            .caption-wrapper {
-                @apply flex justify-end h-full w-full;
+                .caption-wrapper {
+                    @apply flex justify-end h-full w-full;
 
-                .caption {
-                    @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
+                    .caption {
+                        @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
 
-                    .title {
-                        @apply border-r-2 border-brand-2;
+                        .title {
+                            @apply border-r-2 border-brand-2;
 
-                        h2 {
-                            @apply font-bold text-xl;
-                            line-height: 1;
-                        }
-                    }
-
-                    .description {
-                        @apply flex flex-row items-center;
-
-                        h2 {
-                            @apply text-lg;
-                            line-height: 1;
+                            h2 {
+                                @apply font-bold text-xl;
+                                line-height: 1;
+                            }
                         }
 
-                        h3 {
-                            @apply ml-2 text-lg;
+                        .description {
+                            @apply flex flex-row items-center;
+
+                            h2 {
+                                @apply text-lg;
+                                line-height: 1;
+                            }
+
+                            h3 {
+                                @apply ml-2 text-lg;
+                            }
                         }
                     }
                 }
-            }
 
-            &:hover {
-                filter: sepia(20%);
-                transform: rotate(2deg) scale(.97);
+                &:hover {
+                    filter: sepia(20%);
+                    transform: rotate(2deg) scale(0.97);
 
-                .caption-wrapper .caption {
-                    @apply hover:rounded-tl;
+                    .caption-wrapper .caption {
+                        @apply hover:rounded-tl;
+                    }
                 }
             }
         }
-       }
     }
 
+    .pagination {
+        @apply flex justify-between items-center mt-10;
 
-    .pagination{
-
-        @apply flex justify-between items-center mt-10 ;
-
-        button{
+        button {
             @apply bg-gray-200 text-brand-1 font-semibold shadow  px-10 py-2 hover:bg-brand-1 hover:text-brand-3;
         }
-        button.disabled{
-            @apply bg-gray-200 text-gray-400 font-semibold shadow  px-10 py-2 ;
+        button.disabled {
+            @apply bg-gray-200 text-gray-400 font-semibold shadow  px-10 py-2;
         }
 
-        .page-numbers{
-
-            button{
+        .page-numbers {
+            button {
                 @apply bg-brand-1 text-brand-3 font-semibold shadow mx-1  px-5 py-2 hover:bg-gray-200 hover:text-brand-1;
             }
-
         }
     }
 }
 // CAR LISTING COMPONENT END
 
-
 // SINGLE CAR PAGE
 
-.single-car-page{
-
-    .single-car-wrapper{
+.single-car-page {
+    .single-car-wrapper {
         @apply flex flex-col mt-10;
 
-        .title{
-
+        .title {
             @apply flex text-brand-1 items-center mb-3;
-            a{
+            a {
                 @apply text-2xl font-bold;
             }
-            span{
-                @apply text-brand-2 px-2 text-3xl ;
+            span {
+                @apply text-brand-2 px-2 text-2xl;
             }
 
-            h2{
-
+            h2 {
                 @apply text-2xl font-bold;
             }
 
-            h3{
-@apply text-2xl ml-2;
+            h3 {
+                @apply text-2xl ml-2;
             }
-
         }
 
-        .details{
-            @apply flex justify-between ;
+        .details {
+            @apply flex flex-col lg:flex-row justify-between;
             height: 70vh;
 
-            .car-photo{
-@apply w-4/5 h-full;
+            .car-photo {
+                @apply w-full lg:w-4/5 h-full;
             }
 
-            .description{
-@apply w-1/5 bg-brand-2;
+            .description {
+                @apply w-full lg:w-1/5 p-3 bg-brand-3 flex flex-col;
+
+                p{
+                    @apply text-brand-1;
+                    span{
+                        @apply font-bold;
+                    }
+                }
+
+                .photos{
+                    @apply grid grid-cols-3 md:grid-cols-7 lg:grid-cols-3 mt-3 gap-1;
+
+                    .photo{
+                        @apply bg-brand-1;
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
             }
         }
     }

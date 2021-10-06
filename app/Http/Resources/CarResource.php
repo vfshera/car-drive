@@ -24,7 +24,7 @@ class CarResource extends JsonResource
             'slug' => $this->slug,
             (Auth::check()) ?? 'show_location' => $this->show_location,
             'created_at' => $this->created_at,
-            'user' => $this->user,
+            'user' => $this->user->only(['id','name']),
             'car_images' =>  $this->carImages,
         ];
     }
