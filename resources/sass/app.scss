@@ -208,62 +208,7 @@ body,
         @apply text-white;
         height: 70vh;
     }
-    section.car-list-wrapper {
-        @apply my-10 flex flex-col;
-
-        h1{
-            @apply text-3xl text-brand-1 font-bold;
-        }
-
-        section.car-list {
-            @apply mt-4 grid grid-cols-3  gap-8;
-
-            .car-card {
-                @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
-
-                height: 300px;
-
-                .caption-wrapper {
-                    @apply flex justify-end h-full w-full;
-
-                    .caption {
-                        @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
-
-                        .title {
-                            @apply border-r-2 border-brand-2;
-
-                            h2 {
-                                @apply font-bold text-xl;
-                                line-height: 1;
-                            }
-                        }
-
-                        .description {
-                            @apply flex flex-row items-center;
-
-                            h2 {
-                                @apply text-lg;
-                                line-height: 1;
-                            }
-
-                            h3 {
-                                @apply ml-2 text-lg;
-                            }
-                        }
-                    }
-                }
-
-                &:hover {
-                    filter: sepia(20%);
-                    transform: rotate(2deg) scale(.97);
-
-                    .caption-wrapper .caption {
-                        @apply hover:rounded-tl;
-                    }
-                }
-            }
-        }
-    }
+   
 }
 .about-page,
 .contact-page {
@@ -338,3 +283,110 @@ body,
         @apply text-brand-1 font-bold;
     }
 }
+
+
+
+
+// CAR LISTING COMPONENT
+section.car-list-wrapper {
+    @apply my-10 flex flex-col;
+
+    .list-header{
+        @apply flex justify-between items-center;
+
+        h1{
+            @apply text-3xl text-brand-1 font-bold;
+        }
+
+        span{
+            @apply text-lg text-brand-1 font-semibold;
+        }
+
+        a{
+            @apply text-xl text-brand-1 font-bold hover:text-brand-2 transition-all delay-100;
+
+            i{
+                @apply hidden;
+            }
+
+            &:hover{
+                i{
+                    @apply inline-block;
+                }
+            }
+        }
+
+    }
+
+
+    section.car-list {
+        @apply mt-4 grid grid-cols-3  gap-8;
+
+        .car-card {
+            @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
+
+            height: 300px;
+
+            .caption-wrapper {
+                @apply flex justify-end h-full w-full;
+
+                .caption {
+                    @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
+
+                    .title {
+                        @apply border-r-2 border-brand-2;
+
+                        h2 {
+                            @apply font-bold text-xl;
+                            line-height: 1;
+                        }
+                    }
+
+                    .description {
+                        @apply flex flex-row items-center;
+
+                        h2 {
+                            @apply text-lg;
+                            line-height: 1;
+                        }
+
+                        h3 {
+                            @apply ml-2 text-lg;
+                        }
+                    }
+                }
+            }
+
+            &:hover {
+                filter: sepia(20%);
+                transform: rotate(2deg) scale(.97);
+
+                .caption-wrapper .caption {
+                    @apply hover:rounded-tl;
+                }
+            }
+        }
+    }
+
+
+    .pagination{
+
+        @apply flex justify-between items-center mt-10 ;
+
+        button{
+            @apply bg-gray-200 text-brand-1 font-semibold shadow  px-10 py-2 hover:bg-brand-1 hover:text-brand-3;
+        }
+        button.disabled{
+            @apply bg-gray-200 text-gray-400 font-semibold shadow  px-10 py-2 ;
+        }
+
+        .page-numbers{
+
+            button{
+                @apply bg-brand-1 text-brand-3 font-semibold shadow mx-1  px-5 py-2 hover:bg-gray-200 hover:text-brand-1;
+            }
+
+        }
+    }
+}
+// CAR LISTING COMPONENT END

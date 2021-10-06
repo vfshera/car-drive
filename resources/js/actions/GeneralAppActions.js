@@ -14,13 +14,13 @@ export const setAppLoading = (isLoading) => async (dispatch) => {
     }
 };
 
-export const loadCars = () => async (dispatch) => {
+export const loadCars = (carUrl = "/cars") => async (dispatch) => {
     try {
         dispatch({ type: LOADING });
         dispatch({ type: GET_CAR_REQUEST });
         
 
-        const res = await axios.get("/cars");
+        const res = await axios.get(carUrl);
         const { data, ...pagination } = res.data;
 
         dispatch({
