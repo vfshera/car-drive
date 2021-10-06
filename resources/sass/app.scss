@@ -208,54 +208,63 @@ body,
         @apply text-white;
         height: 70vh;
     }
+    section.car-list-wrapper {
+        @apply my-10 flex flex-col;
 
-    section.car-list {
-        @apply my-14 grid grid-cols-3  gap-8;
+        h1{
+            @apply text-3xl text-brand-1 font-bold;
+        }
 
-        .car-card {
-            @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out hover:rounded-md hover:shadow;
+        section.car-list {
+            @apply mt-4 grid grid-cols-3  gap-8;
 
-            height: 300px;
+            .car-card {
+                @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
 
-            .caption-wrapper {
-                @apply flex justify-end h-full w-full;
+                height: 300px;
 
-                .caption {
-                    @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
+                .caption-wrapper {
+                    @apply flex justify-end h-full w-full;
 
-                    .title {
-                        @apply border-r-2 border-brand-2;
+                    .caption {
+                        @apply bg-brand-3 text-brand-1 w-2/5 h-1/5 self-end p-2 flex flex-col justify-between hover:rounded-tl;
 
-                        h2 {
-                            @apply font-bold text-xl;
-                            line-height: 1;
-                        }
-                    }
+                        .title {
+                            @apply border-r-2 border-brand-2;
 
-                    .description {
-                        @apply flex flex-row items-center;
-
-                        h2 {
-                            @apply text-lg;
-                            line-height: 1;
+                            h2 {
+                                @apply font-bold text-xl;
+                                line-height: 1;
+                            }
                         }
 
-                        h3 {
-                            @apply ml-2 text-lg;
+                        .description {
+                            @apply flex flex-row items-center;
+
+                            h2 {
+                                @apply text-lg;
+                                line-height: 1;
+                            }
+
+                            h3 {
+                                @apply ml-2 text-lg;
+                            }
                         }
                     }
                 }
-            }
 
-            &:hover {
-                .caption-wrapper .caption {
-                    @apply hover:rounded-tl;
+                &:hover {
+                    filter: sepia(20%);
+                    transform: rotate(2deg) scale(.97);
+
+                    .caption-wrapper .caption {
+                        @apply hover:rounded-tl;
+                    }
                 }
             }
         }
     }
 }
-
 .about-page,
 .contact-page {
     @apply flex flex-col justify-center items-center;

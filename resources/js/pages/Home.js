@@ -58,6 +58,9 @@ const { cars , pagination } = AppCars;
                 }}
             ></section>
 
+            <section className="car-list-wrapper">
+
+                <h1 className="car-drive-container">Top Listings</h1>
             <section className="car-list car-drive-container">
                 {cars.length != 0 && (
                     <>
@@ -73,6 +76,7 @@ const { cars , pagination } = AppCars;
                         ))}
                     </>
                 )}
+            </section>
             </section>
         </div>
     );

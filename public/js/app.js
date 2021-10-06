@@ -5855,17 +5855,23 @@ var Home = function Home() {
         backgroundSize: "cover",
         backgroundPosition: "center"
       }
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
-      className: "car-list car-drive-container",
-      children: cars.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-        children: cars.map(function (car, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            car: car,
-            index: index,
-            bgImg: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")")
-          });
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+      className: "car-list-wrapper",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
+        className: "car-drive-container",
+        children: "Top Listings"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+        className: "car-list car-drive-container",
+        children: cars.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+          children: cars.map(function (car, index) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              car: car,
+              index: index,
+              bgImg: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")")
+            });
+          })
         })
-      })
+      })]
     })]
   });
 };
