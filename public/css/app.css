@@ -34582,7 +34582,8 @@ html, body, *{
 }
 
 html,
-body, *{
+body,
+*{
   box-sizing: border-box;
 }
 
@@ -34851,16 +34852,28 @@ body, *{
 .home-page section.car-list {
   margin-top: 3.5rem;
   margin-bottom: 3.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
 }
 
 .home-page section.car-list .car-card {
-  width: 33.333333%;
+  cursor: pointer;
   --tw-bg-opacity: 1;
   background-color: rgba(20, 33, 61, var(--tw-bg-opacity));
-  height: 400px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-delay: 100ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  height: 300px;
+}
+
+.home-page section.car-list .car-card:hover .caption {
+  --tw-bg-opacity: 1;
+  background-color: rgba(252, 163, 17, var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgba(20, 33, 61, var(--tw-text-opacity));
 }
 
 .about-page, .contact-page{

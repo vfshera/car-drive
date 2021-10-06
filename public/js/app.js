@@ -5662,7 +5662,7 @@ var Home = function Home() {
 
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get('/cars').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/cars").then(function (res) {
       var _res$data = res.data,
           data = _res$data.data,
           pagination = _objectWithoutProperties(_res$data, _excluded);
@@ -5679,27 +5679,32 @@ var Home = function Home() {
       className: "hero",
       style: {
         backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")"),
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
       }
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
       className: "car-list car-drive-container",
       children: carData.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
         children: carData.map(function (car, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "car-card",
             style: {
-              background: "url(".concat('https://picsum.photos', ") no-repeat cover")
+              backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2) + 1], ")"),
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center"
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-              children: car.make
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-              children: car.model
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
-              children: car.year
-            })]
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+              className: "caption",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+                children: car.make
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+                children: car.model
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+                children: car.year
+              })]
+            })
           }, index);
         })
       })

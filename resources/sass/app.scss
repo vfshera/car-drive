@@ -8,12 +8,11 @@
 //THEMIFY
 @import "../themify-icons/themify-icons.css";
 
-
 html,
-body , *{
+body,
+* {
     @apply p-0 m-0;
     box-sizing: border-box;
-    
 }
 
 // GLOBAL
@@ -26,44 +25,40 @@ body , *{
     @apply mt-auto;
 }
 
-.car-drive-container{
+.car-drive-container {
     @apply px-10;
 }
+
 // GLOBALEND
 
 // LOADER
-.loader{
-    
-
-    .loading{
+.loader {
+    .loading {
         @apply bg-brand-2 w-full;
         height: 5px;
-        background: linear-gradient(90deg, #fca311, #fca311) center bottom/0 5px no-repeat;
+        background: linear-gradient(90deg, #fca311, #fca311) center bottom/0 5px
+            no-repeat;
         animation: loaderLoading 1.2s ease infinite;
     }
 }
 
 @keyframes loaderLoading {
-    0%,100%{
+    0%,
+    100% {
         background-size: 0 5px;
     }
 
-    75%{
+    75% {
         background-size: 100% 5px;
     }
-    
 }
 
 // LOADER END
-
-
 
 // INPUT GLOBAL STYLES
 
 .radio-group {
     @apply flex items-center justify-between w-4/5 my-5 lg:w-3/5;
-
-    
 }
 
 .input-group {
@@ -166,8 +161,7 @@ body , *{
     @apply bg-brand-1 h-16 text-white px-10 flex justify-between items-center;
 
     .branding {
-        
-        img{
+        img {
             @apply h-8;
         }
     }
@@ -209,26 +203,28 @@ body , *{
     }
 }
 
-.home-page{
-    section.hero{
-        @apply  text-white;
+.home-page {
+    section.hero {
+        @apply text-white;
         height: 70vh;
     }
 
+    section.car-list {
+        @apply my-14 grid grid-cols-3  gap-8;
 
-    section.car-list{
+        .car-card {
+            @apply bg-brand-1 cursor-pointer transition-all delay-100 ease-in-out;
 
-        @apply  flex my-14 flex-wrap gap-2;
+            height: 300px;
 
-        .car-card{
-
-            @apply w-1/3  bg-brand-1;
-            height: 400px;
-           
+            &:hover{
+                .caption{
+                    @apply bg-brand-2 text-brand-1;
+                }
+            }
         }
     }
 }
-
 
 .about-page,
 .contact-page {
@@ -250,17 +246,17 @@ body , *{
     form {
         @apply w-2/5 flex flex-col justify-center;
 
-        .form-btns{
+        .form-btns {
             @apply flex justify-between items-center;
 
             button[type="submit"] {
-                @apply bg-brand-1 font-bold text-white w-1/3 flex items-center justify-center py-4 hover:rounded-xl ;
+                @apply bg-brand-1 font-bold text-white w-1/3 flex items-center justify-center py-4 hover:rounded-xl;
             }
 
-            button.social-login-btn{
+            button.social-login-btn {
                 @apply bg-gray-200 font-bold text-brand-1  flex items-center justify-center py-4 px-8 border hover:border-brand-1;
 
-                i{
+                i {
                     @apply ml-2;
                 }
             }
@@ -268,44 +264,38 @@ body , *{
     }
 }
 
-
-
-
-
-.social-login-providers-page{
-
+.social-login-providers-page {
     @apply min-h-screen flex flex-col justify-center items-center;
 
-    section.provider-buttons{
+    section.provider-buttons {
         @apply flex flex-col justify-center items-center w-1/3;
 
-        button{
+        button {
             @apply py-4 text-white rounded-md bg-brand-1 w-3/5 flex justify-center items-center;
 
-            span{
-                @apply font-bold ml-2 text-white flex justify-center items-center;  
+            span {
+                @apply font-bold ml-2 text-white flex justify-center items-center;
 
-                i{
+                i {
                     @apply text-xl mr-2;
                 }
             }
 
-            &:not(:last-child){
+            &:not(:last-child) {
                 @apply mb-2;
             }
         }
 
-       .note{
-            @apply text-brand-1 opacity-80 text-sm mt-4 text-center ;
+        .note {
+            @apply text-brand-1 opacity-80 text-sm mt-4 text-center;
         }
     }
 }
 
+.login-resolve-page {
+    @apply flex items-center justify-center min-h-1/2;
 
-.login-resolve-page{
-    @apply  flex items-center justify-center min-h-1/2;
-
-    h1{
-        @apply text-brand-1 font-bold ;
+    h1 {
+        @apply text-brand-1 font-bold;
     }
 }
