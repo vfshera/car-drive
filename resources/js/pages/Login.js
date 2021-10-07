@@ -9,7 +9,7 @@ import InputField from "../components/form-elements/InputField";
 import { loginUser, refreshUser } from "../actions/AuthActions";
 import Loader from "../components/Loader";
 
-const Login = () => {
+const Login = ({location}) => {
     const hist = useHistory();
     const authUser = useSelector((state) => state.authUser);
     const { auth, loggedInUser, loading } = authUser;
@@ -43,7 +43,7 @@ const Login = () => {
 
     useEffect(() => {
         if (auth && JSON.stringify(loggedInUser) != "{}") {
-            hist.push("/dashboard");
+            (location.state && location.state.next) ?   hist.push(location.state.next) : hist.push("/dashboard");
         }
     }, [loggedInUser, auth]);
 

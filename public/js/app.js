@@ -6177,7 +6177,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Login = function Login() {
+var Login = function Login(_ref) {
+  var location = _ref.location;
   var hist = (0,react_router__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.authUser;
@@ -6200,9 +6201,9 @@ var Login = function Login() {
       email: yup__WEBPACK_IMPORTED_MODULE_3__.string().min(3, "Eamil Cannot Be Less Than 3 Characters").max(32, "Email Cannot be More than 32 Characters").required("Email is Required!"),
       password: yup__WEBPACK_IMPORTED_MODULE_3__.string().min(3, "Password Cannot Be Less Than 6 Characters").max(32, "Password Cannot be More than 32 Characters").required("Password is Required!")
     }),
-    onSubmit: function onSubmit(values, _ref) {
-      var setSubmitting = _ref.setSubmitting,
-          resetForm = _ref.resetForm;
+    onSubmit: function onSubmit(values, _ref2) {
+      var setSubmitting = _ref2.setSubmitting,
+          resetForm = _ref2.resetForm;
       login(values);
       resetForm();
       setSubmitting(false);
@@ -6210,7 +6211,7 @@ var Login = function Login() {
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (auth && JSON.stringify(loggedInUser) != "{}") {
-      hist.push("/dashboard");
+      location.state && location.state.next ? hist.push(location.state.next) : hist.push("/dashboard");
     }
   }, [loggedInUser, auth]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {

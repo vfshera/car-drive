@@ -493,3 +493,92 @@ section.car-list-wrapper {
     }
 }
 // DASBOARD END
+
+
+
+//CAR LISTING FIX
+
+
+section.admin-content .car-list-wrapper{
+
+
+
+    .list-header {
+        @apply flex justify-between items-center;
+
+        h1 {
+            @apply text-base md:text-lg lg:text-xl text-brand-1 font-bold;
+        }
+
+        span {
+            @apply text-sm lg:text-base text-brand-1 font-semibold;
+        }
+
+        a {
+            @apply text-sm md:text-base text-brand-1 font-bold hover:text-brand-2 transition-all delay-100;
+
+            i {
+                @apply lg:hidden;
+            }
+
+            &:hover {
+                i {
+                    @apply inline-block;
+                }
+            }
+        }
+    }
+
+    section.car-list {
+        @apply mt-4 grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 lg:gap-6;
+
+        a {
+            .car-card {
+                @apply bg-brand-1 cursor-pointer h-100 md:h-150 lg:h-200 transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
+
+
+                .caption-wrapper {
+                    @apply flex justify-end h-full w-full;
+
+                    .caption {
+                        @apply bg-brand-3 text-brand-1 w-1/2 lg:w-2/5 h-1/4 sm:h-1/5  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between hover:rounded-tl;
+
+                        .title {
+                            @apply border-r-2 border-brand-2;
+
+                            h2 {
+                                @apply font-bold text-base lg:text-xl;
+                                line-height: 1;
+                            }
+                        }
+
+                        .description {
+                            @apply flex flex-row items-center;
+
+                            h2 {
+                                @apply text-xs lg:text-lg;
+                                line-height: 1;
+                            }
+
+                            h3 {
+                                @apply ml-2 text-xs lg:text-lg;
+                            }
+                        }
+                    }
+                }
+
+                &:hover {
+                    filter: sepia(20%);
+                    transform: rotate(2deg) scale(0.97);
+
+                    .caption-wrapper .caption {
+                        @apply hover:rounded-tl;
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+//CAR LISTING FIX END
