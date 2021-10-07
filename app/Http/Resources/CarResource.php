@@ -25,7 +25,7 @@ class CarResource extends JsonResource
             (Auth::check()) ?? 'show_location' => $this->show_location,
             'created_at' => $this->created_at,
             'user' => $this->user->only(['id','name']),
-            'car_images' =>  $this->carImages,
+            'car_images' =>  (Auth::check()) ? $this->carImages->take(2) : $this->carImages 
         ];
     }
 }

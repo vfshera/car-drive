@@ -34,6 +34,8 @@ import Dashboard from './pages/auth/Dashboard';
 import Loader from './components/Loader'
 import CarListing from './pages/CarListing'
 import SingleCar from './pages/SingleCar'
+import MyCars from "./pages/MyCars";
+import Chats from "./pages/Chats";
 
 
 
@@ -71,8 +73,8 @@ function App() {
 
     const { loggedInUser , loading , auth , error } = authUser;
 
-    
-    
+
+
 
 
   return (
@@ -92,15 +94,18 @@ function App() {
             <Route path="/contact" exact component={Contact}/>
             <Route path="/login" exact component={Login}/>
             <Route path="/register" exact component={Register}/>
+            <ProtectedRoute path="/dashboard/cars" exact component={CarListing}/>
+            <ProtectedRoute path="/dashboard/mycars" exact component={MyCars}/>
+            <ProtectedRoute path="/dashboard/chats" exact component={Chats}/>
             <ProtectedRoute path="/dashboard" exact component={Dashboard}/>
-            
+
             <Route path="/social/authorize/:provider" exact component={ProviderLoginResolve}/>
             <Route path="/login-with-social" exact component={SocialLogin}/>
 
             <Route component={NotFound}/>
           </Switch>
 
-          <Footer/>
+        {!auth && <Footer/>}
 
      </Router>
 

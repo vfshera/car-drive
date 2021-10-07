@@ -7787,7 +7787,7 @@ video {
 }
 
 .h-1\/2{
-  height: 50%;
+  height: 50vh;
 }
 
 .h-1\/3{
@@ -7799,7 +7799,7 @@ video {
 }
 
 .h-1\/4{
-  height: 25%;
+  height: 25vh;
 }
 
 .h-2\/4{
@@ -7807,7 +7807,7 @@ video {
 }
 
 .h-3\/4{
-  height: 75%;
+  height: 75vh;
 }
 
 .h-1\/5{
@@ -35124,6 +35124,8 @@ section.car-list-wrapper .list-header {
 }
 
 section.car-list-wrapper .list-header h1 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgba(20, 33, 61, var(--tw-text-opacity));
@@ -35159,8 +35161,8 @@ section.car-list-wrapper .list-header span {
 }
 
 section.car-list-wrapper .list-header a {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgba(20, 33, 61, var(--tw-text-opacity));
@@ -35178,8 +35180,17 @@ section.car-list-wrapper .list-header a{
   transition-delay: 100ms;
 }
 
-section.car-list-wrapper .list-header a i {
-  display: none;
+@media (min-width: 768px){
+  section.car-list-wrapper .list-header a{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px){
+  section.car-list-wrapper .list-header a i{
+    display: none;
+  }
 }
 
 section.car-list-wrapper .list-header a:hover i {
@@ -35254,7 +35265,7 @@ section.car-list-wrapper section.car-list a .car-card .caption-wrapper {
 
 section.car-list-wrapper section.car-list a .car-card .caption-wrapper .caption {
   display: flex;
-  height: 25%;
+  height: 25vh;
   width: 50%;
   flex-direction: column;
   align-self: flex-end;
@@ -35578,6 +35589,63 @@ section.car-list-wrapper .pagination .page-numbers button{
   background-color: rgba(20, 33, 61, var(--tw-bg-opacity));
   width: 80px;
   height: 80px;
+}
+
+.dash-wrapper .dash {
+  display: flex;
+  justify-content: space-between;
+  height: calc(100vh - 4rem);
+}
+
+.dash-wrapper .dash aside.sidebar {
+  position: fixed;
+  left: 0px;
+  z-index: 10;
+  height: 100%;
+  width: 16.666667%;
+  border-right-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(20, 33, 61, var(--tw-border-opacity));
+}
+
+.dash-wrapper .dash aside.sidebar .countd {
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(20, 33, 61, var(--tw-border-opacity));
+  padding: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgba(20, 33, 61, var(--tw-text-opacity));
+}
+
+.dash-wrapper .dash aside.sidebar .countd i {
+  margin-right: 0.25rem;
+}
+
+.dash-wrapper .dash aside.sidebar ul.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 2.5rem;
+}
+
+.dash-wrapper .dash aside.sidebar ul.navigation li a {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgba(20, 33, 61, var(--tw-text-opacity));
+}
+
+.dash-wrapper .dash section.admin-content {
+  margin-left: auto;
+  height: 100%;
+  width: 83.333333%;
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 229, 229, var(--tw-bg-opacity));
+  padding: 0.5rem;
 }
 
 @media (min-width: 640px){
@@ -41356,7 +41424,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .sm\:h-1\/2{
-    height: 50%;
+    height: 50vh;
   }
 
   .sm\:h-1\/3{
@@ -41368,7 +41436,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .sm\:h-1\/4{
-    height: 25%;
+    height: 25vh;
   }
 
   .sm\:h-2\/4{
@@ -41376,7 +41444,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .sm\:h-3\/4{
-    height: 75%;
+    height: 75vh;
   }
 
   .sm\:h-1\/5{
@@ -73863,7 +73931,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .md\:h-1\/2{
-    height: 50%;
+    height: 50vh;
   }
 
   .md\:h-1\/3{
@@ -73875,7 +73943,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .md\:h-1\/4{
-    height: 25%;
+    height: 25vh;
   }
 
   .md\:h-2\/4{
@@ -73883,7 +73951,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .md\:h-3\/4{
-    height: 75%;
+    height: 75vh;
   }
 
   .md\:h-1\/5{
@@ -106370,7 +106438,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .lg\:h-1\/2{
-    height: 50%;
+    height: 50vh;
   }
 
   .lg\:h-1\/3{
@@ -106382,7 +106450,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .lg\:h-1\/4{
-    height: 25%;
+    height: 25vh;
   }
 
   .lg\:h-2\/4{
@@ -106390,7 +106458,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .lg\:h-3\/4{
-    height: 75%;
+    height: 75vh;
   }
 
   .lg\:h-1\/5{
@@ -138877,7 +138945,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .xl\:h-1\/2{
-    height: 50%;
+    height: 50vh;
   }
 
   .xl\:h-1\/3{
@@ -138889,7 +138957,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .xl\:h-1\/4{
-    height: 25%;
+    height: 25vh;
   }
 
   .xl\:h-2\/4{
@@ -138897,7 +138965,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .xl\:h-3\/4{
-    height: 75%;
+    height: 75vh;
   }
 
   .xl\:h-1\/5{
@@ -171384,7 +171452,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .\32xl\:h-1\/2{
-    height: 50%;
+    height: 50vh;
   }
 
   .\32xl\:h-1\/3{
@@ -171396,7 +171464,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .\32xl\:h-1\/4{
-    height: 25%;
+    height: 25vh;
   }
 
   .\32xl\:h-2\/4{
@@ -171404,7 +171472,7 @@ section.car-list-wrapper .pagination .page-numbers button{
   }
 
   .\32xl\:h-3\/4{
-    height: 75%;
+    height: 75vh;
   }
 
   .\32xl\:h-1\/5{

@@ -297,7 +297,7 @@ section.car-list-wrapper {
         @apply flex justify-between items-center;
 
         h1 {
-            @apply md:text-2xl lg:text-3xl text-brand-1 font-bold;
+            @apply text-xl md:text-2xl lg:text-3xl text-brand-1 font-bold;
         }
 
         span {
@@ -305,10 +305,10 @@ section.car-list-wrapper {
         }
 
         a {
-            @apply text-xl text-brand-1 font-bold hover:text-brand-2 transition-all delay-100;
+            @apply text-base md:text-xl text-brand-1 font-bold hover:text-brand-2 transition-all delay-100;
 
             i {
-                @apply hidden;
+                @apply lg:hidden;
             }
 
             &:hover {
@@ -448,3 +448,48 @@ section.car-list-wrapper {
 }
 
 // SINGLE CAR PAGE END
+
+
+
+
+
+
+// DASBOARD
+.dash-wrapper{
+    .dash{
+
+        @apply flex justify-between;
+
+        height: calc(100vh - 4rem);
+
+        aside.sidebar{
+
+            @apply w-2/12  h-full  border-r border-brand-1 fixed  left-0 z-10;
+
+            .countd{
+                @apply text-brand-1 font-semibold text-sm p-10 border-b border-brand-1;
+
+                i{
+                    @apply mr-1;
+                }
+            }
+
+            ul.navigation{
+                @apply flex flex-col gap-3 p-10;
+
+                li{
+
+                    a{
+                        @apply text-brand-1 font-bold text-xl;
+                    }
+                }
+            }
+        }
+
+        section.admin-content{
+
+            @apply w-10/12 ml-auto bg-brand-3 h-full p-2;
+        }
+    }
+}
+// DASBOARD END

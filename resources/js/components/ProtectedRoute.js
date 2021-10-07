@@ -3,6 +3,8 @@ import { useSelector,useDispatch } from "react-redux";
 import { Route, Redirect, useLocation } from "react-router-dom";
 import { refreshUser } from "../actions/AuthActions";
 
+import AdminLayout from './AdminLayout'
+
 const ProtectedRoute = ({  component: Component, ...rest }) => {
     const authUser = useSelector((state) => state.authUser);
     const { loggedInUser, auth } = authUser;
@@ -32,7 +34,7 @@ const ProtectedRoute = ({  component: Component, ...rest }) => {
             render={(props) => {
 
                 if (isAllowed()) {
-                    return <Component {...props} />;
+                    return <AdminLayout><Component {...props} /></AdminLayout>;
                 }
 
 
