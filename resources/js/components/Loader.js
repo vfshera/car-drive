@@ -3,7 +3,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 
-const Loader = () => {
+const Loader = ({isLoggedIn}) => {
     const AppLoading = useSelector(state => state.appLoading);
 
     return (

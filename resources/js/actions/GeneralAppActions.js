@@ -18,7 +18,7 @@ export const loadCars = (carUrl = "/cars") => async (dispatch) => {
     try {
         dispatch({ type: LOADING });
         dispatch({ type: GET_CAR_REQUEST });
-        
+
 
         const res = await axios.get(carUrl);
 
@@ -31,7 +31,7 @@ export const loadCars = (carUrl = "/cars") => async (dispatch) => {
         });
     } catch (error) {
 
-        
+
         dispatch({
             type: GET_CAR_FAIL,
             error: error,

@@ -201,6 +201,10 @@ body,
             }
         }
     }
+
+    &.user-logged-in{
+
+    }
 }
 
 .footer-wrapper {
@@ -488,7 +492,7 @@ section.car-list-wrapper {
 
         section.admin-content{
 
-            @apply w-10/12 ml-auto bg-brand-3 h-full p-2;
+            @apply w-10/12 ml-auto   bg-brand-3 h-full p-2;
         }
     }
 }
@@ -534,21 +538,21 @@ section.admin-content .car-list-wrapper{
 
         a {
             .car-card {
-                @apply bg-brand-1 cursor-pointer h-100 md:h-150 lg:h-200 transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
+                @apply bg-brand-1 cursor-pointer h-100 md:h-150 lg:h-200;
 
 
                 .caption-wrapper {
                     @apply flex justify-end h-full w-full;
 
                     .caption {
-                        @apply bg-brand-3 text-brand-1 w-1/2 lg:w-2/5 h-1/4 sm:h-1/5  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between hover:rounded-tl;
+                        @apply  w-1/2 lg:w-2/5 h-1/4 sm:h-1/4  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between ;
 
                         .title {
                             @apply border-r-2 border-brand-2;
 
                             h2 {
-                                @apply font-bold text-base lg:text-xl;
-                                line-height: 1;
+                                @apply font-bold text-sm lg:text-base;
+                                line-height: .8;
                             }
                         }
 
@@ -556,12 +560,12 @@ section.admin-content .car-list-wrapper{
                             @apply flex flex-row items-center;
 
                             h2 {
-                                @apply text-xs lg:text-lg;
-                                line-height: 1;
+                                @apply text-xs lg:text-sm;
+                                line-height: .8;
                             }
 
                             h3 {
-                                @apply ml-2 text-xs lg:text-lg;
+                                @apply ml-2 text-xs lg:text-sm;
                             }
                         }
                     }

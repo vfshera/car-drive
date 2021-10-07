@@ -51,7 +51,7 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar-wrapper car-drive-container">
+        <div className={`navbar-wrapper car-drive-container ${auth && "user-logged-in" } ` }>
             <div className="branding">
             <img src="/storage/images/cardrive.png" alt="Car Drive Logo" />
             </div>

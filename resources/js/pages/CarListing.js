@@ -7,11 +7,11 @@ import { loadCars } from "../actions/GeneralAppActions";
 
 import { Link } from "react-router-dom";
 
-const CarListing = ({ fullMode = true }) => {
+const CarListing = ({ fullMode = true , inAdmin = false}) => {
     const dispatch = useDispatch();
 
     const AppCars = useSelector((state) => state.appCars);
-    
+
 
     const { cars, pagination } = AppCars;
 
@@ -28,11 +28,11 @@ const CarListing = ({ fullMode = true }) => {
     };
 
     useEffect(() => {
-        dispatch(loadCars());
+        dispatch(loadCars(inAdmin ? "/auth/cars" : "/cars"));
     }, []);
 
-    
-    
+
+
 
 
     return (
@@ -51,9 +51,9 @@ const CarListing = ({ fullMode = true }) => {
                 )}
             </div>
             <section className="car-list car-drive-container">
-                {cars.length != 0 && (
+                {cars?.length != 0 && (
                     <>
-                        {cars.map((car, index) => (
+                        {cars?.map((car, index) => (
                             <CarCard
                                 car={car}
                                 index={index}

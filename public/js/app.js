@@ -4622,7 +4622,9 @@ function App() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)("div", {
     className: "app-wrapper",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_22__.BrowserRouter, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_Loader__WEBPACK_IMPORTED_MODULE_16__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Switch, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_Loader__WEBPACK_IMPORTED_MODULE_16__["default"], {
+        isLoggedIn: auth
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Switch, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
           path: "/",
           exact: true,
@@ -4630,7 +4632,12 @@ function App() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
           path: "/listing",
           exact: true,
-          component: _pages_CarListing__WEBPACK_IMPORTED_MODULE_17__["default"]
+          component: function component() {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_pages_CarListing__WEBPACK_IMPORTED_MODULE_17__["default"], {
+              fullMode: true,
+              inAdmin: false
+            });
+          }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
           path: "/:carID-:carSlug",
           exact: true,
@@ -4654,7 +4661,12 @@ function App() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
           path: "/dashboard/cars",
           exact: true,
-          component: _pages_CarListing__WEBPACK_IMPORTED_MODULE_17__["default"]
+          component: function component() {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_pages_CarListing__WEBPACK_IMPORTED_MODULE_17__["default"], {
+              fullMode: true,
+              inAdmin: true
+            });
+          }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
           path: "/dashboard/mycars",
           exact: true,
@@ -5528,7 +5540,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Loader = function Loader() {
+var Loader = function Loader(_ref) {
+  var isLoggedIn = _ref.isLoggedIn;
   var AppLoading = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.appLoading;
   });
@@ -5622,7 +5635,7 @@ var Navbar = function Navbar() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "navbar-wrapper car-drive-container",
+    className: "navbar-wrapper car-drive-container ".concat(auth && "user-logged-in", " "),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "branding",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
@@ -5945,7 +5958,9 @@ var CarListing = function CarListing(_ref) {
   var _pagination$meta$curr, _pagination$meta, _pagination$meta$last, _pagination$meta2, _pagination$links, _pagination$meta3, _pagination$meta3$lin, _pagination$links4;
 
   var _ref$fullMode = _ref.fullMode,
-      fullMode = _ref$fullMode === void 0 ? true : _ref$fullMode;
+      fullMode = _ref$fullMode === void 0 ? true : _ref$fullMode,
+      _ref$inAdmin = _ref.inAdmin,
+      inAdmin = _ref$inAdmin === void 0 ? false : _ref$inAdmin;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   var AppCars = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.appCars;
@@ -5964,7 +5979,7 @@ var CarListing = function CarListing(_ref) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)());
+    dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(inAdmin ? "/auth/cars" : "/cars"));
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
     className: "car-list-wrapper",
@@ -5982,8 +5997,8 @@ var CarListing = function CarListing(_ref) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
       className: "car-list car-drive-container",
-      children: cars.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-        children: cars.map(function (car, index) {
+      children: (cars === null || cars === void 0 ? void 0 : cars.length) != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+        children: cars === null || cars === void 0 ? void 0 : cars.map(function (car, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
             car: car,
             index: index,

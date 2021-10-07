@@ -37,7 +37,7 @@ class AuthController extends Controller
            return response()->json($userValidation->errors() , Response::HTTP_BAD_REQUEST);
        }
 
-       
+
 
         if(!$token = Auth::attempt($userValidation->validated())){
             return  response()->json(['error' => 'Unauthorised!'], Response::HTTP_BAD_REQUEST);
@@ -78,13 +78,15 @@ class AuthController extends Controller
 
     public function profile(){
 
+
+
         return response()->json(['admin' => Auth::user()->only(['id','name','email'])]);
 
     }
 
 
-   
-    
+
+
 
 
     public function logout(){
@@ -118,12 +120,12 @@ class AuthController extends Controller
     // SOCIAL LOGIN
 
 
-    
+
 
     public function redirectToProvider($provider){
 
         $url = Socialite::driver($provider)->stateless()->redirect()->getTargetUrl();
-        
+
         return response()->json(["url" => $url]);
 
     }
@@ -136,7 +138,7 @@ class AuthController extends Controller
             $user = Socialite::driver($provider)->stateless()->user();
 
 
-            
+
 
             if(!$user->token){
                 return response()->json([ "message" => "User Not Found!"]);

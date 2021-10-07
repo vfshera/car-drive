@@ -70,6 +70,7 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

@@ -12,7 +12,7 @@ use App\Http\Controllers\{
 //LARAVEL SOCIALITE SOCIAL LOGIN
 
 Route::prefix('/social-login/authorize')->group(function (){
-    
+
     Route::get('/{provider}/callback' , [AuthController::class , 'handleProvider']);
     Route::get('/{provider}/redirect' , [AuthController::class , 'redirectToProvider']);
 
@@ -31,6 +31,8 @@ Route::get('/single-car/{car}', [CarController::class , 'singleCar']);
 
 
 Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
+    Route::get('/cars', [CarController::class , 'authIndex']);
+
     Route::get('/profile', [AuthController::class , 'profile']);
     Route::get('/refresh-token', [AuthController::class , 'refresh']);
     Route::post('/logout' , [AuthController::class , 'logout']);
