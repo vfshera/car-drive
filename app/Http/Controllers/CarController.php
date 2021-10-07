@@ -38,4 +38,11 @@ class CarController extends Controller
     }
 
 
+    public function adminSingleCar(Car $car){
+
+
+        return new CarResource($car);
+    }
+
+
 }

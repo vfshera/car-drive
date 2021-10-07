@@ -32,6 +32,8 @@ Route::get('/single-car/{car}', [CarController::class , 'singleCar']);
 
 Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
     Route::get('/cars', [CarController::class , 'authIndex']);
+    Route::get('/single-car/{car}', [CarController::class , 'adminSingleCar']);
+
 
     Route::get('/profile', [AuthController::class , 'profile']);
     Route::get('/refresh-token', [AuthController::class , 'refresh']);

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadCars } from "../actions/GeneralAppActions";
 
 import { Link } from "react-router-dom";
+import Pagination from "../components/Pagination";
 
 const CarListing = ({ fullMode = true , inAdmin = false}) => {
     const dispatch = useDispatch();
@@ -66,50 +67,15 @@ const CarListing = ({ fullMode = true , inAdmin = false}) => {
                 )}
             </section>
 
-            {fullMode && (
-                <section className="pagination car-drive-container">
-                    <button
-                        className={(!pagination?.links?.prev) && "disabled"}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            pagination?.links?.prev &&
-                                getPage(pagination?.links?.next);
-                        }}
-                    >
-                        PREV
-                    </button>
-                    <section className="page-numbers">
-                        {pagination?.meta?.links?.map((pageLink , index) => {
-
-
-                            if (index != 0 && index != pagination.meta.links.length - 1 ) {
-                                return (
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            getPage(pageLink.url);
-                                        }}
-                                        key={index}
-                                    >
-                                       {pageLink.label}
-                                    </button>
-                                );
-                            }
-
-                        })}
-                    </section>
-                    <button
-                        className={(!pagination?.links?.next) && "disabled"}
-                        onClick={(e) => {
-                            e.preventDefault();
-                            pagination?.links?.next &&
-                                getPage(pagination?.links?.next);
-                        }}
-                    >
-                        NEXT
-                    </button>
-                </section>
-            )}
+            {fullMode && (<Pagination
+                getPage={getPage}
+                currentPage={pagination?.meta?.current_page}
+                inLastPage={!pagination?.links?.next}
+                inFirstPage={!pagination?.links?.prev}
+                links={pagination?.meta?.links}
+                nextPage={pagination?.links?.next}
+                prevPage={pagination?.links?.prev}
+            />)}
         </section>
     );
 };

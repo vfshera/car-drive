@@ -90,12 +90,13 @@ function App() {
             <Route path="/" exact component={Home}/>
             <Route path="/listing" exact component={() => (<CarListing fullMode={true} inAdmin={false}/>)}/>
 
-            <Route path="/:carID-:carSlug" exact component={SingleCar}/>
+            <Route path="/:carID-:carSlug" exact component={() => (<SingleCar prefix='' />)}/>
             <Route path="/about" exact component={About}/>
             <Route path="/contact" exact component={Contact}/>
             <Route path="/login" exact component={Login}/>
             <Route path="/register" exact component={Register}/>
             <ProtectedRoute path="/dashboard/cars" exact component={() => (<CarListing fullMode={true} inAdmin={true}/>)}/>
+            <ProtectedRoute path="/dashboard/:carID-:carSlug" exact component={() => (<SingleCar prefix={'/auth'}/>)}/>
 
             <ProtectedRoute path="/dashboard/mycars" exact component={MyCars}/>
             <ProtectedRoute path="/dashboard/chats" exact component={Chats}/>

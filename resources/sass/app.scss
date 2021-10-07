@@ -390,7 +390,27 @@ section.car-list-wrapper {
             button {
                 @apply bg-brand-1 text-brand-3 sm:font-semibold shadow mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-gray-200 hover:text-brand-1;
             }
+
+
+
+            button.current-page {
+                @apply bg-brand-3 text-brand-1 sm:font-bold shadow border-t-2 border-brand-2 mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-brand-1 hover:text-brand-2;
+            }
+
+
+            button.peak-page {
+                @apply bg-brand-3 border-2 border-brand-1 text-brand-1 sm:font-bold shadow mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-brand-1 hover:text-brand-2;
+            }
+
+
+            button.showmore.disabled {
+                @apply bg-gray-100 text-brand-1 py-1 px-2 lg:px-3 lg:py-2 shadow-none;
+            }
+
+
+
         }
+
     }
 }
 // CAR LISTING COMPONENT END

@@ -4641,7 +4641,11 @@ function App() {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
           path: "/:carID-:carSlug",
           exact: true,
-          component: _pages_SingleCar__WEBPACK_IMPORTED_MODULE_18__["default"]
+          component: function component() {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_pages_SingleCar__WEBPACK_IMPORTED_MODULE_18__["default"], {
+              prefix: ""
+            });
+          }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_23__.Route, {
           path: "/about",
           exact: true,
@@ -4665,6 +4669,14 @@ function App() {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_pages_CarListing__WEBPACK_IMPORTED_MODULE_17__["default"], {
               fullMode: true,
               inAdmin: true
+            });
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          path: "/dashboard/:carID-:carSlug",
+          exact: true,
+          component: function component() {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_pages_SingleCar__WEBPACK_IMPORTED_MODULE_18__["default"], {
+              prefix: '/auth'
             });
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
@@ -5700,6 +5712,152 @@ var Navbar = function Navbar() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Pagination.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Pagination.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var Pagination = function Pagination(_ref) {
+  var _links$label;
+
+  var inFirstPage = _ref.inFirstPage,
+      inLastPage = _ref.inLastPage,
+      links = _ref.links,
+      _ref$pagesToShow = _ref.pagesToShow,
+      pagesToShow = _ref$pagesToShow === void 0 ? 5 : _ref$pagesToShow,
+      getPage = _ref.getPage,
+      currentPage = _ref.currentPage,
+      prevPage = _ref.prevPage,
+      nextPage = _ref.nextPage;
+  var pageNumberLimit = pagesToShow || 5;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState2 = _slicedToArray(_useState, 2),
+      minPageNumberLimit = _useState2[0],
+      setMinLimit = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5),
+      _useState4 = _slicedToArray(_useState3, 2),
+      maxPageNumberLimit = _useState4[0],
+      setMaxLimit = _useState4[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var coefficient = Math.ceil(currentPage / 5) * pageNumberLimit;
+
+    if (currentPage > maxPageNumberLimit) {
+      setMaxLimit(coefficient);
+      setMinLimit(coefficient - pageNumberLimit); // setMaxLimit(maxPageNumberLimit + pageNumberLimit)
+      // setMinLimit(minPageNumberLimit + pageNumberLimit)
+    }
+
+    if (currentPage <= minPageNumberLimit) {
+      setMaxLimit(coefficient);
+      setMinLimit(coefficient - pageNumberLimit); //  setMaxLimit(maxPageNumberLimit - pageNumberLimit)
+      // setMinLimit(minPageNumberLimit - pageNumberLimit)
+      //
+      //
+    } //
+    // console.log(`Page ${currentPage} --> ${coefficient}`)
+    //
+    // console.log(`Max Limit --> ${maxPageNumberLimit}`)
+    // console.log(`Min Limit --> ${minPageNumberLimit}`)
+
+  }, [currentPage]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+    className: "pagination car-drive-container",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: inFirstPage && "disabled",
+      onClick: function onClick(e) {
+        e.preventDefault();
+        !inFirstPage && getPage(prevPage);
+      },
+      children: "PREV"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+      className: "page-numbers",
+      children: [minPageNumberLimit != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "peak-page",
+          onClick: function onClick(e) {
+            e.preventDefault();
+            getPage(links === null || links === void 0 ? void 0 : links[1].url);
+          },
+          children: links === null || links === void 0 ? void 0 : links[1].label
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "showmore disabled",
+          onClick: function onClick(e) {
+            e.preventDefault();
+          },
+          children: "[...]"
+        })]
+      }), links === null || links === void 0 ? void 0 : links.map(function (pageLink, index) {
+        // if (index != 0 && index != links?.length - 1 ) {
+        if (index != 0 && index != (links === null || links === void 0 ? void 0 : links.length) - 1 && index <= maxPageNumberLimit && index > minPageNumberLimit) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            className: pageLink.label == currentPage && "current-page",
+            onClick: function onClick(e) {
+              e.preventDefault();
+              getPage(pageLink.url);
+              console.log("Page " + pageLink.label + "-->" + pageLink.url);
+            },
+            children: pageLink.label
+          }, index);
+        }
+      }), !inLastPage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "showmore disabled",
+          onClick: function onClick(e) {
+            e.preventDefault();
+          },
+          children: "[...]"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "peak-page",
+          onClick: function onClick(e) {
+            e.preventDefault();
+            getPage(links === null || links === void 0 ? void 0 : links[(links === null || links === void 0 ? void 0 : links.length) - 2].url);
+          },
+          children: (_links$label = links === null || links === void 0 ? void 0 : links[(links === null || links === void 0 ? void 0 : links.length) - 2].label) !== null && _links$label !== void 0 ? _links$label : "Last"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: inLastPage && "disabled",
+      onClick: function onClick(e) {
+        e.preventDefault();
+        !inLastPage && getPage(nextPage);
+      },
+      children: "NEXT"
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pagination);
+
+/***/ }),
+
 /***/ "./resources/js/components/ProtectedRoute.js":
 /*!***************************************************!*\
   !*** ./resources/js/components/ProtectedRoute.js ***!
@@ -5943,8 +6101,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_CarCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/CarCard */ "./resources/js/components/CarCard.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/GeneralAppActions */ "./resources/js/actions/GeneralAppActions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Pagination */ "./resources/js/components/Pagination.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -5955,7 +6115,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CarListing = function CarListing(_ref) {
-  var _pagination$meta$curr, _pagination$meta, _pagination$meta$last, _pagination$meta2, _pagination$links, _pagination$meta3, _pagination$meta3$lin, _pagination$links4;
+  var _pagination$meta$curr, _pagination$meta, _pagination$meta$last, _pagination$meta2, _pagination$meta3, _pagination$links, _pagination$links2, _pagination$meta4, _pagination$links3, _pagination$links4;
 
   var _ref$fullMode = _ref.fullMode,
       fullMode = _ref$fullMode === void 0 ? true : _ref$fullMode,
@@ -5981,65 +6141,39 @@ var CarListing = function CarListing(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(inAdmin ? "/auth/cars" : "/cars"));
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
     className: "car-list-wrapper",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "list-header car-drive-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
         children: "Top Listings"
-      }), !fullMode ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+      }), !fullMode ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
         to: "/listing",
-        children: ["More ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+        children: ["More ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
           className: "ti-arrow-right"
         })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         children: "Page ".concat((_pagination$meta$curr = pagination === null || pagination === void 0 ? void 0 : (_pagination$meta = pagination.meta) === null || _pagination$meta === void 0 ? void 0 : _pagination$meta.current_page) !== null && _pagination$meta$curr !== void 0 ? _pagination$meta$curr : "First", " of ").concat((_pagination$meta$last = pagination === null || pagination === void 0 ? void 0 : (_pagination$meta2 = pagination.meta) === null || _pagination$meta2 === void 0 ? void 0 : _pagination$meta2.last_page) !== null && _pagination$meta$last !== void 0 ? _pagination$meta$last : "Last")
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
       className: "car-list car-drive-container",
-      children: (cars === null || cars === void 0 ? void 0 : cars.length) != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+      children: (cars === null || cars === void 0 ? void 0 : cars.length) != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
         children: cars === null || cars === void 0 ? void 0 : cars.map(function (car, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
             car: car,
             index: index,
             bgImg: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")")
           });
         })
       })
-    }), fullMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("section", {
-      className: "pagination car-drive-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-        className: !(pagination !== null && pagination !== void 0 && (_pagination$links = pagination.links) !== null && _pagination$links !== void 0 && _pagination$links.prev) && "disabled",
-        onClick: function onClick(e) {
-          var _pagination$links2, _pagination$links3;
-
-          e.preventDefault();
-          (pagination === null || pagination === void 0 ? void 0 : (_pagination$links2 = pagination.links) === null || _pagination$links2 === void 0 ? void 0 : _pagination$links2.prev) && getPage(pagination === null || pagination === void 0 ? void 0 : (_pagination$links3 = pagination.links) === null || _pagination$links3 === void 0 ? void 0 : _pagination$links3.next);
-        },
-        children: "PREV"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
-        className: "page-numbers",
-        children: pagination === null || pagination === void 0 ? void 0 : (_pagination$meta3 = pagination.meta) === null || _pagination$meta3 === void 0 ? void 0 : (_pagination$meta3$lin = _pagination$meta3.links) === null || _pagination$meta3$lin === void 0 ? void 0 : _pagination$meta3$lin.map(function (pageLink, index) {
-          if (index != 0 && index != pagination.meta.links.length - 1) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-              onClick: function onClick(e) {
-                e.preventDefault();
-                getPage(pageLink.url);
-              },
-              children: pageLink.label
-            }, index);
-          }
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-        className: !(pagination !== null && pagination !== void 0 && (_pagination$links4 = pagination.links) !== null && _pagination$links4 !== void 0 && _pagination$links4.next) && "disabled",
-        onClick: function onClick(e) {
-          var _pagination$links5, _pagination$links6;
-
-          e.preventDefault();
-          (pagination === null || pagination === void 0 ? void 0 : (_pagination$links5 = pagination.links) === null || _pagination$links5 === void 0 ? void 0 : _pagination$links5.next) && getPage(pagination === null || pagination === void 0 ? void 0 : (_pagination$links6 = pagination.links) === null || _pagination$links6 === void 0 ? void 0 : _pagination$links6.next);
-        },
-        children: "NEXT"
-      })]
+    }), fullMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      getPage: getPage,
+      currentPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$meta3 = pagination.meta) === null || _pagination$meta3 === void 0 ? void 0 : _pagination$meta3.current_page,
+      inLastPage: !(pagination !== null && pagination !== void 0 && (_pagination$links = pagination.links) !== null && _pagination$links !== void 0 && _pagination$links.next),
+      inFirstPage: !(pagination !== null && pagination !== void 0 && (_pagination$links2 = pagination.links) !== null && _pagination$links2 !== void 0 && _pagination$links2.prev),
+      links: pagination === null || pagination === void 0 ? void 0 : (_pagination$meta4 = pagination.meta) === null || _pagination$meta4 === void 0 ? void 0 : _pagination$meta4.links,
+      nextPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$links3 = pagination.links) === null || _pagination$links3 === void 0 ? void 0 : _pagination$links3.next,
+      prevPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$links4 = pagination.links) === null || _pagination$links4 === void 0 ? void 0 : _pagination$links4.prev
     })]
   });
 };
