@@ -14,7 +14,7 @@ class CarController extends Controller
     public function index(){
 
         $cars = Car::with(['user','carImages' => function($query){
-                $query->limit(2);
+                $query->take(2);
             }])->paginate(12);
 
 

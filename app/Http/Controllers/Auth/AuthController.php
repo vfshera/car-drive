@@ -40,7 +40,7 @@ class AuthController extends Controller
 
 
         if(!$token = Auth::attempt($userValidation->validated())){
-            return  response()->json(['error' => 'Unauthorised!'], Response::HTTP_BAD_REQUEST);
+            return  response()->json(['error' => 'Invalid Credentials!'], Response::HTTP_BAD_REQUEST);
         }
 
         return respondWithToken($token);

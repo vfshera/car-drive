@@ -7,9 +7,9 @@ import {
     TIME_SUCCESS,
     TIME_RESET
    } from '../constants/AuthConstants'
-   
+
    import { LOADING, NOT_LOADING} from '../constants/AppConstants';
-   
+
 
 import axios from "axios";
 
@@ -36,38 +36,50 @@ const setHeader = (token) => {
 
 
 export const loginUser = (user) => async (dispatch) => {
-    try {
+    // try {
 
         dispatch({ type: USER_LOGIN_REQUEST });
         dispatch({ type: TIME_RESET });
 
         dispatch({ type: LOADING});
-        
-
-        const { data } = await axios.post("/login", user);   
-        
-        
-        dispatch({type: TIME_SUCCESS,
-            payload: { tst: data.tst, overtime :data.overtime}
-        })
-        
-
-        const loggedUser = await axios.get("/auth/profile");
 
 
-        dispatch({
-            type: USER_LOGIN_SUCCESS,
-            payload: loggedUser.data,
-        });
+         axios.post("/login", user)
+             .then(res =>{
+
+                 dispatch({type: TIME_SUCCESS,
+                             payload: { tst: res.data.tst, overtime: res.data.overtime}
+                         })
+
+
+                 axios.get("/auth/profile")
+                     .then(response =>{
+
+                         if(response.status == 200){
+
+                             dispatch({
+                                 type: USER_LOGIN_SUCCESS,
+                                 payload: response.data,
+                             });
+
+                         }
+
+                     }).catch(error =>{
+                         return false;
+                 });
 
 
 
-    } catch (error) {
-        dispatch({
-            type: USER_LOGIN_FAIL,
-            error: error,
-        });
-    }
+
+
+             })
+             .catch(err => {
+
+                 dispatch({
+                             type: USER_LOGIN_FAIL,
+                             error: "Failed to Login!",
+                         });
+             });
 
     dispatch({ type: NOT_LOADING});
 
@@ -92,7 +104,7 @@ export const socialLogin = (code, provider) => async (dispatch) => {
         dispatch({type: TIME_SUCCESS,
             payload: { tst: data.tst, overtime :data.overtime}
         })
-        
+
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -100,7 +112,7 @@ export const socialLogin = (code, provider) => async (dispatch) => {
         });
 
 
-        
+
     } catch (error) {
 
         console.log(error);
@@ -147,9 +159,9 @@ export const registerUser = (user) => async (dispatch) => {
 
 
 export const refreshUser = () =>   async (dispatch) => {
-  
+
     dispatch({ type: TIME_RESET });
-       
+
     dispatch({ type: LOADING});
 
 
@@ -179,12 +191,12 @@ export const refreshUser = () =>   async (dispatch) => {
 
         dispatch({ type: NOT_LOADING});
 
-        
+
 };
 
 
-            
-    
+
+
 
 export const logoutUser = () => async (dispatch) => {
     dispatch({ type: LOADING});

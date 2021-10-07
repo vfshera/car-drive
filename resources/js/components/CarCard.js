@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-const CarCard = ({ car, index, bgImg }) => {
+const CarCard = ({ car, index, bgImg , inAdmin }) => {
 
-    let viewlink = `${car.id}-${car.slug}`;
+    let viewlink = `${inAdmin ? '/dashboard' : ''}/${car.id}-${car.slug}`;
 
     return (
        <Link to={viewlink}>

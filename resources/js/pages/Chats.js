@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const Chats = () =>{
-    retutn (
+    return (
         <div>Chats</div>
     )
 }

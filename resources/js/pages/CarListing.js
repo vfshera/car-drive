@@ -56,6 +56,7 @@ const CarListing = ({ fullMode = true , inAdmin = false}) => {
                     <>
                         {cars?.map((car, index) => (
                             <CarCard
+                                inAdmin={inAdmin}
                                 car={car}
                                 index={index}
                                 bgImg={`url(/storage/images/${

@@ -471,6 +471,10 @@ section.car-list-wrapper {
     }
 }
 
+
+
+
+
 // SINGLE CAR PAGE END
 
 
@@ -520,89 +524,166 @@ section.car-list-wrapper {
 
 
 
-//CAR LISTING FIX
 
 
-section.admin-content .car-list-wrapper{
+section.admin-content {
+
+
+    //SINGLECAR FIX
+
+    & .single-car-page {
+        .single-car-wrapper {
+            @apply flex flex-col mt-10;
+
+             .details {
+
+
+                .car-photo {
+                    @apply w-full lg:w-3/4 h-full;
+                }
+
+                .description {
+                    @apply w-full lg:w-1/4 ;
+
+                    .photos{
+                        @apply grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 mt-3 gap-2;
+
+                        .no-photo{
+                            @apply bg-gray-300;
+                            width: 80px;
+                            height: 80px;
+                        }
 
 
 
-    .list-header {
-        @apply flex justify-between items-center;
+                    }
 
-        h1 {
-            @apply text-base md:text-lg lg:text-xl text-brand-1 font-bold;
-        }
+                    .actions{
+                        @apply flex flex-col mt-10;
 
-        span {
-            @apply text-sm lg:text-base text-brand-1 font-semibold;
-        }
+                        button{
 
-        a {
-            @apply text-sm md:text-base text-brand-1 font-bold hover:text-brand-2 transition-all delay-100;
+                            @apply  w-full py-2 rounded-md;
 
-            i {
-                @apply lg:hidden;
-            }
+                            i{
+                                @apply mr-2;
+                            }
 
-            &:hover {
-                i {
-                    @apply inline-block;
+
+                            &.map{
+                                @apply bg-yellow-700 text-white;
+                            }
+
+                            &.chat{
+                                @apply bg-blue-500 text-white;
+                            }
+
+                            &:last-child{
+                                @apply mt-3;
+                            }
+
+                        }
+                    }
                 }
             }
         }
     }
 
-    section.car-list {
-        @apply mt-4 grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 lg:gap-6;
-
-        a {
-            .car-card {
-                @apply bg-brand-1 cursor-pointer h-100 md:h-150 lg:h-200;
 
 
-                .caption-wrapper {
-                    @apply flex justify-end h-full w-full;
 
-                    .caption {
-                        @apply  w-1/2 lg:w-2/5 h-1/4 sm:h-1/4  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between ;
 
-                        .title {
-                            @apply border-r-2 border-brand-2;
+    //SINGLECAR FIX
 
-                            h2 {
-                                @apply font-bold text-sm lg:text-base;
-                                line-height: .8;
-                            }
-                        }
 
-                        .description {
-                            @apply flex flex-row items-center;
 
-                            h2 {
-                                @apply text-xs lg:text-sm;
-                                line-height: .8;
-                            }
 
-                            h3 {
-                                @apply ml-2 text-xs lg:text-sm;
-                            }
-                        }
-                    }
+
+
+
+
+//CAR LISTING FIX
+    & .car-list-wrapper{
+
+
+
+        .list-header {
+            @apply flex justify-between items-center;
+
+            h1 {
+                @apply text-base md:text-lg lg:text-xl text-brand-1 font-bold;
+            }
+
+            span {
+                @apply text-sm lg:text-base text-brand-1 font-semibold;
+            }
+
+            a {
+                @apply text-sm md:text-base text-brand-1 font-bold hover:text-brand-2 transition-all delay-100;
+
+                i {
+                    @apply lg:hidden;
                 }
 
                 &:hover {
-                    filter: sepia(20%);
-                    transform: rotate(2deg) scale(0.97);
-
-                    .caption-wrapper .caption {
-                        @apply hover:rounded-tl;
+                    i {
+                        @apply inline-block;
                     }
                 }
             }
         }
 
+        section.car-list {
+            @apply mt-4 grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 lg:gap-6;
 
+            a {
+                .car-card {
+                    @apply bg-brand-1 cursor-pointer h-100 md:h-150 lg:h-200;
+
+
+                    .caption-wrapper {
+                        @apply flex justify-end h-full w-full;
+
+                        .caption {
+                            @apply  w-1/2 lg:w-2/5 h-1/4 sm:h-1/4  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between ;
+
+                            .title {
+                                @apply border-r-2 border-brand-2;
+
+                                h2 {
+                                    @apply font-bold text-sm lg:text-base;
+                                    line-height: .8;
+                                }
+                            }
+
+                            .description {
+                                @apply flex flex-row items-center;
+
+                                h2 {
+                                    @apply text-xs lg:text-sm;
+                                    line-height: .8;
+                                }
+
+                                h3 {
+                                    @apply ml-2 text-xs lg:text-sm;
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        filter: sepia(20%);
+                        transform: rotate(2deg) scale(0.97);
+
+                        .caption-wrapper .caption {
+                            @apply hover:rounded-tl;
+                        }
+                    }
+                }
+            }
+
+
+        }
     }
-}
 //CAR LISTING FIX END
+}
