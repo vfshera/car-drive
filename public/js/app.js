@@ -6129,9 +6129,6 @@ var AdminSingleCar = function AdminSingleCar(props) {
     axios.get("/auth/single-car/".concat(props.match.params.carID)).then(function (res) {
       if (res.status == 200) {
         setCar(res.data.data);
-        setLat(car.show_location.split(",")[1]);
-        setLong(car.show_location.split(",")[0]);
-        console.log(car.show_location.split(","));
       }
     })["catch"](function (err) {});
   }, []);
@@ -6150,6 +6147,12 @@ var AdminSingleCar = function AdminSingleCar(props) {
       })
     });
   }));
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var _car$show_location, _car$show_location2;
+
+    setLat(parseFloat(car === null || car === void 0 ? void 0 : (_car$show_location = car.show_location) === null || _car$show_location === void 0 ? void 0 : _car$show_location.split(",")[1]));
+    setLong(parseFloat(car === null || car === void 0 ? void 0 : (_car$show_location2 = car.show_location) === null || _car$show_location2 === void 0 ? void 0 : _car$show_location2.split(",")[0]));
+  }, [car]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: [mapView && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "car-map-overlay-wrapper",

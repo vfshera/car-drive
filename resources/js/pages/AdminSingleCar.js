@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { GoogleMap, withScriptjs, withGoogleMap, Marker } from "react-google-maps";
+import {
+    GoogleMap,
+    withScriptjs,
+    withGoogleMap,
+    Marker
+} from "react-google-maps";
 
 const AdminSingleCar = (props) => {
     const [car, setCar] = useState({});
     const [mapView, setMapView] = useState(false);
-
 
     const [latitude, setLat] = useState(-1.292066);
     const [longitude, setLong] = useState(36.821945);
@@ -17,30 +21,42 @@ const AdminSingleCar = (props) => {
         axios
             .get(`/auth/single-car/${props.match.params.carID}`)
             .then((res) => {
-                
                 if (res.status == 200) {
                     setCar(res.data.data);
 
-                    setLat(car.show_location.split(",")[1])
-                    setLong(car.show_location.split(",")[0])
-
-                    console.log(car.show_location.split(","));
+                   
                 }
             })
             .catch((err) => {});
     }, []);
 
-    const WrappedMap = withScriptjs(
+    let WrappedMap = withScriptjs(
         withGoogleMap((props) => (
             <GoogleMap
                 defaultZoom={10}
                 defaultCenter={{ lat: latitude, lng: longitude }}
             >
+                <Marker
+                    position={{ lat: latitude, lng: longitude }}
+                   
+                />
 
-                <Marker position={{ lat: latitude, lng: longitude }}/>
-        </GoogleMap>
+                
+            </GoogleMap>
         ))
     );
+
+
+    useEffect(() =>{
+
+        setLat(
+            parseFloat(car?.show_location?.split(",")[1])
+        );
+        setLong(
+            parseFloat(car?.show_location?.split(",")[0])
+        );
+       
+    },[car])
 
     return (
         <>
