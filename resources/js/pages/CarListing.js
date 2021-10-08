@@ -58,7 +58,7 @@ const CarListing = ({ fullMode = true , inAdmin = false}) => {
                             <CarCard
                                 inAdmin={inAdmin}
                                 car={car}
-                                index={index}
+                                key={index}
                                 bgImg={`url(/storage/images/${
                                     homeImages[Math.floor(Math.random() * 2)]
                                 })`}

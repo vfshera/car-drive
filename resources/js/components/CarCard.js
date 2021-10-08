@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-const CarCard = ({ car, index, bgImg , inAdmin }) => {
+const CarCard = ({ car, bgImg , inAdmin }) => {
 
     let viewlink = `${inAdmin ? '/dashboard' : ''}/${car.id}-${car.slug}`;
 
@@ -10,7 +10,6 @@ const CarCard = ({ car, index, bgImg , inAdmin }) => {
 
        <div
             className="car-card"
-            key={index}
             style={{
                 backgroundImage: bgImg,
                 backgroundRepeat: "no-repeat",

@@ -532,6 +532,8 @@ section.admin-content {
     //SINGLECAR FIX
 
     & .single-car-page {
+
+
         .single-car-wrapper {
             @apply flex flex-col mt-10;
 
@@ -563,7 +565,7 @@ section.admin-content {
 
                         button{
 
-                            @apply  w-full py-2 rounded-md;
+                            @apply  w-full py-3 rounded-md transition-all delay-75;
 
                             i{
                                 @apply mr-2;
@@ -571,11 +573,11 @@ section.admin-content {
 
 
                             &.map{
-                                @apply bg-yellow-700 text-white;
+                                @apply bg-yellow-700 text-white hover:bg-yellow-900;
                             }
 
                             &.chat{
-                                @apply bg-blue-500 text-white;
+                                @apply bg-blue-500 text-white hover:bg-blue-700;
                             }
 
                             &:last-child{
@@ -587,9 +589,42 @@ section.admin-content {
                 }
             }
         }
+
+
+
+
     }
 
 
+    .car-map-overlay-wrapper{
+        @apply fixed z-30 top-0 right-0;
+        width:100vw;
+        height:100vh;
+        background: rgba(#cccccc,.9);
+
+        .map-overlay{
+
+            @apply absolute top-0 z-40 right-0 bg-white shadow text-brand-1;
+            width: 80vw;
+            height:100vw;
+
+            .close-handler{
+
+                @apply relative transition-all delay-100;
+
+                button.close{
+                    @apply absolute -left-10 font-bold text-5xl ;
+                }
+
+            }
+
+
+            .map-feed{
+
+            }
+
+        }
+    }
 
 
 

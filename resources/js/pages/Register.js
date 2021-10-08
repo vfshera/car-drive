@@ -93,7 +93,7 @@ const Register = () => {
                     name="email"
                     id="email"
                     classes=""
-                    placeholder="example@laravelreactstarter.com"
+                    placeholder="example@cardrive.com"
                     parentClasses=""
                     onBlur={formik.handleBlur}
                     value={formik.values.email}

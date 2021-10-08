@@ -11,7 +11,7 @@ useEffect(() =>{
 
  axios.get(`/single-car/${props.match.params.carID}`)
  .then(res => {
-console.log(res);
+
 
 if(res.status == 200){
     setCar(res.data.data)
@@ -53,7 +53,10 @@ if(res.status == 200){
 
                     {car?.car_images?.length != 0 && car?.car_images?.map((carImg,index) => (
 
-                            <div className="photo" style={{
+                            <div
+                                className="photo"
+                                key={index}
+                                style={{
                                 backgroundImage: `url(/storage/images/${homeImages[Math.floor(Math.random() * 2)]})`,
                                 backgroundRepeat: "no-repeat",
                                 backgroundSize: "cover",

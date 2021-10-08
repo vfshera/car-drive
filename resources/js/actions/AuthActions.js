@@ -68,16 +68,12 @@ export const loginUser = (user) => async (dispatch) => {
                          return false;
                  });
 
-
-
-
-
              })
              .catch(err => {
 
                  dispatch({
                              type: USER_LOGIN_FAIL,
-                             error: "Failed to Login!",
+                             payload: "Login Failed",
                          });
              });
 
@@ -115,7 +111,7 @@ export const socialLogin = (code, provider) => async (dispatch) => {
 
     } catch (error) {
 
-        console.log(error);
+
 
         dispatch({
             type: USER_LOGIN_FAIL,
@@ -144,7 +140,7 @@ export const registerUser = (user) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_REGISTER_FAIL,
-            payload: error,
+            payload: "Failed to register user!",
         });
     }
 

@@ -34,13 +34,13 @@ class AuthController extends Controller
        ]);
 
        if($userValidation->fails()){
-           return response()->json($userValidation->errors() , Response::HTTP_BAD_REQUEST);
+           return response()->json($userValidation->errors() , Response::HTTP_UNPROCESSABLE_ENTITY);
        }
 
 
 
         if(!$token = Auth::attempt($userValidation->validated())){
-            return  response()->json(['error' => 'Invalid Credentials!'], Response::HTTP_BAD_REQUEST);
+            return  response()->json(['message' => 'Invalid Credentials!'], Response::HTTP_UNAUTHORIZED);
         }
 
         return respondWithToken($token);

@@ -12,7 +12,7 @@ import Loader from "../components/Loader";
 const Login = ({location}) => {
     const hist = useHistory();
     const authUser = useSelector((state) => state.authUser);
-    const { auth, loggedInUser, loading } = authUser;
+    const { auth, loggedInUser, loading , error } = authUser;
     const dispatch = useDispatch();
 
     const login = (userData) => {
@@ -55,6 +55,7 @@ const Login = ({location}) => {
         <div className="login-page">
             <h1>Login</h1>
 
+
             <form action="" onSubmit={formik.handleSubmit}>
                 <InputField
                     labelText="Email"
@@ -62,7 +63,7 @@ const Login = ({location}) => {
                     name="email"
                     id="email"
                     classes=""
-                    placeholder="example@laravelreactstarter.com"
+                    placeholder="example@cardrive.com"
                     parentClasses=""
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
