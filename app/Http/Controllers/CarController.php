@@ -34,6 +34,15 @@ class CarController extends Controller
     }
 
 
+    public function adminCars(){
+      
+
+        $cars =  Auth::user()->cars();;
+
+      return AdminCarResource::collection($cars)->response()->setStatusCode(Response::HTTP_OK);
+    }
+
+
     public function singleCar(Car $car){
 
 

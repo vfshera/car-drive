@@ -4670,13 +4670,19 @@ function App() {
             });
           }
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          path: "/dashboard/mycars",
+          exact: true,
+          component: function component() {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_pages_CarListing__WEBPACK_IMPORTED_MODULE_17__["default"], {
+              fullMode: true,
+              inAdmin: true,
+              MyCars: true
+            });
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
           path: "/dashboard/:carID-:carSlug",
           exact: true,
           component: _pages_AdminSingleCar__WEBPACK_IMPORTED_MODULE_21__["default"]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
-          path: "/dashboard/mycars",
-          exact: true,
-          component: _pages_MyCars__WEBPACK_IMPORTED_MODULE_19__["default"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_components_ProtectedRoute__WEBPACK_IMPORTED_MODULE_12__["default"], {
           path: "/dashboard/chats",
           exact: true,
@@ -5332,6 +5338,11 @@ var AdminLayout = function AdminLayout(props) {
           className: "navigation",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+              to: "/dashboard",
+              children: "Dashboard"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
               to: "/dashboard/cars",
               children: "Cars"
             })
@@ -5482,6 +5493,69 @@ var CarCard = function CarCard(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CarCard);
+
+/***/ }),
+
+/***/ "./resources/js/components/CarCardSkeleton.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/CarCardSkeleton.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var CarCardSkeleton = function CarCardSkeleton() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      show = _useState2[0],
+      setShow = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setTimeout(function () {
+      setShow(true);
+    }, 100);
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: show && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "car-card skeleton",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "caption-wrapper",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "caption",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "title"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "description"
+          })]
+        })
+      })
+    })
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CarCardSkeleton);
 
 /***/ }),
 
@@ -6079,9 +6153,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_google_maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-maps */ "./node_modules/react-google-maps/lib/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_google_maps__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-google-maps */ "./node_modules/react-google-maps/lib/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -6101,8 +6176,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var AdminSingleCar = function AdminSingleCar(props) {
-  var _car$user, _car$car_images, _car$car_images2;
+  var _car$user, _car$car_images, _car$car_images2, _car$user2;
+
+  var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.authUser;
+  });
+  var loggedInUser = authUser.loggedInUser,
+      loading = authUser.loading,
+      auth = authUser.auth,
+      error = authUser.error;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
@@ -6132,14 +6216,14 @@ var AdminSingleCar = function AdminSingleCar(props) {
       }
     })["catch"](function (err) {});
   }, []);
-  var WrappedMap = (0,react_google_maps__WEBPACK_IMPORTED_MODULE_1__.withScriptjs)((0,react_google_maps__WEBPACK_IMPORTED_MODULE_1__.withGoogleMap)(function (props) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_1__.GoogleMap, {
+  var WrappedMap = (0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withScriptjs)((0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withGoogleMap)(function (props) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.GoogleMap, {
       defaultZoom: 10,
       defaultCenter: {
         lat: latitude,
         lng: longitude
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_1__.Marker, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.Marker, {
         position: {
           lat: latitude,
           lng: longitude
@@ -6153,14 +6237,14 @@ var AdminSingleCar = function AdminSingleCar(props) {
     setLat(parseFloat(car === null || car === void 0 ? void 0 : (_car$show_location = car.show_location) === null || _car$show_location === void 0 ? void 0 : _car$show_location.split(",")[1]));
     setLong(parseFloat(car === null || car === void 0 ? void 0 : (_car$show_location2 = car.show_location) === null || _car$show_location2 === void 0 ? void 0 : _car$show_location2.split(",")[0]));
   }, [car]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [mapView && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [mapView && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "car-map-overlay-wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "map-overlay",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "close-handler",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
             className: "close",
             onClick: function onClick(e) {
               e.preventDefault();
@@ -6168,20 +6252,20 @@ var AdminSingleCar = function AdminSingleCar(props) {
             },
             children: "\xD7"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "map-feed",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(WrappedMap, {
-            loadingElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(WrappedMap, {
+            loadingElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               style: {
                 height: "100vh"
               }
             }),
-            containerElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            containerElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               style: {
                 height: "100vh"
               }
             }),
-            mapElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            mapElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               style: {
                 height: "100vh"
               }
@@ -6190,25 +6274,25 @@ var AdminSingleCar = function AdminSingleCar(props) {
           })
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "single-car-page car-drive-container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "single-car-wrapper",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "title",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
             to: "/dashboard/cars",
             children: "Cars"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
             children: "|"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h2", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
             children: car.make
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
             children: car.model
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "details",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "car-photo",
             style: {
               backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")"),
@@ -6216,28 +6300,28 @@ var AdminSingleCar = function AdminSingleCar(props) {
               backgroundSize: "cover",
               backgroundPosition: "center"
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "description",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-              children: ["Make ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+              children: ["Make ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 children: car.make
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-              children: ["Model ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+              children: ["Model ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 children: car.model
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-              children: ["Year ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+              children: ["Year ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 children: car.year
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-              children: ["Owner ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
+              children: ["Owner ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 children: car === null || car === void 0 ? void 0 : (_car$user = car.user) === null || _car$user === void 0 ? void 0 : _car$user.name
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "photos",
               children: (car === null || car === void 0 ? void 0 : (_car$car_images = car.car_images) === null || _car$car_images === void 0 ? void 0 : _car$car_images.length) != 0 ? car === null || car === void 0 ? void 0 : (_car$car_images2 = car.car_images) === null || _car$car_images2 === void 0 ? void 0 : _car$car_images2.map(function (carImg, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                   className: "photo",
                   style: {
                     backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")"),
@@ -6246,23 +6330,23 @@ var AdminSingleCar = function AdminSingleCar(props) {
                     backgroundPosition: "center"
                   }
                 }, index);
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "no-photo"
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
               className: "actions",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
                 className: "map",
                 onClick: function onClick(e) {
                   e.preventDefault();
                   setMapView(true);
                 },
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
                   className: "ti-location-pin"
                 }), "Get Location"]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
-                className: "chat",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) != (car === null || car === void 0 ? void 0 : (_car$user2 = car.user) === null || _car$user2 === void 0 ? void 0 : _car$user2.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", {
+                className: "chat ",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
                   className: "ti-comments"
                 }), "Chat"]
               })]
@@ -6293,9 +6377,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_CarCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/CarCard */ "./resources/js/components/CarCard.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/GeneralAppActions */ "./resources/js/actions/GeneralAppActions.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Pagination */ "./resources/js/components/Pagination.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_CarCardSkeleton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/CarCardSkeleton */ "./resources/js/components/CarCardSkeleton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -6312,10 +6398,15 @@ var CarListing = function CarListing(_ref) {
   var _ref$fullMode = _ref.fullMode,
       fullMode = _ref$fullMode === void 0 ? true : _ref$fullMode,
       _ref$inAdmin = _ref.inAdmin,
-      inAdmin = _ref$inAdmin === void 0 ? false : _ref$inAdmin;
+      inAdmin = _ref$inAdmin === void 0 ? false : _ref$inAdmin,
+      _ref$MyCars = _ref.MyCars,
+      MyCars = _ref$MyCars === void 0 ? false : _ref$MyCars;
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useDispatch)();
   var AppCars = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
     return state.appCars;
+  });
+  var AppLoading = (0,react_redux__WEBPACK_IMPORTED_MODULE_2__.useSelector)(function (state) {
+    return state.appLoading;
   });
   var cars = AppCars.cars,
       pagination = AppCars.pagination;
@@ -6326,46 +6417,59 @@ var CarListing = function CarListing(_ref) {
     return model + "/" + title.length;
   };
 
+  var dummy = [1, 2, 3, 4, 5, 6];
+
   var getPage = function getPage(pageUrl) {
     dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(pageUrl));
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(inAdmin ? "/auth/cars" : "/cars"));
+    dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(MyCars ? "/auth/mycars" : inAdmin ? "/auth/cars" : "/cars"));
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("section", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("section", {
     className: "car-list-wrapper",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-      className: "list-header car-drive-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
-        children: "Top Listings"
-      }), !fullMode ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
-        to: "/listing",
-        children: ["More ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
-          className: "ti-arrow-right"
-        })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-        children: "Page ".concat((_pagination$meta$curr = pagination === null || pagination === void 0 ? void 0 : (_pagination$meta = pagination.meta) === null || _pagination$meta === void 0 ? void 0 : _pagination$meta.current_page) !== null && _pagination$meta$curr !== void 0 ? _pagination$meta$curr : "First", " of ").concat((_pagination$meta$last = pagination === null || pagination === void 0 ? void 0 : (_pagination$meta2 = pagination.meta) === null || _pagination$meta2 === void 0 ? void 0 : _pagination$meta2.last_page) !== null && _pagination$meta$last !== void 0 ? _pagination$meta$last : "Last")
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
+    children: [AppLoading.loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
       className: "car-list car-drive-container",
-      children: (cars === null || cars === void 0 ? void 0 : cars.length) != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: dummy.map(function (car, index) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_CarCardSkeleton__WEBPACK_IMPORTED_MODULE_5__["default"], {}, index);
+      })
+    }), cars.length != 0 && !AppLoading.loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "list-header car-drive-container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+          children: MyCars ? "My Cars" : "Top Listings"
+        }), !fullMode ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+          to: "/listing",
+          children: ["More ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+            className: "ti-arrow-right"
+          })]
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          children: "Page ".concat((_pagination$meta$curr = pagination === null || pagination === void 0 ? void 0 : (_pagination$meta = pagination.meta) === null || _pagination$meta === void 0 ? void 0 : _pagination$meta.current_page) !== null && _pagination$meta$curr !== void 0 ? _pagination$meta$curr : "First", " of ").concat((_pagination$meta$last = pagination === null || pagination === void 0 ? void 0 : (_pagination$meta2 = pagination.meta) === null || _pagination$meta2 === void 0 ? void 0 : _pagination$meta2.last_page) !== null && _pagination$meta$last !== void 0 ? _pagination$meta$last : "Last")
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
+        className: "car-list car-drive-container",
         children: cars === null || cars === void 0 ? void 0 : cars.map(function (car, index) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
             inAdmin: inAdmin,
             car: car,
             bgImg: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")")
           }, index);
         })
+      }), fullMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        getPage: getPage,
+        currentPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$meta3 = pagination.meta) === null || _pagination$meta3 === void 0 ? void 0 : _pagination$meta3.current_page,
+        inLastPage: !(pagination !== null && pagination !== void 0 && (_pagination$links = pagination.links) !== null && _pagination$links !== void 0 && _pagination$links.next),
+        inFirstPage: !(pagination !== null && pagination !== void 0 && (_pagination$links2 = pagination.links) !== null && _pagination$links2 !== void 0 && _pagination$links2.prev),
+        links: pagination === null || pagination === void 0 ? void 0 : (_pagination$meta4 = pagination.meta) === null || _pagination$meta4 === void 0 ? void 0 : _pagination$meta4.links,
+        nextPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$links3 = pagination.links) === null || _pagination$links3 === void 0 ? void 0 : _pagination$links3.next,
+        prevPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$links4 = pagination.links) === null || _pagination$links4 === void 0 ? void 0 : _pagination$links4.prev
+      })]
+    }), cars.length == 0 && !AppLoading.loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "h-1/2vh flex justify-center items-center w-full",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+        className: "text-brand-1 font-semibold text-xl",
+        children: "No Cars"
       })
-    }), fullMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      getPage: getPage,
-      currentPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$meta3 = pagination.meta) === null || _pagination$meta3 === void 0 ? void 0 : _pagination$meta3.current_page,
-      inLastPage: !(pagination !== null && pagination !== void 0 && (_pagination$links = pagination.links) !== null && _pagination$links !== void 0 && _pagination$links.next),
-      inFirstPage: !(pagination !== null && pagination !== void 0 && (_pagination$links2 = pagination.links) !== null && _pagination$links2 !== void 0 && _pagination$links2.prev),
-      links: pagination === null || pagination === void 0 ? void 0 : (_pagination$meta4 = pagination.meta) === null || _pagination$meta4 === void 0 ? void 0 : _pagination$meta4.links,
-      nextPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$links3 = pagination.links) === null || _pagination$links3 === void 0 ? void 0 : _pagination$links3.next,
-      prevPage: pagination === null || pagination === void 0 ? void 0 : (_pagination$links4 = pagination.links) === null || _pagination$links4 === void 0 ? void 0 : _pagination$links4.prev
     })]
   });
 };

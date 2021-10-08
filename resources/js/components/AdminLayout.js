@@ -102,6 +102,11 @@ const AdminLayout = (props) => {
                 </div>
 
                 <ul className="navigation">
+                    
+                    <li>
+                        <Link to="/dashboard">Dashboard</Link>
+                    </li>
+
                     <li>
                         <Link to="/dashboard/cars">Cars</Link>
                     </li>

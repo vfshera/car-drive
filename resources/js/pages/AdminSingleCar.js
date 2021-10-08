@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
     GoogleMap,
@@ -9,6 +10,12 @@ import {
 } from "react-google-maps";
 
 const AdminSingleCar = (props) => {
+
+    
+    const authUser = useSelector( state => state.authUser)
+
+    const { loggedInUser , loading , auth , error } = authUser;
+
     const [car, setCar] = useState({});
     const [mapView, setMapView] = useState(false);
 
@@ -161,10 +168,14 @@ const AdminSingleCar = (props) => {
                                     <i className="ti-location-pin"></i>
                                     Get Location
                                 </button>
-                                <button className="chat">
+
+                                {(loggedInUser?.id != car?.user?.id) && (
+                                    <button className={`chat `}>
                                     <i className="ti-comments"></i>
                                     Chat
                                 </button>
+                                )}
+                                
                             </div>
                         </div>
                     </div>
