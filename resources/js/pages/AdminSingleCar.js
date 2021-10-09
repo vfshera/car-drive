@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import {
@@ -15,6 +15,8 @@ const AdminSingleCar = (props) => {
     const authUser = useSelector( state => state.authUser)
 
     const { loggedInUser , loading , auth , error } = authUser;
+
+    const hist = useHistory();
 
     const [car, setCar] = useState({});
     const [mapView, setMapView] = useState(false);
@@ -67,6 +69,8 @@ const AdminSingleCar = (props) => {
 
     return (
         <>
+
+            {/* MAP OVERLAY */}
             {mapView && (
                 <div className="car-map-overlay-wrapper">
                     <div className="map-overlay">
@@ -98,10 +102,16 @@ const AdminSingleCar = (props) => {
                 </div>
             )}
 
+
+            {/* DISPLAY CAR */}
+
             <div className="single-car-page car-drive-container">
                 <div className="single-car-wrapper">
                     <div className="title">
-                        <Link to="/dashboard/cars">Cars</Link>
+                        <button onClick={(e) =>{
+                            e.preventDefault();
+                            hist.goBack();
+                        }}>Cars</button>
                         <span>|</span>
                         <h2>{car.make}</h2>
                         <h3>{car.model}</h3>

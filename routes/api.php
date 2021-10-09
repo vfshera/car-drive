@@ -29,8 +29,12 @@ Route::post('/register', [AuthController::class , 'register']);
 Route::get('/cars', [CarController::class , 'index']);
 Route::get('/single-car/{car}', [CarController::class , 'singleCar']);
 
+Route::get('/car-information', [CarController::class , 'carInfo']);
+
 
 Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
+
+    Route::get('/car-information', [CarController::class , 'carInfo']);
     Route::get('/cars', [CarController::class , 'authIndex']);
     Route::get('/mycars', [CarController::class , 'adminCars']);
     Route::get('/single-car/{car}', [CarController::class , 'adminSingleCar']);

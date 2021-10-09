@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import CarCard from "../components/CarCard";
+import React, { useEffect, useState, Fragment } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { loadCars } from "../actions/GeneralAppActions";
-
 import { Link } from "react-router-dom";
+
+import CarCard from "../components/CarCard";
+
+import { loadCars } from "../actions/GeneralAppActions";
 import Pagination from "../components/Pagination";
 import CarCardSkeleton from "../components/CarCardSkeleton";
+import AddCar from "./AddCar";
 
 const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
     const dispatch = useDispatch();
@@ -19,13 +21,16 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
 
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
+    const [isOpen, setIsOpen] = useState(true);
+
     const trimTitle = (make, model) => {
         let title = make + model;
 
         return model + "/" + title.length;
     };
 
-    const dummy = [1,2,3,4,5,6]
+    const dummy = [1, 2, 3, 4, 5, 6];
+
     const getPage = (pageUrl) => {
         dispatch(loadCars(pageUrl));
     };
@@ -38,6 +43,18 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
 
     return (
         <section className="car-list-wrapper">
+            {/* ADD CARS SECTION */}
+
+            {MyCars && isOpen && (
+                <section className="add-car-form-wrapper">
+
+                        <AddCar/>
+
+                </section>
+            )}
+
+            {/* ADD CARS SECTION END */}
+
             {/* LOADING CARS SKELETON */}
             {AppLoading.loading && (
                 <section className="car-list car-drive-container">
@@ -49,10 +66,24 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
 
             {/* DISPLAY CARS */}
 
-            {cars.length != 0 && !AppLoading.loading && (
+            {(cars.length != 0 && !AppLoading.loading && !isOpen) && (
                 <>
                     <div className="list-header car-drive-container">
                         <h1>{MyCars ? "My Cars" : "Top Listings"}</h1>
+
+                        {MyCars && (
+                            <>
+                                <button
+                                    className="add-cars"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setIsOpen(true);
+                                    }}
+                                >
+                                    Add <i className="ti-plus"></i>
+                                </button>
+                            </>
+                        )}
 
                         {!fullMode ? (
                             <Link to="/listing">

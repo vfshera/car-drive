@@ -9,6 +9,7 @@ use App\Http\Resources\{
     CarResource,
     AdminCarResource
 };
+use CarData;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -31,6 +32,15 @@ class CarController extends Controller
         $cars = Car::with(['user','carImages'])->paginate(6);
 
       return AdminCarResource::collection($cars)->response()->setStatusCode(Response::HTTP_OK);
+    }
+
+
+
+    public function carInfo(){
+
+        $cars = CarData::allCars();
+
+      return response(["cars" => $cars] , Response::HTTP_OK);
     }
 
 

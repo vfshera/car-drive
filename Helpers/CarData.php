@@ -4,7 +4,14 @@ class CarData{
 
    public static function allCars(){
 
-        return static::$brandsWithModels;
+    $carCollection = [];
+
+
+         foreach (static::$brandsWithModels as $key => $value) {
+            array_push($carCollection, ["make" => $key , "models" => $value]);
+        }
+
+        return $carCollection;
     }
 
    public static function getCarWithModel(){
