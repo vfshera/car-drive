@@ -4,7 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     Auth\AuthController,
-    CarController
+    CarController,
+    MessagesController
 };
 
 
@@ -33,6 +34,18 @@ Route::get('/car-information', [CarController::class , 'carInfo']);
 
 
 Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
+
+
+    Route::group(['prefix' => 'messages'], function () {
+        Route::get('/', [MessagesController::class,'index']);
+        Route::post('/', [MessagesController::class,'create']);
+        Route::get('recipients', [MessagesController::class,'recipients']);
+        Route::get('{thread}', [MessagesController::class,'show']);
+        Route::put('{thread}', [MessagesController::class,'update']);
+    });
+
+
+
 
     Route::post('/media', function(\Illuminate\Http\Request $request){
         dd($request->all());

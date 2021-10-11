@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Cmgmyr\Messenger\Traits\Messagable;
 
 class User extends Authenticatable  implements JWTSubject
 {
-    use  HasFactory, Notifiable;
+    use  HasFactory, Notifiable,Messagable;
 
     /**
      * The attributes that are mass assignable.

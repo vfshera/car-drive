@@ -158,7 +158,7 @@ html,.chats {
 }
 
 .input-group textarea:focus {
-    border: #f27323 2px solid;
+    border: #14213d 2px solid;
     transition: border-bottom-color var(--anim-duration) var(--anim-easing),
         border-right-color var(--anim-duration) var(--anim-easing)
             calc(var(--anim-duration) * 1),
@@ -525,14 +525,48 @@ section.car-list-wrapper {
 // DASBOARD END
 
 section.admin-content {
+
+    // NEW CHAT
+    .new-message{
+        @apply p-10;
+
+        h1 {
+            @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
+        }
+
+        .create-message-form{
+
+            form{
+
+
+                button{
+                    @apply bg-brand-1 font-bold text-white w-2/5 flex items-center justify-center py-4 hover:rounded-xl;
+                }
+            }
+
+        }
+    }
+    // NEW CHAT END
+
+
+
+
     // CHATS
 
     .chat-wrapper {
         .chat-head {
-            @apply px-4 mb-2;
+            @apply px-10 mt-3;
 
             h1 {
                 @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
+            }
+
+            &.chats-home{
+                @apply flex justify-between;
+
+                button{
+                    @apply px-6 py-2 bg-brand-1 text-white rounded-md;
+                }
             }
         }
 
@@ -561,7 +595,7 @@ section.admin-content {
                 }
 
                 .messages-count{
-                    @apply flex flex-col px-4;
+                    @apply flex justify-between py-3 px-4;
 
                     h3 {
                         @apply text-base md:text-lg lg:text-xl  text-brand-1 font-bold inline-block;
@@ -681,7 +715,7 @@ section.admin-content {
         }
 
         .chats {
-            @apply flex flex-col py-4;
+            @apply flex flex-col py-2;
 
             a {
                 .chat-preview {
