@@ -13,6 +13,27 @@ body,
 * {
     @apply p-0 m-0;
     box-sizing: border-box;
+    --scrollbarBG: #ccc;
+    --thumbBG: #14213d;
+}
+
+html,.chats {
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
 }
 
 // GLOBAL
@@ -497,7 +518,7 @@ section.car-list-wrapper {
         }
 
         section.admin-content {
-            @apply w-10/12 ml-auto   bg-brand-3 h-full p-2;
+            @apply w-10/12 ml-auto   bg-brand-3 h-full;
         }
     }
 }
@@ -507,104 +528,189 @@ section.admin-content {
     // CHATS
 
     .chat-wrapper {
-        @apply py-8 mt-5;
-
-        .chat-head{
-            @apply px-10 mb-2;
+        .chat-head {
+            @apply px-4 mb-2;
 
             h1 {
                 @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
             }
         }
 
+        .chat-user-wrapper {
+            @apply flex;
+
+            .recepient-profile {
+                @apply w-1/4 shadow-lg bg-white min-h-app-screen;
+
+                .profile-pic {
+                    @apply h-2/5 border-b border-gray-100 relative;
+
+                    .shader {
+                        background: linear-gradient(
+                            to bottom,
+                            transparent,
+                            #ffffff
+                        );
+
+                        @apply  absolute bottom-0 left-0 w-full h-1/4;
+
+                      
+                    }
+
+                  
+                }
+
+                .messages-count{
+                    @apply flex flex-col px-4;
+
+                    h3 {
+                        @apply text-base md:text-lg lg:text-xl  text-brand-1 font-bold inline-block;
+                    }
+
+                    span{
+                        @apply text-sm md:text-base lg:text-lg  text-brand-1;
+                    }
+                }
+
+                .postings {
+                    @apply flex flex-col px-4;
+
+                    h3 {
+                        @apply text-base md:text-lg lg:text-xl  text-brand-1 font-bold;
+                    }
+
+                    .photos {
+                        @apply grid grid-cols-3 md:grid-cols-7 lg:grid-cols-3 mt-3 gap-1;
+
+                        .photo {
+                            @apply bg-brand-1;
+                            width: 80px;
+                            height: 80px;
+                        }
+                    }
+                }
+            }
+
+            .user-chats {
+                @apply w-3/4 flex flex-col;
+
+                .chat-head {
+                    @apply px-4 mt-3;
+
+                    h1 {
+                        @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
+                    }
+                }
+
+                .message-input {
+                    @apply flex px-4 mt-auto pb-4 shadow-sm;
+
+                    input {
+                        @apply w-11/12 p-2 rounded-tl-md rounded-bl-md  text-gray-700;
+                    }
+
+                    button {
+                        @apply w-1/12 py-2 bg-brand-1 font-bold  rounded-tr-md rounded-br-md text-white;
+                    }
+                }
+                .chats {
+                    @apply overflow-hidden overflow-y-scroll  h-3/4vh;
+
+                    .received,
+                    .sent {
+                        @apply w-full px-4;
+
+                        .message-wrapper {
+                            @apply w-2/3 p-4 my-2 shadow-sm;
+
+                            .sender {
+                                @apply flex justify-between;
+
+                                h2 {
+                                    @apply text-base text-white font-bold;
+                                }
+                            }
+                        }
+                    }
+
+                    .received {
+                        .message-wrapper {
+                            @apply bg-white text-brand-1 rounded-2xl rounded-bl-none mr-auto;
+
+                            .sender {
+                                @apply flex justify-between;
+
+                                h2 {
+                                    @apply text-base text-brand-1 font-bold;
+                                }
+
+                                span {
+                                    @apply text-gray-600;
+                                }
+                            }
+
+                            .message {
+                                @apply text-gray-800;
+                            }
+                        }
+                    }
+
+                    .sent {
+                        .message-wrapper {
+                            @apply bg-brand-1 text-brand-3 rounded-2xl rounded-br-none ml-auto;
+
+                            .sender {
+                                @apply flex justify-between;
+
+                                h2 {
+                                    @apply text-base text-brand-3 font-bold;
+                                }
+
+                                span {
+                                    @apply text-gray-200;
+                                }
+                            }
+
+                            .message {
+                                @apply text-brand-3;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .chats {
-            @apply flex flex-col;
+            @apply flex flex-col py-4;
 
-
-            .received,.sent{
-
-                @apply w-full px-10;
-
-               
-
-                .message-wrapper{
-                    @apply w-2/3 p-4 my-2; 
-
-                   
-                }
-            }
-
-            .received{              
-
-                .message-wrapper{
-                    @apply bg-white text-brand-1 rounded-2xl rounded-bl-none mr-auto; 
-
-                    .sender {
-                        @apply flex justify-between;
-    
-                        h2 {
-                            @apply text-base text-brand-1 font-bold;
-                        }
-    
-                        span {
-                            @apply text-gray-400;
-                        }
-                    }
-                }
-            }
-
-
-            .sent{                
-                .message-wrapper{
-                    @apply  bg-brand-1 text-brand-3 rounded-2xl rounded-br-none ml-auto; 
-
-                    .sender {
-                        @apply flex justify-between;
-    
-                        h2 {
-                            @apply text-base text-brand-3 font-bold;
-                        }
-    
-                        span {
-                            @apply text-gray-200;
-                        }
-                    }
-                }
-            }
-
-
-
-
-            a{
+            a {
                 .chat-preview {
                     @apply flex  justify-between border-b border-gray-200 py-2 my-2 px-10  hover:bg-white cursor-pointer;
-    
+
                     .profile {
-                        @apply  flex  items-center  ;
-                        .avatar{
+                        @apply flex  items-center;
+                        .avatar {
                             @apply h-14 w-14 rounded-full flex justify-center items-center font-extrabold bg-brand-1 text-brand-3;
                         }
-                       
                     }
-    
+
                     .info {
                         @apply ml-5 flex flex-col;
-    
+
                         .sender {
                             @apply flex justify-between;
-    
+
                             h2 {
                                 @apply text-base text-brand-1 font-bold;
                             }
-    
+
                             span {
                                 @apply text-gray-400;
                             }
                         }
-    
+
                         .message {
                             @apply text-gray-600;
-    
                         }
                     }
                 }

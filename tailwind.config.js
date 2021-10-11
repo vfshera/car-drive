@@ -20,6 +20,7 @@ module.exports = {
                 200: "200px",
                 300: "300px",
                 400: "400px",
+                "app-screen": "calc(100vh - 4rem)"
             },
             height: {
                 100: "100px",
@@ -31,6 +32,7 @@ module.exports = {
                 "1/4vh": "25vh",
                 "1/2vh": "50vh",
                 "3/4vh": "75vh",
+                "appFull": "calc(100vh - 4rem)",
                 full: "100%",
             },
         },
