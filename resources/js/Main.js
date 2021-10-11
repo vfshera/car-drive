@@ -34,7 +34,7 @@ import Dashboard from './pages/auth/Dashboard';
 import Loader from './components/Loader'
 import CarListing from './pages/CarListing'
 import SingleCar from './pages/SingleCar'
-import MyCars from "./pages/MyCars";
+import ChatUI from "./pages/ChatUI";
 import Chats from "./pages/Chats";
 import AdminSingleCar from "./pages/AdminSingleCar";
 
@@ -102,6 +102,7 @@ function App() {
             <ProtectedRoute path="/dashboard/:carID-:carSlug" exact component={AdminSingleCar}/>
             {/* <ProtectedRoute path="/dashboard/mycars" exact component={MyCars}/> */}
             <ProtectedRoute path="/dashboard/chats" exact component={Chats}/>
+            <ProtectedRoute path="/dashboard/chat/messages" exact component={ChatUI}/>
             <ProtectedRoute path="/dashboard" exact component={Dashboard}/>
 
             <Route path="/social/authorize/:provider" exact component={ProviderLoginResolve}/>

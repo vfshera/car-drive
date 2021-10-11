@@ -504,9 +504,119 @@ section.car-list-wrapper {
 // DASBOARD END
 
 section.admin-content {
+    // CHATS
+
+    .chat-wrapper {
+        @apply py-8 mt-5;
+
+        .chat-head{
+            @apply px-10 mb-2;
+
+            h1 {
+                @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
+            }
+        }
+
+        .chats {
+            @apply flex flex-col;
+
+
+            .received,.sent{
+
+                @apply w-full px-10;
+
+               
+
+                .message-wrapper{
+                    @apply w-2/3 p-4 my-2; 
+
+                   
+                }
+            }
+
+            .received{              
+
+                .message-wrapper{
+                    @apply bg-white text-brand-1 rounded-2xl rounded-bl-none mr-auto; 
+
+                    .sender {
+                        @apply flex justify-between;
+    
+                        h2 {
+                            @apply text-base text-brand-1 font-bold;
+                        }
+    
+                        span {
+                            @apply text-gray-400;
+                        }
+                    }
+                }
+            }
+
+
+            .sent{                
+                .message-wrapper{
+                    @apply  bg-brand-1 text-brand-3 rounded-2xl rounded-br-none ml-auto; 
+
+                    .sender {
+                        @apply flex justify-between;
+    
+                        h2 {
+                            @apply text-base text-brand-3 font-bold;
+                        }
+    
+                        span {
+                            @apply text-gray-200;
+                        }
+                    }
+                }
+            }
+
+
+
+
+            a{
+                .chat-preview {
+                    @apply flex  justify-between border-b border-gray-200 py-2 my-2 px-10  hover:bg-white cursor-pointer;
+    
+                    .profile {
+                        @apply  flex  items-center  ;
+                        .avatar{
+                            @apply h-14 w-14 rounded-full flex justify-center items-center font-extrabold bg-brand-1 text-brand-3;
+                        }
+                       
+                    }
+    
+                    .info {
+                        @apply ml-5 flex flex-col;
+    
+                        .sender {
+                            @apply flex justify-between;
+    
+                            h2 {
+                                @apply text-base text-brand-1 font-bold;
+                            }
+    
+                            span {
+                                @apply text-gray-400;
+                            }
+                        }
+    
+                        .message {
+                            @apply text-gray-600;
+    
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // CHATS END
+
     //SINGLECAR FIX
 
-    & .single-car-page {
+    .single-car-page {
         .single-car-wrapper {
             @apply flex flex-col mt-10;
 
@@ -579,13 +689,17 @@ section.admin-content {
                 }
             }
 
-            .map-search{
-
+            .map-search {
                 @apply absolute z-50 w-full flex flex-col items-center justify-center top-5 font-bold text-2xl;
 
-
-                input.location-search-input{
+                input.location-search-input {
                     @apply p-1;
+                }
+
+                .autocomplete-dropdown-container {
+                    .loading-locations {
+                        @apply text-gray-600;
+                    }
                 }
             }
 
@@ -616,17 +730,14 @@ section.admin-content {
 
                         .form-col {
                             @apply w-2/5;
-                             
-                            h3 {
-                                @apply text-xl font-semibold text-gray-800;
-                            }
 
                             .showroom {
-                                .location{
-
+                                h3 {
+                                    @apply text-xl font-semibold text-gray-800 mb-2;
+                                }
+                                .location {
                                     @apply flex  justify-between;
-                                   
-    
+
                                     p {
                                         @apply text-gray-400 w-2/3 mr-2 bg-gray-100 p-1 rounded-lg;
                                     }
@@ -635,8 +746,14 @@ section.admin-content {
                                         @apply p-2 bg-blue-500 text-white;
                                     }
                                 }
+                            }
 
-                                
+                            .file-upload {
+                                @apply mt-5;
+
+                                h3 {
+                                    @apply text-xl font-semibold text-gray-800 mb-2;
+                                }
                             }
                         }
                     }

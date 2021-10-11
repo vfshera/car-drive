@@ -45,7 +45,7 @@ const GoogleMapAutocomplete = ({ isScriptLoaded, isScriptLoadSucceed }) => {
                                 })}
                             />
                             <div className="autocomplete-dropdown-container">
-                                {loading && <div>Loading...</div>}
+                                {loading && <div className="loading-locations">Loading...</div>}
                                 {suggestions.map((suggestion) => {
                                     const className = suggestion.active
                                         ? "suggestion-item--active"

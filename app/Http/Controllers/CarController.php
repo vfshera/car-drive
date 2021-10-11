@@ -40,7 +40,7 @@ class CarController extends Controller
 
         $cars = CarData::allCars();
 
-      return response(["cars" => $cars , "years" => range(1996,2020,1)] , Response::HTTP_OK);
+      return response(["cars" => $cars , "years" => range(2020,1996,1)] , Response::HTTP_OK);
     }
 
 
@@ -66,5 +66,23 @@ class CarController extends Controller
         return new AdminCarResource($car);
     }
 
+
+
+    public function create(Request $request){
+        $data = $request->validate([
+            'make' => 'required|string',
+            'model' => 'required|string',
+            'year' => 'required|string|min:4',
+            'show_location' => 'required|string'
+        ]);
+
+        $data["user_id"] = Auth::user()->id;
+
+        if(Car::create($data)){
+            return response("Car Added Successfully!" , Response::HTTP_CREATED);
+        }
+
+        return response("Failed To Add Car!" , Response::HTTP_BAD_REQUEST);
+    }
 
 }
