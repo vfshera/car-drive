@@ -68,7 +68,8 @@ body,
 .input-group input[type="text"],
 .input-group input[type="email"],
 .input-group input[type="number"],
-.input-group input[type="password"] {
+.input-group input[type="password"],
+.input-group input.with-datalist {
     @apply appearance-none;
     background: linear-gradient(90deg, #14213d44, #14213d) center bottom/0 2px
             no-repeat,
@@ -297,11 +298,10 @@ section.car-list-wrapper {
     .list-header {
         @apply flex justify-between items-center;
 
-        button.add-cars{
-            @apply py-1 px-5 bg-brand-1 text-white hover:rounded ;
+        button.add-cars {
+            @apply py-1 px-5 bg-brand-1 text-white hover:rounded;
 
-            i{
-
+            i {
             }
         }
 
@@ -510,7 +510,7 @@ section.admin-content {
         .single-car-wrapper {
             @apply flex flex-col mt-10;
 
-            button{
+            button {
                 @apply text-2xl font-bold;
             }
 
@@ -579,6 +579,16 @@ section.admin-content {
                 }
             }
 
+            .map-search{
+
+                @apply absolute z-50 w-full flex flex-col items-center justify-center top-5 font-bold text-2xl;
+
+
+                input.location-search-input{
+                    @apply p-1;
+                }
+            }
+
             .map-feed {
             }
         }
@@ -588,42 +598,63 @@ section.admin-content {
 
     //CAR LISTING FIX
     & .car-list-wrapper {
-
-
-
-        .add-car-form-wrapper{
+        .add-car-form-wrapper {
             @apply h-3/4vh bg-brand-3;
 
-
-            .add-car-form{
+            .add-car-form {
                 @apply flex flex-col justify-center items-center pt-5;
 
                 h1 {
                     @apply text-brand-1 text-3xl font-bold;
                 }
-            
+
                 form {
-                    @apply w-10/12 sm:w-3/5 lg:w-2/5 flex flex-col justify-center;
-            
+                    @apply w-10/12 sm:w-4/5 lg:w-4/5 flex flex-col justify-center;
+
+                    .form-input-section {
+                        @apply flex justify-between;
+
+                        .form-col {
+                            @apply w-2/5;
+                             
+                            h3 {
+                                @apply text-xl font-semibold text-gray-800;
+                            }
+
+                            .showroom {
+                                .location{
+
+                                    @apply flex  justify-between;
+                                   
+    
+                                    p {
+                                        @apply text-gray-400 w-2/3 mr-2 bg-gray-100 p-1 rounded-lg;
+                                    }
+
+                                    button {
+                                        @apply p-2 bg-blue-500 text-white;
+                                    }
+                                }
+
+                                
+                            }
+                        }
+                    }
+
                     .form-btns {
                         @apply flex justify-between items-center;
-            
+
                         button[type="submit"] {
                             @apply bg-brand-1 font-bold text-white w-1/3 flex items-center justify-center py-4 hover:rounded-xl;
                         }
-            
-                        button.social-login-btn {
-                            @apply bg-gray-200 font-bold text-brand-1  flex items-center justify-center py-4 px-4 sm:px-8 border hover:border-brand-1;
-            
-                            i {
-                                @apply ml-2;
-                            }
+
+                        button.cancelBtn {
+                            @apply bg-red-800 font-bold text-white w-1/3 flex items-center justify-center py-4 hover:rounded-xl;
                         }
                     }
                 }
             }
         }
-
 
         .list-header {
             @apply flex justify-between items-center;
@@ -688,8 +719,6 @@ section.admin-content {
                         }
                     }
 
-                    
-
                     &:hover {
                         filter: sepia(20%);
                         transform: rotate(2deg) scale(0.97);
@@ -712,14 +741,10 @@ section.admin-content {
 
                         .title {
                             @apply h-2/5 bg-gray-500;
-
-                            
                         }
 
                         .description {
                             @apply h-1/4 bg-gray-400;
-
-                            
                         }
                     }
                 }

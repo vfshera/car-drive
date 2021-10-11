@@ -21,7 +21,7 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
 
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const trimTitle = (make, model) => {
         let title = make + model;
@@ -48,7 +48,7 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
             {MyCars && isOpen && (
                 <section className="add-car-form-wrapper">
 
-                        <AddCar/>
+                        <AddCar setIsOpen={setIsOpen}/>
 
                 </section>
             )}

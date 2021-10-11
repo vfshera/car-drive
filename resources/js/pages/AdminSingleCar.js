@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import {
-    GoogleMap,
-    withScriptjs,
-    withGoogleMap,
-    Marker
-} from "react-google-maps";
+
+
+import GoogleMapView from "../components/GoogleMapView";
 
 const AdminSingleCar = (props) => {
 
@@ -21,8 +18,10 @@ const AdminSingleCar = (props) => {
     const [car, setCar] = useState({});
     const [mapView, setMapView] = useState(false);
 
+    
     const [latitude, setLat] = useState(-1.292066);
     const [longitude, setLong] = useState(36.821945);
+
 
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
@@ -31,29 +30,13 @@ const AdminSingleCar = (props) => {
             .get(`/auth/single-car/${props.match.params.carID}`)
             .then((res) => {
                 if (res.status == 200) {
-                    setCar(res.data.data);
-
-                   
+                    setCar(res.data.data);                   
                 }
             })
             .catch((err) => {});
     }, []);
 
-    let WrappedMap = withScriptjs(
-        withGoogleMap((props) => (
-            <GoogleMap
-                defaultZoom={10}
-                defaultCenter={{ lat: latitude, lng: longitude }}
-            >
-                <Marker
-                    position={{ lat: latitude, lng: longitude }}
-                   
-                />
-
-                
-            </GoogleMap>
-        ))
-    );
+  
 
 
     useEffect(() =>{
@@ -72,34 +55,7 @@ const AdminSingleCar = (props) => {
 
             {/* MAP OVERLAY */}
             {mapView && (
-                <div className="car-map-overlay-wrapper">
-                    <div className="map-overlay">
-                        <div className="close-handler">
-                            <button
-                                className="close"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setMapView(false);
-                                }}
-                            >
-                                &times;
-                            </button>
-                        </div>
-
-                        <div className="map-feed">
-                            <WrappedMap
-                                loadingElement={
-                                    <div style={{ height: "100vh" }} />
-                                }
-                                containerElement={
-                                    <div style={{ height: "100vh" }} />
-                                }
-                                mapElement={<div style={{ height: "100vh" }} />}
-                                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.MIX_REACT_APP_MAP_KEY}`}
-                            />
-                        </div>
-                    </div>
-                </div>
+               <GoogleMapView setMapView={setMapView} longitude={longitude} latitude={latitude}/>
             )}
 
 

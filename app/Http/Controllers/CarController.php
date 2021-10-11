@@ -40,7 +40,7 @@ class CarController extends Controller
 
         $cars = CarData::allCars();
 
-      return response(["cars" => $cars] , Response::HTTP_OK);
+      return response(["cars" => $cars , "years" => range(1996,2020,1)] , Response::HTTP_OK);
     }
 
 
