@@ -11,6 +11,10 @@ const Chats = () => {
 
     const AppChats = useSelector((state) => state.appChats);
 
+    const AuthUser = useSelector((state) => state.authUser);
+    const { loggedInUser } = AuthUser;
+
+
     const { chats } = AppChats;
 
     const [chatsView, setChatView] = useState(true);
@@ -44,26 +48,24 @@ const Chats = () => {
                                     <div className="chat-preview">
                                         <div className="profile">
                                             <div className="avatar">
-                                                {thread.latest_message.receiver.name.charAt(
-                                                    0
-                                                )}
+                                                {thread?.messages_count}
                                             </div>
                                         </div>
                                         <div className="info">
                                             <div className="sender">
                                                 <h2>
-                                                    {
-                                                        thread.latest_message
-                                                            .receiver.name
-                                                    }
+                                                    {(thread.latest_message.receiver.id == loggedInUser.id) ? thread.latest_message.sender.name : thread.latest_message.receiver.name }
                                                 </h2>
                                                 <span>
-                                                    {index + 1}minute ago
+                                                    {thread.latest_message.created_at}
                                                 </span>
                                             </div>
 
                                             <p className="message">
-                                                {thread.latest_message.body}
+                                                 <span className="uppercase italic font-semibold mr-1">
+                                                     {(thread.latest_message.receiver.id == loggedInUser.id) ? "You : " : thread.latest_message.receiver.name+" : " }
+                                                     </span>
+                                                 {thread.latest_message.body}
                                             </p>
                                         </div>
                                     </div>
