@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Carbon\Carbon;
-use Cmgmyr\Messenger\Models\Message;
-use Cmgmyr\Messenger\Models\Participant;
-use Cmgmyr\Messenger\Models\Thread;
+use Cmgmyr\Messenger\Models\{
+    Message,
+    Participant,
+    Thread
+};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Http\Resources\ThreadResource;
+use App\Http\Resources\{
+    ChatThreadViewResource,
+    ThreadResource
+};
 use Symfony\Component\HttpFoundation\Response;
 
 class MessagesController extends Controller
@@ -42,9 +47,17 @@ class MessagesController extends Controller
      */
     public function show(Thread $thread)
     {
-        $thread->markAsRead(Auth::id());
+        // $thread->markAsRead(Auth::id());
 
-        return response(['thread' => $thread] , Response::HTTP_OK);
+        // $thread->with('messages')->get();
+
+        // $messages = $thread->messages;
+
+        // return MessageResource::collection($messages)->response()->setStatusCode(Response::HTTP_OK);
+        
+
+        return new ChatThreadViewResource($thread);
+
     }
 
     /**
@@ -116,7 +129,7 @@ class MessagesController extends Controller
         $participant->last_read = new Carbon;
         $participant->save();
 
-        return response(['message' => 'Message updated successfully!'] , Response::HTTP_OK);
+        return response(['message' => 'Message updated successfully!'] , Response::HTTP_CREATED);
     }
 
     public function destroy(Thread $thread)

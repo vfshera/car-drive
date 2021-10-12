@@ -719,7 +719,7 @@ section.admin-content {
 
             a {
                 .chat-preview {
-                    @apply flex  justify-between border-b border-gray-200 py-2 my-2 px-10  hover:bg-white cursor-pointer;
+                    @apply flex   border-b border-gray-200 py-2 my-2 px-10  hover:bg-white cursor-pointer;
 
                     .profile {
                         @apply flex  items-center;
@@ -729,7 +729,7 @@ section.admin-content {
                     }
 
                     .info {
-                        @apply ml-5 flex flex-col;
+                        @apply ml-5 w-11/12 flex flex-col;
 
                         .sender {
                             @apply flex justify-between;

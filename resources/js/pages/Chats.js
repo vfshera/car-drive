@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { loadChats } from "../actions/GeneralAppActions";
 import NewChat from "./NewChat";
@@ -9,9 +9,9 @@ import NewChat from "./NewChat";
 const Chats = () => {
     const dispatch = useDispatch();
 
-    const AppChats = useSelector(state => state.appChats)
+    const AppChats = useSelector((state) => state.appChats);
 
-   const{ chats } = AppChats;
+    const { chats } = AppChats;
 
     const [chatsView, setChatView] = useState(true);
 
@@ -40,7 +40,7 @@ const Chats = () => {
                     <div className="chats">
                         {chats.length != 0 &&
                             chats?.map((thread, index) => (
-                                <Link to="/dashboard/chat/messages" key={index}>
+                                <Link to={`/dashboard/chat/${thread.id}/messages`} key={index}>
                                     <div className="chat-preview">
                                         <div className="profile">
                                             <div className="avatar">
