@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
+
+
 
 const ChatUI = () => {
     const messages = [
@@ -12,6 +15,13 @@ const ChatUI = () => {
 
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
     const postingCount = [1, 2, 3, 4, 5];
+
+    useEffect(() => {
+        axios
+            .get("/auth/messages/1")
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+    }, []);
 
     return (
         <div className="chat-wrapper">
@@ -29,7 +39,7 @@ const ChatUI = () => {
                                 <div className="message-wrapper">
                                     <div className="sender">
                                         <h2>{msg}</h2>
-                                        <span>{index + 1}minute ago</span>
+                                        <span>{index + 1} minutes ago</span>
                                     </div>
 
                                     <p className="message">
@@ -66,20 +76,18 @@ const ChatUI = () => {
                             backgroundPosition: "center",
                         }}
                     >
-                        <div className="shader">
-                            
-                        </div>
+                        <div className="shader"></div>
                     </div>
 
-                        <div className="messages-count">
+                    <div className="messages-count">
                         <h3>Messages</h3>
                         <span>28</span>
-                        </div>
+                    </div>
                     <div className="postings">
                         <h3>Media</h3>
 
                         <div className="photos">
-                            {postingCount.map((post,index) => (
+                            {postingCount.map((post, index) => (
                                 <div
                                     className="photo"
                                     key={index}

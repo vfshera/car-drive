@@ -8,28 +8,34 @@ import InputField from "../components/form-elements/InputField";
 const NewChat = () => {
     const [recipients, setRecipient] = useState([]);
 
-    const userRef = useRef("")
-    const subjectRef = useRef("")
-    const messageRef = useRef("")
+   const[userID,setUserID] = useState("")
+   const[subject,setSubject] = useState("")
+   const[message,setMessage] = useState("")
 
 
     const sendMessage = (e) =>{
         e.preventDefault();
 
-        if(userRef.current.value != "" && subjectRef.current.value != "" && messageRef.current.value != "" ){
+        if(userID != "" && subject != "" && message != "" ){
             axios
             .post("/auth/messages",{
-                recipient: userRef.current.value,
-                subject: subjectRef.current.value,
-                message: messageRef.current.value
+                recipient: userID,
+                subject: subject,
+                message: message
             })
-            .then((res) => console.log(res))
+            .then((res) => {
+
+                if(res.status == 201){
+                    setUserID("");
+                    setSubject("");
+                    setMessage("");
+                }
+
+            })
             .catch((err) => console.log(err));
 
-
-             userRef.current.value = "";
-             subjectRef.current.value = "";
-             messageRef.current.value  = "";
+        }else{
+            alert("check fields")
         }
     }
 
@@ -53,7 +59,7 @@ const NewChat = () => {
                         selectID="recepient"
                         selectName="recepient"
                         parentClasses=" w-1/2 mr-2"
-                        ref={userRef}
+                        onChange={(e) => setUserID(e.target.value)}
                     />
 
                     <InputField
@@ -63,7 +69,7 @@ const NewChat = () => {
                         name="subject"
                         placeholder="Type subject here..."
                         parentClasses=" w-1/2 ml-2"
-                        ref={subjectRef}
+                        onChange={(e) => setSubject(e.target.value)}
 
                     />
                    </div>
@@ -73,7 +79,7 @@ const NewChat = () => {
                         textareaName="message"
                         placeholder="Type your message here..."
                         id="message"
-                        ref={messageRef}
+                        onChange={(e) => setMessage(e.target.value)}
                     />
 
                     <button type="submit">SEND</button>

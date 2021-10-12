@@ -36,7 +36,7 @@ Route::get('/car-information', [CarController::class , 'carInfo']);
 Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
 
 
-    Route::group(['prefix' => 'messages'], function () {
+    Route::prefix('messages')->group(function () {
         Route::get('/', [MessagesController::class,'index']);
         Route::post('/', [MessagesController::class,'create']);
         Route::get('recipients', [MessagesController::class,'recipients']);

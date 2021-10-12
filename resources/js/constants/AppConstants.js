@@ -7,3 +7,8 @@ export const NOT_LOADING= 'NOT_LOADING';
 export const GET_CAR_REQUEST = "GET_CAR_REQUEST"
 export const GET_CAR_SUCCESS = "GET_CAR_SUCCESS"
 export const GET_CAR_FAIL = "GET_CAR_FAIL"
+
+
+export const GET_CHATS_REQUEST = "GET_CHATS_REQUEST"
+export const GET_CHATS_SUCCESS = "GET_CHATS_SUCCESS"
+export const GET_CHATS_FAIL = "GET_CHATS_FAIL"

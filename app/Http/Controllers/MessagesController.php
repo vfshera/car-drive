@@ -10,8 +10,8 @@ use Cmgmyr\Messenger\Models\Participant;
 use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+use App\Http\Resources\ThreadResource;
 use Symfony\Component\HttpFoundation\Response;
 
 class MessagesController extends Controller
@@ -31,7 +31,7 @@ class MessagesController extends Controller
                 return $value->messages_count == 1 && $value->creator() == Auth::user();
             });
 
-        return response(['threads' => $threads],Response::HTTP_OK);
+        return ThreadResource::collection($threads)->response()->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -67,7 +67,6 @@ class MessagesController extends Controller
     public function create(Request $request)
     {
 
-        
 
         $thread = Thread::create([
             'subject' => $request->subject,
