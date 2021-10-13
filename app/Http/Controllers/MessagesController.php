@@ -31,10 +31,11 @@ class MessagesController extends Controller
         $threads = Thread::forUser(Auth::id())
             ->withCount('messages')
             ->latest()
-            ->get();
-            // ->reject(function ($value) {
-            //     return $value->messages_count == 1 && $value->creator() == Auth::user();
-            // });
+            ->get()
+            ->sortByDesc(function($thread){
+                return $thread->latest_message->created_at;
+            });
+            
 
         return ThreadResource::collection($threads)->response()->setStatusCode(Response::HTTP_OK);
     }
