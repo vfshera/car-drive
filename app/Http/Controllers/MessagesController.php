@@ -51,10 +51,6 @@ class MessagesController extends Controller
 
         // $thread->with('messages')->get();
 
-        // $messages = $thread->messages;
-
-        // return MessageResource::collection($messages)->response()->setStatusCode(Response::HTTP_OK);
-        
 
         return new ChatThreadViewResource($thread);
 
@@ -67,7 +63,22 @@ class MessagesController extends Controller
      */
     public function recipients()
     {
-        $users = User::where('id', '!=', Auth::id())->get();
+  
+
+        // LONG USER FILTER
+        
+        $userThreadID =  Participant::where('user_id',  Auth::id())->get()->pluck('thread_id');
+    
+        $threads =  Thread::whereIn('id', $userThreadID)->get();    
+    
+        $notAllowedIDs =  $threads->map(function($thread){
+            return $thread->participantsUserIds();
+        })->flatten()->unique()->values()->all();
+
+
+
+
+        $users = User::whereNotIn('id', $notAllowedIDs)->get();
 
         return response(['recipients' => $users] , Response::HTTP_OK);
     }

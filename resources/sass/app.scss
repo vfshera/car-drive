@@ -626,21 +626,25 @@ section.admin-content {
             }
 
             .user-chats {
-                @apply w-3/4 flex flex-col;
+                @apply w-3/4 flex flex-col bg-white;
 
                 .chat-head {
-                    @apply px-4 mt-3;
+                    @apply px-4 py-1 ;
 
                     h1 {
-                        @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
+                        @apply text-lg md:text-xl lg:text-2xl  text-brand-1 font-bold;
+                    }
+
+                    span{
+                        @apply text-xs md:text-sm  text-gray-500 ;
                     }
                 }
 
                 .message-input {
-                    @apply flex px-4 mt-auto pb-4 shadow-sm;
+                    @apply flex px-4 mt-auto pb-4 shadow-sm bg-brand-3;
 
                     input {
-                        @apply w-11/12 p-2 rounded-tl-md rounded-bl-md  text-gray-700;
+                        @apply w-11/12 p-2 rounded-tl-md rounded-bl-md  text-gray-700 bg-white;
                     }
 
                     button {
@@ -648,7 +652,7 @@ section.admin-content {
                     }
                 }
                 .chats {
-                    @apply overflow-hidden overflow-y-scroll  h-3/4vh;
+                    @apply bg-brand-3 overflow-hidden overflow-y-scroll  h-3/4vh;
 
                     .received,
                     .sent {
@@ -739,7 +743,7 @@ section.admin-content {
                             }
 
                             span {
-                                @apply text-gray-400;
+                                @apply text-gray-600;
                             }
                         }
 

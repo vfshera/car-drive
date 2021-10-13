@@ -5,7 +5,7 @@ import SelectInputField from "../components/form-elements/SelectInputField";
 import TextAreaInputField from "../components/form-elements/TextAreaInputField";
 import InputField from "../components/form-elements/InputField";
 
-const NewChat = () => {
+const NewChat = ({setChatView}) => {
     const [recipients, setRecipient] = useState([]);
 
    const[userID,setUserID] = useState("")
@@ -29,6 +29,8 @@ const NewChat = () => {
                     setUserID("");
                     setSubject("");
                     setMessage("");
+
+                    setChatView(false);
                 }
 
             })

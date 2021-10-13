@@ -25,7 +25,7 @@ const Chats = () => {
 
     return (
         <>
-            {!chatsView && <NewChat />}
+            {!chatsView && <NewChat setChatView={setChatView} />}
 
             {chatsView && (
                 <div className="chat-wrapper">
@@ -63,7 +63,7 @@ const Chats = () => {
 
                                             <p className="message">
                                                  <span className="uppercase italic font-semibold mr-1">
-                                                     {(thread.latest_message.receiver.id == loggedInUser.id) ? "You : " : thread.latest_message.receiver.name+" : " }
+                                                     {(thread.latest_message.receiver.id == loggedInUser.id) ? "You : " : thread.latest_message.receiver.name.split(" ")[0] +" : " }
                                                      </span>
                                                  {thread.latest_message.body}
                                             </p>
