@@ -70,7 +70,7 @@ const ChatUI = ({ match }) => {
                                         : `message-${index + 1}`
                                 }
                                 className={
-                                    msg.receiver.id != loggedInUser.id
+                                    msg.sender.id != loggedInUser.id
                                         ? "received"
                                         : "sent"
                                 }
@@ -78,8 +78,8 @@ const ChatUI = ({ match }) => {
                                 <div className="message-wrapper">
                                     <div className="sender">
                                         <h2>
-                                            {msg.receiver.id != loggedInUser.id
-                                                ? msg.receiver.name
+                                            {msg.sender.id != loggedInUser.id
+                                                ? msg.sender.name
                                                 : "You"}
                                         </h2>
                                         <span>{msg.created_at}</span>

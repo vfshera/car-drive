@@ -54,7 +54,7 @@ const Chats = () => {
                                         <div className="info">
                                             <div className="sender">
                                                 <h2>
-                                                    {(thread.latest_message.receiver.id == loggedInUser.id) ? thread.latest_message.sender.name : thread.latest_message.receiver.name }
+                                                    {(thread.latest_message.sender.id == loggedInUser.id) ? thread.latest_message.receiver.name : thread.latest_message.sender.name }
                                                 </h2>
                                                 <span>
                                                     {thread.latest_message.created_at}
@@ -63,7 +63,7 @@ const Chats = () => {
 
                                             <p className="message">
                                                  <span className="uppercase italic font-semibold mr-1">
-                                                     {(thread.latest_message.receiver.id == loggedInUser.id) ? "You : " : thread.latest_message.receiver.name.split(" ")[0] +" : " }
+                                                     {(thread.latest_message.sender.id == loggedInUser.id) ? "You : " : thread.latest_message.receiver.name.split(" ")[0] +" : " }
                                                      </span>
                                                  {thread.latest_message.body}
                                             </p>

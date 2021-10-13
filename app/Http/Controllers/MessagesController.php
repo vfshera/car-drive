@@ -31,10 +31,10 @@ class MessagesController extends Controller
         $threads = Thread::forUser(Auth::id())
             ->withCount('messages')
             ->latest()
-            ->get()
-            ->reject(function ($value) {
-                return $value->messages_count == 1 && $value->creator() == Auth::user();
-            });
+            ->get();
+            // ->reject(function ($value) {
+            //     return $value->messages_count == 1 && $value->creator() == Auth::user();
+            // });
 
         return ThreadResource::collection($threads)->response()->setStatusCode(Response::HTTP_OK);
     }
@@ -66,7 +66,7 @@ class MessagesController extends Controller
   
 
         // LONG USER FILTER
-        
+
         $userThreadID =  Participant::where('user_id',  Auth::id())->get()->pluck('thread_id');
     
         $threads =  Thread::whereIn('id', $userThreadID)->get();    

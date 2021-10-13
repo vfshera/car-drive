@@ -15,11 +15,16 @@ class MessageResource extends JsonResource
     public function toArray($request)
     {
 
+        $receiver = $this->participants->reject(function($part){
+                
+            return $part->user_id == $this->user->id;
+        })->first()->user;
+
 
         return [
             'thread_id' => $this->thread_id,
-            'receiver' => new UserResource($this->user),
-            'sender' => new UserResource($this->participants->first()->user),
+            'sender' => new UserResource($this->user),
+            'receiver' => new UserResource($this->recipients->first()->user),
             'body' => $this->body,
             'created_at' => $this->created_at->diffForHumans(),
         ];

@@ -17,7 +17,8 @@ body,
     --thumbBG: #14213d;
 }
 
-html,.chats {
+html,
+.chats {
     scrollbar-color: var(--thumbBG) var(--scrollbarBG);
     scrollbar-width: thin;
 }
@@ -525,31 +526,23 @@ section.car-list-wrapper {
 // DASBOARD END
 
 section.admin-content {
-
     // NEW CHAT
-    .new-message{
+    .new-message {
         @apply p-10;
 
         h1 {
             @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
         }
 
-        .create-message-form{
-
-            form{
-
-
-                button{
+        .create-message-form {
+            form {
+                button {
                     @apply bg-brand-1 font-bold text-white w-2/5 flex items-center justify-center py-4 hover:rounded-xl;
                 }
             }
-
         }
     }
     // NEW CHAT END
-
-
-
 
     // CHATS
 
@@ -561,10 +554,10 @@ section.admin-content {
                 @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
             }
 
-            &.chats-home{
+            &.chats-home {
                 @apply flex justify-between;
 
-                button{
+                button {
                     @apply px-6 py-2 bg-brand-1 text-white rounded-md;
                 }
             }
@@ -586,22 +579,18 @@ section.admin-content {
                             #ffffff
                         );
 
-                        @apply  absolute bottom-0 left-0 w-full h-1/4;
-
-                      
+                        @apply absolute bottom-0 left-0 w-full h-1/4;
                     }
-
-                  
                 }
 
-                .messages-count{
+                .messages-count {
                     @apply flex justify-between py-3 px-4;
 
                     h3 {
                         @apply text-base md:text-lg lg:text-xl  text-brand-1 font-bold inline-block;
                     }
 
-                    span{
+                    span {
                         @apply text-sm md:text-base lg:text-lg  text-brand-1;
                     }
                 }
@@ -629,14 +618,14 @@ section.admin-content {
                 @apply w-3/4 flex flex-col bg-white;
 
                 .chat-head {
-                    @apply px-4 py-1 ;
+                    @apply px-4 py-1;
 
                     h1 {
                         @apply text-lg md:text-xl lg:text-2xl  text-brand-1 font-bold;
                     }
 
-                    span{
-                        @apply text-xs md:text-sm  text-gray-500 ;
+                    span {
+                        @apply text-xs md:text-sm  text-gray-500;
                     }
                 }
 
@@ -719,7 +708,7 @@ section.admin-content {
         }
 
         .chats {
-            @apply flex flex-col py-2;
+            @apply bg-brand-3 overflow-hidden overflow-y-scroll  h-4/5vh flex flex-col py-2;
 
             a {
                 .chat-preview {
