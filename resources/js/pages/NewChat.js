@@ -30,7 +30,7 @@ const NewChat = ({ setChatView }) => {
                     setSubject("");
                     setMessage("");
 
-                    setChatView(false);
+                    setChatView(true);
                     loadRecipients();
                 }
 
@@ -90,7 +90,13 @@ const NewChat = ({ setChatView }) => {
                         onChange={(e) => setMessage(e.target.value)}
                     />
 
+                    <div className="form-btns">
                     <button type="submit">SEND</button>
+                    <button className="cancelBtn" onClick={e => {
+                        e.preventDefault();
+                        setChatView(true);
+                    }}>CLOSE FORM</button>
+                    </div>
                 </form>
             </div>
         </div>
