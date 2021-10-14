@@ -10,6 +10,7 @@ use App\Http\Resources\{
     AdminCarResource
 };
 use CarData;
+use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -61,8 +62,7 @@ class CarController extends Controller
 
 
     public function adminSingleCar(Car $car){
-
-
+        
         return new AdminCarResource($car);
     }
 

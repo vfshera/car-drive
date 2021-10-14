@@ -1,6 +1,8 @@
-import React, { useEffect, useState , useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+
+import { Link } from "react-router-dom";
 
 const ChatUI = ({ match }) => {
     const [thread, setThread] = useState([]);
@@ -31,11 +33,10 @@ const ChatUI = ({ match }) => {
     };
 
     const getMessages = () => {
-        axios.get(`/auth/messages/${match.params.threadID}`)
+        axios
+            .get(`/auth/messages/${match.params.threadID}`)
             .then((res) => setThread(res.data.data))
             .catch((err) => console.log(err));
-
-            
     };
 
     const scrollToBottom = () => {
@@ -46,11 +47,11 @@ const ChatUI = ({ match }) => {
         getMessages();
     }, []);
 
-    useEffect(() =>{
-        if(thread.messages?.length != 0){
+    useEffect(() => {
+        if (thread.messages?.length != 0) {
             scrollToBottom();
         }
-    },[thread])
+    }, [thread]);
 
     return (
         <div className="chat-wrapper">
@@ -105,9 +106,9 @@ const ChatUI = ({ match }) => {
                             type="text"
                             placeholder="Type your message here..."
                             value={newMsg}
-                            onKeyPress={e => {
-                                (e.charCode == 13) && sendMessage();
-                            }} 
+                            onKeyPress={(e) => {
+                                e.charCode == 13 && sendMessage();
+                            }}
                             onChange={(e) => setNewMsg(e.target.value)}
                         />
                         <button
@@ -140,25 +141,42 @@ const ChatUI = ({ match }) => {
                         <span>{thread?.messages?.length}</span>
                     </div>
                     <div className="postings">
-                        <h3>Media</h3>
+                        <div className="posting-count">
+                            <h3>Cars </h3>
+                            <span>
+                                {thread?.chat_with?.user_cars?.length}
+                            </span>
+                        </div>
 
                         <div className="photos">
-                            {postingCount.map((post, index) => (
-                                <div
-                                    className="photo"
-                                    key={index}
-                                    style={{
-                                        backgroundImage: `url(/storage/images/${
-                                            homeImages[
-                                                Math.floor(Math.random() * 2)
-                                            ]
-                                        })`,
-                                        backgroundRepeat: "no-repeat",
-                                        backgroundSize: "cover",
-                                        backgroundPosition: "center",
-                                    }}
-                                ></div>
-                            ))}
+                            {thread?.chat_with?.user_cars?.length &&
+                                thread?.chat_with?.user_cars?.map(
+                                    (carPost, index) => (
+                                        <Link
+                                            to={`/dashboard/${carPost.id}-${carPost.slug}`}
+                                        >
+                                            <div
+                                                className="photo"
+                                                key={index}
+                                                style={{
+                                                    backgroundImage: `url(/storage/images/${
+                                                        homeImages[
+                                                            Math.floor(
+                                                                Math.random() *
+                                                                    2
+                                                            )
+                                                        ]
+                                                    })`,
+                                                    backgroundRepeat:
+                                                        "no-repeat",
+                                                    backgroundSize: "cover",
+                                                    backgroundPosition:
+                                                        "center",
+                                                }}
+                                            ></div>
+                                        </Link>
+                                    )
+                                )}
                         </div>
                     </div>
                 </div>

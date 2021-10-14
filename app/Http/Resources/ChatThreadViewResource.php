@@ -24,7 +24,7 @@ class ChatThreadViewResource extends JsonResource
             'subject' => $this->subject,
             'messages' => MessageResource::collection($this->messages),
             'creator' => new UserResource($this->creator()),
-            'chat_with' => new UserResource($chatWith),
+            'chat_with' => new ChatUserResource($chatWith),
             'created_at' => $this->created_at,
         ];
     }

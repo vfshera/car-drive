@@ -2,7 +2,10 @@
 
 namespace App\Http\Resources;
 
+use Cmgmyr\Messenger\Models\Participant;
+use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class AdminCarResource extends JsonResource
 {
@@ -14,6 +17,10 @@ class AdminCarResource extends JsonResource
      */
     public function toArray($request)
     {
+        // $thread = Thread::whereHas('participants')->map(function($thr){
+        //     return in_array(1,$thr->participantsUserIds);
+        // })->get();
+
         return [
             'id' => $this->id,
             'make' => $this->make,
@@ -22,8 +29,9 @@ class AdminCarResource extends JsonResource
             'slug' => $this->slug,
             'show_location' => $this->show_location,
             'created_at' => $this->created_at,
-            'user' => $this->user->only(['id','name']),
-            'car_images' =>  $this->carImages
+            'user' => new UserResource($this->user),
+            'car_images' =>  $this->carImages,
+            // 'thread' =>  $thread
         ];
     }
 }

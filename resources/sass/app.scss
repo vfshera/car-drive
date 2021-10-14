@@ -595,7 +595,7 @@ section.admin-content {
                     }
                 }
 
-                .messages-count {
+                .messages-count , .postings .posting-count{
                     @apply flex justify-between py-3 px-4;
 
                     h3 {
@@ -608,20 +608,23 @@ section.admin-content {
                 }
 
                 .postings {
-                    @apply flex flex-col px-4;
+                    @apply flex flex-col ;
 
                     h3 {
                         @apply text-base md:text-lg lg:text-xl  text-brand-1 font-bold;
                     }
 
                     .photos {
-                        @apply grid grid-cols-3 md:grid-cols-7 lg:grid-cols-3 mt-3 gap-1;
-
-                        .photo {
-                            @apply bg-brand-1;
-                            width: 80px;
-                            height: 80px;
+                        @apply grid grid-cols-3 md:grid-cols-7 lg:grid-cols-3 mt-3 gap-1 px-4;
+                        
+                        a{
+                            .photo {
+                                @apply bg-brand-1;
+                                width: 80px;
+                                height: 80px;
+                            }
                         }
+                        
                     }
                 }
             }
