@@ -154,10 +154,11 @@ const ChatUI = ({ match }) => {
                                     (carPost, index) => (
                                         <Link
                                             to={`/dashboard/${carPost.id}-${carPost.slug}`}
+                                            key={index}
+
                                         >
                                             <div
                                                 className="photo"
-                                                key={index}
                                                 style={{
                                                     backgroundImage: `url(/storage/images/${
                                                         homeImages[

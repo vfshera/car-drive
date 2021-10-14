@@ -5,7 +5,7 @@ import SelectInputField from "../components/form-elements/SelectInputField";
 import TextAreaInputField from "../components/form-elements/TextAreaInputField";
 import InputField from "../components/form-elements/InputField";
 
-const NewChat = ({ setChatView }) => {
+const NewChat = ({ setChatView , withUser = false , toUser={} }) => {
     const [recipients, setRecipient] = useState([]);
 
    const[userID,setUserID] = useState("")
@@ -16,10 +16,10 @@ const NewChat = ({ setChatView }) => {
     const sendMessage = (e) =>{
         e.preventDefault();
 
-        if(userID != "" && subject != "" && message != "" ){
+        if((withUser || userID != "" ) && subject != "" && message != "" ){
             axios
             .post("/auth/messages",{
-                recipient: userID,
+                recipient: withUser ? toUser.id : userID,
                 subject: subject,
                 message: message
             })
@@ -30,7 +30,7 @@ const NewChat = ({ setChatView }) => {
                     setSubject("");
                     setMessage("");
 
-                    setChatView(true);
+                    setChatView(false);
                     loadRecipients();
                 }
 
@@ -61,14 +61,25 @@ const NewChat = ({ setChatView }) => {
             <div className="create-message-form">
                 <form onSubmit={sendMessage}>
                    <div className="flex justify-between">
-                   <SelectInputField
-                        labelText="Recepient"
-                        selectOptions={recipients}
-                        selectID="recepient"
-                        selectName="recepient"
-                        parentClasses=" w-1/2 mr-2"
-                        onChange={(e) => setUserID(e.target.value)}
-                    />
+                       
+                       {withUser && (
+                           <div className="input-group">
+                           <label >To</label>
+                           <p className="text-xl font-semibold text-gray-800 mt-3">{toUser.name}</p>
+                       </div>
+                       )}
+
+
+                   {!withUser && (
+                       <SelectInputField
+                       labelText="Recepient"
+                       selectOptions={recipients}
+                       selectID="recepient"
+                       selectName="recepient"
+                       parentClasses=" w-1/2 mr-2"
+                       onChange={(e) => setUserID(e.target.value)}
+                   />
+                   )}
 
                     <InputField
                         labelText="Subject"
@@ -94,7 +105,7 @@ const NewChat = ({ setChatView }) => {
                     <button type="submit">SEND</button>
                     <button className="cancelBtn" onClick={e => {
                         e.preventDefault();
-                        setChatView(true);
+                        setChatView(false);
                     }}>CLOSE FORM</button>
                     </div>
                 </form>

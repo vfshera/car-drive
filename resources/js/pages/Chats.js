@@ -16,19 +16,25 @@ const Chats = () => {
 
     const { chats } = AppChats;
 
-    const [chatsView, setChatView] = useState(true);
+    const [newChatView, setChatView] = useState(false);
 
     useEffect(() => {
-        if (chatsView) {
+        if (!newChatView) {
             dispatch(loadChats());
         }
-    }, [chatsView]);
+    }, [newChatView]);
+
+    useEffect(() => {
+        
+            dispatch(loadChats());
+       
+    }, []);
 
     return (
         <>
-            {!chatsView && <NewChat setChatView={setChatView} />}
+            {newChatView && <NewChat setChatView={setChatView} />}
 
-            {chatsView && (
+            {!newChatView && (
                 <div className="chat-wrapper">
                     <div className="chat-head chats-home">
                         <h1>Chats</h1>
@@ -36,7 +42,7 @@ const Chats = () => {
                             className="star-messaging"
                             onClick={(e) => {
                                 e.preventDefault();
-                                setChatView(false);
+                                setChatView(true);
                             }}
                         >
                             Create Message

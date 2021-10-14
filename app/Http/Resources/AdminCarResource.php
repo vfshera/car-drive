@@ -17,9 +17,9 @@ class AdminCarResource extends JsonResource
      */
     public function toArray($request)
     {
-        // $thread = Thread::whereHas('participants')->map(function($thr){
-        //     return in_array(1,$thr->participantsUserIds);
-        // })->get();
+        $thread = Thread::all()->filter(function($thread){
+            return in_array($this->user->id , $thread->participantsUserIds()) && in_array(Auth::id() , $thread->participantsUserIds());
+        })->first();
 
         return [
             'id' => $this->id,
@@ -31,7 +31,7 @@ class AdminCarResource extends JsonResource
             'created_at' => $this->created_at,
             'user' => new UserResource($this->user),
             'car_images' =>  $this->carImages,
-            // 'thread' =>  $thread
+            'threadID' =>  $thread->id ?? null
         ];
     }
 }

@@ -2,72 +2,79 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-
-
 import GoogleMapView from "../components/GoogleMapView";
+import NewChat from "./NewChat";
 
 const AdminSingleCar = (props) => {
+    const authUser = useSelector((state) => state.authUser);
 
-    
-    const authUser = useSelector( state => state.authUser)
-
-    const { loggedInUser , loading , auth , error } = authUser;
+    const { loggedInUser, loading, auth, error } = authUser;
 
     const hist = useHistory();
 
     const [car, setCar] = useState({});
     const [mapView, setMapView] = useState(false);
+    const [newChatView, setChatView] = useState(false);
 
-    
     const [latitude, setLat] = useState(-1.292066);
     const [longitude, setLong] = useState(36.821945);
 
-
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
-    useEffect(() => {
+
+    const getData = () =>{
         axios
             .get(`/auth/single-car/${props.match.params.carID}`)
             .then((res) => {
                 if (res.status == 200) {
-                    setCar(res.data.data);                   
+                    setCar(res.data.data);
                 }
             })
             .catch((err) => {});
+    }
+
+
+    useEffect(() => {
+        getData();
     }, []);
 
-  
+    useEffect(() => {
+        if(!newChatView){
+            getData();
+        }
+    }, [newChatView]);
 
-
-    useEffect(() =>{
-
-        setLat(
-            parseFloat(car?.show_location?.split(",")[1])
-        );
-        setLong(
-            parseFloat(car?.show_location?.split(",")[0])
-        );
-       
-    },[car])
+    useEffect(() => {
+        setLat(parseFloat(car?.show_location?.split(",")[1]));
+        setLong(parseFloat(car?.show_location?.split(",")[0]));
+    }, [car]);
 
     return (
         <>
+            {newChatView && <NewChat setChatView={setChatView} withUser={true} toUser={car?.user} />}
 
             {/* MAP OVERLAY */}
             {mapView && (
-               <GoogleMapView setMapView={setMapView} longitude={longitude} latitude={latitude}/>
+                <GoogleMapView
+                    setMapView={setMapView}
+                    longitude={longitude}
+                    latitude={latitude}
+                />
             )}
 
-
             {/* DISPLAY CAR */}
-
+            {!newChatView && (
             <div className="single-car-page car-drive-container">
                 <div className="single-car-wrapper">
                     <div className="title">
-                        <button onClick={(e) =>{
-                            e.preventDefault();
-                            hist.goBack();
-                        }}>Cars</button>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                hist.goBack();
+                            }}
+                        >
+                            Cars
+                        </button>
                         <span>|</span>
                         <h2>{car.make}</h2>
                         <h3>{car.model}</h3>
@@ -135,18 +142,30 @@ const AdminSingleCar = (props) => {
                                     Get Location
                                 </button>
 
-                                {(loggedInUser?.id != car?.user?.id) && (
-                                    <button className={`chat `}>
-                                    <i className="ti-comments"></i>
-                                    Chat
-                                </button>
+                                {loggedInUser?.id != car?.user?.id && (
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+
+                                            car?.threadID &&
+                                                hist.push(
+                                                    `/dashboard/chat/${car?.threadID}/messages`
+                                                );
+
+                                            !car?.threadID &&
+                                                setChatView(true);
+                                        }}
+                                        className={`chat `}
+                                    >
+                                        <i className="ti-comments"></i>
+                                        Chat
+                                    </button>
                                 )}
-                                
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>)}
         </>
     );
 };
