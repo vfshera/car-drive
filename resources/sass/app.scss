@@ -17,12 +17,9 @@ body,
     --thumbBG: #14213d;
 }
 
-
-
-*:focus{
+*:focus {
     outline: none;
 }
-
 
 html,
 .chats,
@@ -92,7 +89,7 @@ html,
 }
 
 .input-group {
-    @apply flex flex-col my-5;
+    @apply flex flex-col my-3;
 }
 
 .input-group input[type="text"],
@@ -771,71 +768,55 @@ section.admin-content {
 
     // CHATS END
 
-
-
     // ADD CAR SEARCH
-    aside.search-drawer-wrapper{
-        @apply   relative -top-10 right-0   w-full ;
-       
+    aside.search-drawer-wrapper {
+        @apply relative -top-10 right-0   w-full;
 
-       
-
-        .search-drawer{
-            @apply z-50 absolute top-0 right-0 bg-white min-h-app-screen ml-auto w-full sm:w-2/3  xl:w-1/3 flex flex-col  items-center shadow;
-
+        .search-drawer {
+            @apply z-50 absolute top-0 right-0  min-h-app-screen ml-auto w-full sm:w-2/3  xl:w-1/3 flex flex-col  items-center shadow;
+            backdrop-filter: blur(25px) saturate(200%);
+            background-color: rgba(236, 236, 236, 0.9);
+            
 
             .map-search {
-                @apply absolute z-50 w-full flex flex-col items-center justify-center top-5 ;
+                @apply absolute z-50 w-full flex flex-col items-center justify-center top-5;
 
-                h1{
+                h1 {
                     @apply font-bold text-xl text-brand-1;
                 }
 
                 .search-box {
                     @apply flex items-center  mt-3 h-8 w-4/5;
 
-                    input{
+                    input {
                         @apply rounded-md py-1.5 px-3 border  border-gray-500 focus:border-brand-1 text-center text-brand-1 text-base w-full;
                     }
-
-                  
                 }
 
-
-                .search-results{
-
-                    @apply flex flex-col w-4/5 mt-2  overflow-hidden overflow-y-scroll ;
+                .search-results {
+                    @apply flex flex-col w-4/5 mt-2  overflow-hidden overflow-y-scroll;
 
                     max-height: 70vh;
 
-                    .search-result{
-                        @apply my-1 bg-gray-100 hover:bg-gray-200 w-full text-sm p-2 cursor-pointer hover:text-brand-1 text-gray-600 ;
+                    .search-result {
+                        @apply my-1 bg-gray-100 hover:bg-gray-200 w-full text-sm p-2 cursor-pointer hover:text-brand-1 text-gray-600;
                     }
-                   
                 }
 
-                .searching ,
+                .searching,
                 .result-count,
-                 .no-results, 
-                 .init-type-prompt{
+                .no-results,
+                .init-type-prompt {
                     @apply mt-3 text-gray-600 text-sm w-full text-center;
-
                 }
 
-               
-
-
-                button.closeSearch{
+                button.closeSearch {
                     @apply text-base bg-red-500 px-5 py-2 mt-3 text-white rounded-md;
                 }
             }
         }
     }
     // ADD CAR SEARCH END
-
-    
-
-
 
     //SINGLECAR FIX
     .single-car-page {
@@ -911,8 +892,6 @@ section.admin-content {
                 }
             }
 
-            
-
             .map-feed {
             }
         }
@@ -933,20 +912,22 @@ section.admin-content {
                 }
 
                 form {
-                    @apply w-10/12 sm:w-4/5 lg:w-4/5 flex flex-col justify-center;
+                    @apply w-11/12  lg:w-4/5 flex flex-col justify-center;
 
                     .form-input-section {
                         @apply flex justify-between;
 
                         .form-col {
-                            @apply w-2/5;
+                            @apply w-1/2 ;
 
                             .showroom {
+                                @apply my-3 ;
+
                                 h3 {
                                     @apply text-xl font-semibold text-gray-800 mb-2;
                                 }
                                 .location {
-                                    @apply flex  justify-between;
+                                    @apply flex  justify-between mt-3;
 
                                     p {
                                         @apply text-gray-400 w-2/3 mr-2 bg-gray-100 p-1 rounded-lg;
@@ -959,7 +940,7 @@ section.admin-content {
                             }
 
                             .file-upload {
-                                @apply mt-5;
+                                @apply my-6;
 
                                 h3 {
                                     @apply text-xl font-semibold text-gray-800 mb-2;
@@ -972,11 +953,11 @@ section.admin-content {
                         @apply flex justify-between items-center;
 
                         button[type="submit"] {
-                            @apply bg-brand-1 font-bold text-white w-1/3 flex items-center justify-center py-4 hover:rounded-xl;
+                            @apply bg-brand-1 font-bold text-white w-1/2 mr-5 flex items-center justify-center py-4 hover:rounded-xl;
                         }
 
                         button.cancelBtn {
-                            @apply bg-red-800 font-bold text-white w-1/3 flex items-center justify-center py-4 hover:rounded-xl;
+                            @apply bg-red-800 font-bold text-white w-1/2 ml-5 flex items-center justify-center py-4 hover:rounded-xl;
                         }
                     }
                 }

@@ -18,10 +18,11 @@ const GoogleMapAutocomplete = ({ setLoc, setSearchView }) => {
         }
 
         dispatch({ type: LOADING });
-
-        delete axios.defaults.headers.common["X-Requested-With"];
         setSearched(true);
         setIsSearching(true);
+
+        delete axios.defaults.headers.common["X-Requested-With"];
+        
         axios
             .get(
                 `https://api.tomtom.com/search/2/search/${place}.json?typeahead=true&key=${process.env.MIX_REACT_APP_SEARCH_API_KEY}`,

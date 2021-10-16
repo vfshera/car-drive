@@ -20,7 +20,7 @@ class CarController extends Controller
 
         $cars = Car::with(['user','carImages' => function($query){
                 $query->take(2);
-            }])->paginate(12);
+            }])->latest()->paginate(12);
 
 
         return CarResource::collection($cars)->response()->setStatusCode(Response::HTTP_OK);
@@ -30,7 +30,7 @@ class CarController extends Controller
 
     public function authIndex(){
 
-        $cars = Car::with(['user','carImages'])->paginate(6);
+        $cars = Car::with(['user','carImages'])->latest()->paginate(6);
 
       return AdminCarResource::collection($cars)->response()->setStatusCode(Response::HTTP_OK);
     }
@@ -48,7 +48,7 @@ class CarController extends Controller
     public function adminCars(){
       
 
-        $cars =  Auth::user()->cars();;
+        $cars =  Auth::user()->cars();
 
       return AdminCarResource::collection($cars)->response()->setStatusCode(Response::HTTP_OK);
     }
