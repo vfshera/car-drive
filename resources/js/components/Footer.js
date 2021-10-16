@@ -1,6 +1,11 @@
+import axios from 'axios'
 import React from 'react'
 
 const Footer = () => {
+
+   
+
+
     return (
         <div className="footer-wrapper">
             <footer>

@@ -8,8 +8,8 @@ import InputField from "../components/form-elements/InputField";
 import axios from "axios";
 import SelectInputField from "../components/form-elements/SelectInputField";
 
-import GoogleMapView from "../components/GoogleMapView";
 import FileUpload from "../components/FileUpload";
+import GoogleMapAutocomplete from "../components/GoogleMapAutocomplete";
 
 const AddCar = ({ setIsOpen }) => {
     const [usableCars, setCars] = useState(null);
@@ -19,8 +19,9 @@ const AddCar = ({ setIsOpen }) => {
     const [selectedMake, setMake] = useState(null);
     const [selectedModel, setModel] = useState(null);
     const [selectedYear, setYear] = useState(null);
+    const [selectedLoc, setLoc] = useState({});
 
-    const [mapView, setMapView] = useState(false);
+    const [searchView, setSearchView] = useState(false);
 
     const modelRef = useRef("");
     const makeRef = useRef("");
@@ -33,7 +34,7 @@ const AddCar = ({ setIsOpen }) => {
                 make: selectedMake,
                 model: selectedModel,
                 year: selectedYear,
-                show_location: "01,100",
+                show_location: selectedLoc.location.lat+","+selectedLoc.location.lon,
             })
             .then((res) => {
                 if (res.status == 200) {
@@ -70,8 +71,15 @@ const AddCar = ({ setIsOpen }) => {
 
     return (
         <>
-            {mapView && (
-                <GoogleMapView setMapView={setMapView} searchMode={true} />
+            {searchView && (
+                <aside className="search-drawer-wrapper ">
+                    <div className="search-drawer">
+                        <GoogleMapAutocomplete
+                            setLoc={setLoc}
+                            setSearchView={setSearchView}
+                        />
+                    </div>
+                </aside>
             )}
 
             <div className="add-car-form">
@@ -133,24 +141,38 @@ const AddCar = ({ setIsOpen }) => {
                                 </datalist>
                             </div>
 
-                            <SelectInputField
-                                labelText="Year"
-                                selectName="year"
-                                selectID="year"
-                                selectOptions={yearRange}
-                                onChange={(e) => setYear(e.target.value)}
-                            />
+                            <div className="input-group">
+                                <label>Year</label>
+                                <select
+                                    name="year"
+                                    id="year"
+                                    onChange={(e) => setYear(e.target.value)}
+                                    
+                                >
+                                    <option value="" selected disabled>
+                                        Choose Year
+                                    </option>
+                                    {yearRange.map((yr, index) => (
+                                        <option value={yr} key={index}>
+                                            {yr}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
 
                         <div className="form-col">
                             <div className="showroom">
                                 <h3>Show Room Location</h3>
                                 <div className="location">
-                                    <p>None</p>
+                                    <p>
+                                        {selectedLoc?.name ||
+                                            "Choose Location..."}
+                                    </p>
                                     <button
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            setMapView(true);
+                                            setSearchView(true);
                                         }}
                                     >
                                         Pick Location

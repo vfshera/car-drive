@@ -15,6 +15,7 @@ const GoogleMapView = ({
     latitude,
     setMapView,
     searchMode = false,
+    setLoc = null
 }) => {
     const defaultLatitude = -1.292066;
     const defaultLongitude = 36.821945;
@@ -55,7 +56,7 @@ const GoogleMapView = ({
                     </button>
                 </div>
 
-                {searchMode && (<GoogleMapAutocomplete />)}
+                {/* {searchMode && (<GoogleMapAutocomplete setLoc={setLoc} />)} */}
 
                 <div className="map-feed">
                     <WrappedMap

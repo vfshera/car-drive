@@ -45,8 +45,8 @@ const AdminSingleCar = (props) => {
     }, [newChatView]);
 
     useEffect(() => {
-        setLat(parseFloat(car?.show_location?.split(",")[1]));
-        setLong(parseFloat(car?.show_location?.split(",")[0]));
+        setLat(parseFloat(car?.show_location?.split(",")[0]));
+        setLong(parseFloat(car?.show_location?.split(",")[1]));
     }, [car]);
 
     return (

@@ -1,92 +1,117 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import scriptLoader from "react-async-script-loader";
+import { LOADING, NOT_LOADING } from "../constants/AppConstants";
 
-import PlacesAutocomplete, {
-    geocodeByAddress,
-    getLatLng,
-} from "react-places-autocomplete";
+const GoogleMapAutocomplete = ({ setLoc, setSearchView }) => {
+    const [town, setTown] = useState("");
+    const [searchResult, setResult] = useState([]);
+    const [isSearching, setIsSearching] = useState(false);
+    const [searched, setSearched] = useState(false);
 
-const GoogleMapAutocomplete = ({ isScriptLoaded, isScriptLoadSucceed }) => {
-    const [address, setAddress] = useState("");
+    const dispatch = useDispatch();
 
-    const handleChange = (newAddress) => {
-        setAddress(newAddress);
-    };
+    const getCoordinates = (place) => {
+        if (place == "") {
+            return;
+        }
 
-    const handleSelect = (address) => {
-        geocodeByAddress(address)
-            .then((results) => getLatLng(results[0]))
-            .then((latLng) => console.log("Success", latLng))
-            .catch((error) => console.error("Error", error));
+        dispatch({ type: LOADING });
+
+        delete axios.defaults.headers.common["X-Requested-With"];
+        setSearched(true);
+        setIsSearching(true);
+        axios
+            .get(
+                `https://api.tomtom.com/search/2/search/${place}.json?typeahead=true&key=${process.env.MIX_REACT_APP_SEARCH_API_KEY}`,
+                {
+                    withCredentials: false,
+                }
+            )
+            .then((res) => {
+                setResult(res.data.results);
+            })
+            .catch((err) => console.log(err));
+
+        setIsSearching(false);
+
+        dispatch({ type: NOT_LOADING });
     };
 
     return (
         <div className="map-search">
-            <h1>MAP SEARCH</h1>
+            <h1>POINT OF INTEREST SEARCH</h1>
 
-            {(isScriptLoaded, isScriptLoadSucceed) ? (
-                <PlacesAutocomplete
-                    value={address}
-                    onChange={handleChange}
-                    onSelect={handleSelect}
-                >
-                    {({
-                        getInputProps,
-                        suggestions,
-                        getSuggestionItemProps,
-                        loading,
-                    }) => (
-                        <div>
-                            <input
-                                {...getInputProps({
-                                    placeholder: "Search Places ...",
-                                    className: "location-search-input",
-                                })}
-                            />
-                            <div className="autocomplete-dropdown-container">
-                                {loading && <div className="loading-locations">Loading...</div>}
-                                {suggestions.map((suggestion) => {
-                                    const className = suggestion.active
-                                        ? "suggestion-item--active"
-                                        : "suggestion-item";
-                                    // inline style for demonstration purpose
-                                    const style = suggestion.active
-                                        ? {
-                                              backgroundColor: "#fafafa",
-                                              cursor: "pointer",
-                                          }
-                                        : {
-                                              backgroundColor: "#ffffff",
-                                              cursor: "pointer",
-                                          };
-                                    return (
-                                        <div
-                                            {...getSuggestionItemProps(
-                                                suggestion,
-                                                {
-                                                    className,
-                                                    style,
-                                                }
-                                            )}
-                                        >
-                                            <span>
-                                                {suggestion.description}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+            <div className="search-box">
+                <input
+                    type="text"
+                    placeholder="Search Location here..."
+                    onChange={(e) => setTown(e.target.value)}
+                    onKeyPress={(e) => {
+                        e.charCode == 13 && getCoordinates(town);
+                    }}
+                />
+            </div>
+
+            <div className="search-results">
+                {!isSearching &&
+                    searchResult.length > 0 &&
+                    searchResult.map((result, index) => (
+                        <div
+                            className="search-result"
+                            key={index}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setLoc({
+                                    name:
+                                        result?.poi?.name ||
+                                        result?.address?.freeformAddress,
+                                    location: result?.position,
+                                });
+
+                                setSearchView(false);
+                            }}
+                        >
+                            {result?.address?.countryCode}{" "}
+                            <span className="text-gray-500 px-1 text-base">
+                                |
+                            </span>{" "}
+                            {result?.poi?.name ||
+                                result?.address?.freeformAddress}
                         </div>
-                    )}
-                </PlacesAutocomplete>
-            ) : (
-                <h1>Waiting For Google</h1>
+                    ))}
+            </div>
+
+            {!isSearching && searchResult.length > 0 && (
+                <div className="result-count">
+                    Found {searchResult.length} Matches
+                </div>
             )}
+
+            {isSearching && searched && (
+                <div className="searching">Searching...</div>
+            )}
+
+            {searched && !isSearching && searchResult.length == 0 && (
+                <div className="no-results">No Results</div>
+            )}
+
+            {!searched && !isSearching && searchResult.length == 0 && (
+                <div className="init-type-prompt">type a location...</div>
+            )}
+
+            <button
+                className="closeSearch"
+                onClick={(e) => {
+                    e.preventDefault();
+                    setSearchView(false);
+                }}
+            >
+                Close Search
+            </button>
         </div>
     );
 };
 
-export default scriptLoader([
-    `https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=${process.env.MIX_REACT_APP_MAP_KEY}`,
-])(GoogleMapAutocomplete);
+export default GoogleMapAutocomplete;
