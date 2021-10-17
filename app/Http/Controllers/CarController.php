@@ -68,7 +68,7 @@ class CarController extends Controller
     public function adminSingleCarMedia(Request $request ,Car $car){
 
         $request->validate([
-            'photo' => 'required|file|image|mimes:jpg,png'
+            'photo' => 'required|file|image|mimes:jpg,webp,png'
         ]);
 
 
@@ -91,7 +91,6 @@ class CarController extends Controller
             'model' => 'required|string',
             'year' => 'required|string|min:4',
             'show_location' => 'required|string',
-            // 'photo' => 'required|file|image|mimes:jpg,png'
         ]);
 
         $data["user_id"] = Auth::user()->id;
@@ -113,6 +112,25 @@ class CarController extends Controller
 
         
         return response("Car Added Successfully!" , Response::HTTP_CREATED);
+    }
+
+
+
+
+
+
+
+
+    public function destroy(Car $car){
+
+        if($car->delete()){
+       
+            return response("Car Deleted Successfully!" , Response::HTTP_OK);
+
+        }
+
+        return response("Failed To delete Car!" , Response::HTTP_BAD_REQUEST);
+
     }
 
 }

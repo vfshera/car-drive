@@ -57,6 +57,8 @@ Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
     Route::post('/add-car', [CarController::class , 'create']);
     Route::get('/single-car/{car}', [CarController::class , 'adminSingleCar']);
     Route::post('/single-car-media/{car}', [CarController::class , 'adminSingleCarMedia']);
+    Route::delete('/single-car/{car}', [CarController::class , 'destroy']);
+
 
 
     Route::get('/profile', [AuthController::class , 'profile']);

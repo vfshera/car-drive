@@ -6749,7 +6749,7 @@ var AddCar = function AddCar(_ref) {
     formData.append("show_location", selectedLoc.location.lat + "," + selectedLoc.location.lon);
     formData.append("photo", FileUploadRef.current.files[0]);
     axios__WEBPACK_IMPORTED_MODULE_5___default().post("/auth/add-car", formData).then(function (res) {
-      if (res.status == 200) {
+      if (res.status == 201) {
         setIsOpen(false);
       }
     })["catch"](function (err) {
@@ -7005,6 +7005,26 @@ var AdminSingleCar = function AdminSingleCar(props) {
 
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
+  var deleteCar = function deleteCar() {
+    Swal.fire({
+      title: 'Yow Want To This Car?',
+      icon: 'warning',
+      text: 'You wont be able to revert this!',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        axios["delete"]("/auth/single-car/".concat(car.id)).then(function (res) {
+          if (res.status == 200) {
+            hist.goBack();
+          }
+        })["catch"](function (err) {});
+      }
+    });
+  };
+
   var askToUpload = function askToUpload() {
     var _photoRef$current;
 
@@ -7160,7 +7180,8 @@ var AdminSingleCar = function AdminSingleCar(props) {
                 }), "Chat"]
               }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user3 = car.user) === null || _car$user3 === void 0 ? void 0 : _car$user3.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
                 onClick: function onClick(e) {
-                  ;
+                  e.preventDefault();
+                  deleteCar();
                 },
                 className: "remove-post",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {

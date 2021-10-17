@@ -26,6 +26,38 @@ const AdminSingleCar = (props) => {
 
 
 
+
+    const deleteCar = () =>{
+        
+        Swal.fire({
+            title: 'Yow Want To This Car?',
+            icon:'warning',
+            text:'You wont be able to revert this!',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                
+                axios
+                .delete(`/auth/single-car/${car.id}`)
+                .then((res) => {
+                    if (res.status == 200) {
+                        hist.goBack();
+                    }
+                })
+                .catch((err) => {});
+               
+
+            }
+        })
+    
+    }
+
+
+
     const askToUpload = () =>{
         const photoFile = photoRef?.current?.files[0];
 
@@ -204,7 +236,9 @@ const AdminSingleCar = (props) => {
 
                                 {loggedInUser?.id == car?.user?.id && (
                                     <button
-                                        onClick={(e) => {;
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            deleteCar();
                                         }}
                                         className="remove-post"
                                     >

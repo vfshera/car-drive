@@ -46,7 +46,7 @@ class User extends Authenticatable  implements JWTSubject
 
 
     public function cars(){
-        return $this->hasMany(Car::class)->paginate(6);
+        return $this->hasMany(Car::class)->orderByDesc('created_at')->paginate(6);
     }
 
 

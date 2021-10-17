@@ -43,7 +43,7 @@ const AddCar = ({ setIsOpen }) => {
         axios
             .post("/auth/add-car",formData)
             .then((res) => {
-                if (res.status == 200) {
+                if (res.status == 201) {
                     setIsOpen(false);
                 }
             })
