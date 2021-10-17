@@ -36,7 +36,14 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
     };
 
     const getCarPhoto = (singleCar) => {
-        return (singleCar?.photos.length != 0) ? singleCar?.photos[0]?.url : ("/storage/images/" + homeImages[Math.floor(Math.random() * 2)]) ;
+
+        if((singleCar?.photos?.length) != 0) {
+            return singleCar?.photos[0]?.url;
+        }  
+        
+        
+        
+        return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)]; ;
     };
 
     useEffect(() => {
@@ -108,7 +115,7 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
                                 inAdmin={inAdmin}
                                 car={car}
                                 key={index}
-                                bgImg={`url(${ getCarPhoto(car)})`}
+                                bgImg={`url(${ getCarPhoto(car) })`}
                             />
                         ))}
                     </section>

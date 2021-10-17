@@ -6961,7 +6961,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AdminSingleCar = function AdminSingleCar(props) {
-  var _car$user, _car$photos, _car$photos2, _car$photos3, _car$user2, _car$user3;
+  var _car$photos, _car$user, _car$photos2, _car$photos3, _car$photos4, _car$user2, _car$user3;
 
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
@@ -7007,13 +7007,13 @@ var AdminSingleCar = function AdminSingleCar(props) {
 
   var deleteCar = function deleteCar() {
     Swal.fire({
-      title: 'Yow Want To This Car?',
-      icon: 'warning',
-      text: 'You wont be able to revert this!',
+      title: "Yow Want To This Car?",
+      icon: "warning",
+      text: "You wont be able to revert this!",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
     }).then(function (result) {
       if (result.isConfirmed) {
         axios["delete"]("/auth/single-car/".concat(car.id)).then(function (res) {
@@ -7025,16 +7025,47 @@ var AdminSingleCar = function AdminSingleCar(props) {
     });
   };
 
+  var deleteSelectedImage = function deleteSelectedImage() {
+    if (car.photos <= 1) {
+      Swal.fire({
+        icon: "warning",
+        title: "Bad Idea",
+        text: "You Can not delete the only Image!"
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: "Yow Want To Delete This Image?",
+      icon: "warning",
+      text: "You wont be able to revert this!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
+    }).then(function (result) {
+      if (result.isConfirmed) {// axios
+        //     .delete(`/auth/single-car/${car.id}`)
+        //     .then((res) => {
+        //         if (res.status == 200) {
+        //             hist.goBack();
+        //         }
+        //     })
+        //     .catch((err) => {});
+      }
+    });
+  };
+
   var askToUpload = function askToUpload() {
     var _photoRef$current;
 
     var photoFile = photoRef === null || photoRef === void 0 ? void 0 : (_photoRef$current = photoRef.current) === null || _photoRef$current === void 0 ? void 0 : _photoRef$current.files[0];
     Swal.fire({
-      title: 'Yow Want To Upload Photo?',
+      title: "Yow Want To Upload Photo?",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!"
     }).then(function (result) {
       if (result.isConfirmed) {
         var formData = new FormData();
@@ -7108,7 +7139,19 @@ var AdminSingleCar = function AdminSingleCar(props) {
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center"
-            }
+            },
+            children: (car === null || car === void 0 ? void 0 : (_car$photos = car.photos) === null || _car$photos === void 0 ? void 0 : _car$photos.length) > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "delete-image",
+              onClick: function onClick(e) {
+                e.preventDefault();
+                deleteSelectedImage();
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+                className: "ti-trash"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                children: "Delete"
+              })]
+            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "description",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
@@ -7129,7 +7172,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "photos",
-              children: [(car === null || car === void 0 ? void 0 : (_car$photos = car.photos) === null || _car$photos === void 0 ? void 0 : _car$photos.length) != 0 && (car === null || car === void 0 ? void 0 : (_car$photos2 = car.photos) === null || _car$photos2 === void 0 ? void 0 : _car$photos2.map(function (photo, index) {
+              children: [(car === null || car === void 0 ? void 0 : (_car$photos2 = car.photos) === null || _car$photos2 === void 0 ? void 0 : _car$photos2.length) != 0 && (car === null || car === void 0 ? void 0 : (_car$photos3 = car.photos) === null || _car$photos3 === void 0 ? void 0 : _car$photos3.map(function (photo, index) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "photo",
                   onClick: function onClick(e) {
@@ -7142,7 +7185,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                     backgroundPosition: "center"
                   }
                 }, index);
-              })), (car === null || car === void 0 ? void 0 : (_car$photos3 = car.photos) === null || _car$photos3 === void 0 ? void 0 : _car$photos3.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              })), (car === null || car === void 0 ? void 0 : (_car$photos4 = car.photos) === null || _car$photos4 === void 0 ? void 0 : _car$photos4.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "no-photo",
                 onClick: function onClick(e) {
                   return photoRef.current.click();
@@ -7281,9 +7324,16 @@ var CarListing = function CarListing(_ref) {
   };
 
   var getCarPhoto = function getCarPhoto(singleCar) {
-    var _singleCar$photos$;
+    var _singleCar$photos;
 
-    return (singleCar === null || singleCar === void 0 ? void 0 : singleCar.photos.length) != 0 ? singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos$ = singleCar.photos[0]) === null || _singleCar$photos$ === void 0 ? void 0 : _singleCar$photos$.url : "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
+    if ((singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos = singleCar.photos) === null || _singleCar$photos === void 0 ? void 0 : _singleCar$photos.length) != 0) {
+      var _singleCar$photos$;
+
+      return singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos$ = singleCar.photos[0]) === null || _singleCar$photos$ === void 0 ? void 0 : _singleCar$photos$.url;
+    }
+
+    return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
+    ;
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
