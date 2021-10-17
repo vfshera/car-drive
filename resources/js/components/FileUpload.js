@@ -1,40 +1,39 @@
-import React,{useState} from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState, useRef } from "react";
+import ReactDOM from "react-dom";
 
-// Import React FilePond
-import { FilePond, File, registerPlugin } from 'react-filepond'
+const FileUpload = ({ fileInputRef }) => {
 
-// Import FilePond styles
-import 'filepond/dist/filepond.min.css'
+    const[file,setFile] = useState()
 
-// Import the Image EXIF Orientation and Image Preview plugins
-// Note: These need to be installed separately
-// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
+    return (
+        <div className="cardrive-file-upload-wrapper">
+            <div className="file-upload min-h-300 w-full rounded-md shadow flex justify-center items-center">
+                <div
+                    onClick={(e) => fileInputRef.current.click()}
+                    className="browse-area border-2  border-dashed rounded-md border-blue-500 h-300 w-full flex justify-center items-center cursor-pointer hover:bg-gray-300"
+                >
+                    <div className="info flex flex-col justify-center items-center">
+                        <input
+                            type="file"
+                            name="carImage"
+                            id="carImage"
+                            hidden={true}
+                            ref={fileInputRef}
+                            onChange={e =>{
+                              setFile(e.target.files[0])
+                            }}
+                        />
+                        <i className="ti-cloud mb-2 text-blue-500 text-3xl"></i>
+                        <p className="font-bold">{(file == undefined) ? "Browse Files" : file.name}</p>
+                        {(file != undefined) && (
+                        <p className="file-size">{ file.size} KB</p>
 
-// Register the plugins
-registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview)
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
-
-const FileUpload = () => {
-
-    const [files, setFiles] = useState([])
-
-  return (
-    <div className="App">
-      <FilePond
-        files={files}
-        onupdatefiles={setFiles}
-        allowMultiple={true}
-        maxFiles={5}
-        server="/api/auth/media"
-        name="files" 
-        labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-      />
-    </div>
-  )
-}
-
-export default FileUpload
+export default FileUpload;
