@@ -65,6 +65,21 @@ class CarController extends Controller
         return new AdminCarResource($car);
     }
 
+    public function adminSingleCarMedia(Request $request ,Car $car){
+
+        $request->validate([
+            'photo' => 'required|file|image|mimes:jpg,png'
+        ]);
+
+
+        if($request->hasFile('photo')){
+            $car->addMediaFromRequest('photo')->toMediaCollection();
+        }
+
+        
+        return response("Photo Added Successfully!" , Response::HTTP_CREATED);
+    }
+
 
 
     public function create(Request $request){       

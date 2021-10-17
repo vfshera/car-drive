@@ -26,7 +26,36 @@ const AdminSingleCar = (props) => {
 
 
     const askToUpload = () =>{
-        alert("Upload File?")
+        const photoFile = photoRef?.current?.files[0];
+
+        Swal.fire({
+            title: 'Yow Want To Upload Photo?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let formData = new FormData();
+
+                formData.append("photo",photoFile);
+
+
+                axios
+                .post(`/auth/single-car-media/${props.match.params.carID}`, formData)
+                .then((res) => {
+                    if (res.status == 200) {
+                        getData();
+
+                    }
+                })
+                .catch((err) => {});
+               
+
+            }
+        })
+    
     }
 
     const getData = () =>{
@@ -113,13 +142,13 @@ const AdminSingleCar = (props) => {
                             </p>
 
                             <div className="photos">
-                                {car?.car_images?.length != 0 && (
-                                    car?.car_images?.map((carImg, index) => (
+                                {car?.photos?.length != 0 && (
+                                    car?.photots?.map((carImg, index) => (
                                         <div
                                             className="photo"
                                             key={index}
                                             style={{
-                                                backgroundImage: `url(/storage/images/${
+                                                backgroundImage: `url(/storage/media/${
                                                     homeImages[
                                                         Math.floor(
                                                             Math.random() * 2

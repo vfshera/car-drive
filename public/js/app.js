@@ -6961,7 +6961,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AdminSingleCar = function AdminSingleCar(props) {
-  var _car$user, _car$car_images, _car$car_images2, _car$car_images3, _car$user2, _car$user3;
+  var _car$user, _car$photos, _car$photots, _car$car_images, _car$user2, _car$user3;
 
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
@@ -7001,7 +7001,26 @@ var AdminSingleCar = function AdminSingleCar(props) {
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
   var askToUpload = function askToUpload() {
-    alert("Upload File?");
+    var _photoRef$current;
+
+    var photoFile = photoRef === null || photoRef === void 0 ? void 0 : (_photoRef$current = photoRef.current) === null || _photoRef$current === void 0 ? void 0 : _photoRef$current.files[0];
+    Swal.fire({
+      title: 'Yow Want To Upload Photo?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        var formData = new FormData();
+        formData.append("photo", photoFile);
+        axios.post("/auth/single-car-media/".concat(props.match.params.carID), formData).then(function (res) {
+          if (res.status == 200) {
+            getData();
+          }
+        })["catch"](function (err) {});
+      }
+    });
   };
 
   var getData = function getData() {
@@ -7084,17 +7103,17 @@ var AdminSingleCar = function AdminSingleCar(props) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "photos",
-              children: [(car === null || car === void 0 ? void 0 : (_car$car_images = car.car_images) === null || _car$car_images === void 0 ? void 0 : _car$car_images.length) != 0 && (car === null || car === void 0 ? void 0 : (_car$car_images2 = car.car_images) === null || _car$car_images2 === void 0 ? void 0 : _car$car_images2.map(function (carImg, index) {
+              children: [(car === null || car === void 0 ? void 0 : (_car$photos = car.photos) === null || _car$photos === void 0 ? void 0 : _car$photos.length) != 0 && (car === null || car === void 0 ? void 0 : (_car$photots = car.photots) === null || _car$photots === void 0 ? void 0 : _car$photots.map(function (carImg, index) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "photo",
                   style: {
-                    backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")"),
+                    backgroundImage: "url(/storage/media/".concat(homeImages[Math.floor(Math.random() * 2)], ")"),
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center"
                   }
                 }, index);
-              })), (car === null || car === void 0 ? void 0 : (_car$car_images3 = car.car_images) === null || _car$car_images3 === void 0 ? void 0 : _car$car_images3.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              })), (car === null || car === void 0 ? void 0 : (_car$car_images = car.car_images) === null || _car$car_images === void 0 ? void 0 : _car$car_images.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "no-photo",
                 onClick: function onClick(e) {
                   return photoRef.current.click();

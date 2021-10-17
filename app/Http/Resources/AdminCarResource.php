@@ -27,7 +27,7 @@ class AdminCarResource extends JsonResource
             'model' => $this->model,
             'year' => $this->year,
             'slug' => $this->slug,
-            'photos' => $this->photos,
+            'photos' => CarPhotoResource::collection($this->photos),
             'show_location' => $this->show_location,
             'created_at' => $this->created_at,
             'user' => new UserResource($this->user),
