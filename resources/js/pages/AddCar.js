@@ -25,17 +25,24 @@ const AddCar = ({ setIsOpen }) => {
 
     const modelRef = useRef("");
     const makeRef = useRef("");
+    const FileUploadRef = useRef();
 
     const saveCar = (e) => {
         e.preventDefault();
 
+        // console.log(FileUploadRef.current);
+
+        let formData = new FormData();
+
+        formData.append("make", selectedMake);
+        formData.append("model", selectedModel);
+        formData.append("year", selectedYear);
+        formData.append("show_location", selectedLoc.location.lat+","+selectedLoc.location.lon);
+        formData.append("photo", FileUploadRef.current.files[0]);
+  
+
         axios
-            .post("/auth/add-car", {
-                make: selectedMake,
-                model: selectedModel,
-                year: selectedYear,
-                show_location: selectedLoc.location.lat+","+selectedLoc.location.lon,
-            })
+            .post("/auth/add-car",formData)
             .then((res) => {
                 if (res.status == 200) {
                     console.log(res);
@@ -182,7 +189,7 @@ const AddCar = ({ setIsOpen }) => {
 
                             <div className="file-upload">
                                 <h3>Image</h3>
-                                <FileUpload />
+                                <FileUpload  fileInputRef={FileUploadRef}/>
                             </div>
                         </div>
                     </div>

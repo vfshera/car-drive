@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     Auth\AuthController,
     CarController,
-    MessagesController
+    MessagesController,
+    TemporaryFileController
 };
 
-use function PHPSTORM_META\map;
 
 //LARAVEL SOCIALITE SOCIAL LOGIN
 
@@ -48,11 +48,7 @@ Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
     });
 
 
-
-
-    Route::post('/media', function(\Illuminate\Http\Request $request){
-        dd($request->all());
-    });
+    
 
 
     Route::get('/car-information', [CarController::class , 'carInfo']);

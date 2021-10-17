@@ -68,21 +68,33 @@ class CarController extends Controller
 
 
 
-    public function create(Request $request){
+    public function create(Request $request){       
+
         $data = $request->validate([
             'make' => 'required|string',
             'model' => 'required|string',
             'year' => 'required|string|min:4',
-            'show_location' => 'required|string'
+            'show_location' => 'required|string',
+            // 'photo' => 'required|file|image|mimes:jpg,png'
         ]);
 
         $data["user_id"] = Auth::user()->id;
 
-        if(Car::create($data)){
-            return response("Car Added Successfully!" , Response::HTTP_CREATED);
+
+        $car = Car::create($data);
+
+        if(!$car){
+          return response("Failed To Add Car!" , Response::HTTP_BAD_REQUEST);
         }
 
-        return response("Failed To Add Car!" , Response::HTTP_BAD_REQUEST);
+
+        if($request->hasFile('photo')){
+
+        }
+
+
+        
+        return response("Car Added Successfully!" , Response::HTTP_CREATED);
     }
 
 }
