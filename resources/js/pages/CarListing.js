@@ -35,6 +35,10 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
         dispatch(loadCars(pageUrl));
     };
 
+    const getCarPhoto = (singleCar) => {
+        return (singleCar?.photos.length != 0) ? singleCar?.photos[0]?.url : ("/storage/images/" + homeImages[Math.floor(Math.random() * 2)]) ;
+    };
+
     useEffect(() => {
         dispatch(
             loadCars(MyCars ? "/auth/mycars" : inAdmin ? "/auth/cars" : "/cars")
@@ -104,9 +108,7 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
                                 inAdmin={inAdmin}
                                 car={car}
                                 key={index}
-                                bgImg={`url(/storage/images/${
-                                    homeImages[Math.floor(Math.random() * 2)]
-                                })`}
+                                bgImg={`url(${ getCarPhoto(car)})`}
                             />
                         ))}
                     </section>

@@ -73,7 +73,9 @@ class CarController extends Controller
 
 
         if($request->hasFile('photo')){
-            $car->addMediaFromRequest('photo')->toMediaCollection();
+            $car->addMediaFromRequest('photo')->sanitizingFileName(function($fileName) {
+                return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
+             })->toMediaCollection();
         }
 
         
@@ -103,7 +105,9 @@ class CarController extends Controller
 
 
         if($request->hasFile('photo')){
-            $car->addMediaFromRequest('photo')->toMediaCollection();
+            $car->addMediaFromRequest('photo')->sanitizingFileName(function($fileName) {
+                return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
+             })->toMediaCollection();
         }
 
 

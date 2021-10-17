@@ -6961,7 +6961,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AdminSingleCar = function AdminSingleCar(props) {
-  var _car$user, _car$photos, _car$photots, _car$car_images, _car$user2, _car$user3;
+  var _car$user, _car$photos, _car$photos2, _car$photos3, _car$user2, _car$user3;
 
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
@@ -6988,15 +6988,20 @@ var AdminSingleCar = function AdminSingleCar(props) {
       newChatView = _useState6[0],
       setChatView = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1.292066),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState8 = _slicedToArray(_useState7, 2),
-      latitude = _useState8[0],
-      setLat = _useState8[1];
+      photoSelected = _useState8[0],
+      setPhotoSelected = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(36.821945),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1.292066),
       _useState10 = _slicedToArray(_useState9, 2),
-      longitude = _useState10[0],
-      setLong = _useState10[1];
+      latitude = _useState10[0],
+      setLat = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(36.821945),
+      _useState12 = _slicedToArray(_useState11, 2),
+      longitude = _useState12[0],
+      setLong = _useState12[1];
 
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
@@ -7015,7 +7020,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
         var formData = new FormData();
         formData.append("photo", photoFile);
         axios.post("/auth/single-car-media/".concat(props.match.params.carID), formData).then(function (res) {
-          if (res.status == 200) {
+          if (res.status == 201) {
             getData();
           }
         })["catch"](function (err) {});
@@ -7044,6 +7049,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
 
     setLat(parseFloat(car === null || car === void 0 ? void 0 : (_car$show_location = car.show_location) === null || _car$show_location === void 0 ? void 0 : _car$show_location.split(",")[0]));
     setLong(parseFloat(car === null || car === void 0 ? void 0 : (_car$show_location2 = car.show_location) === null || _car$show_location2 === void 0 ? void 0 : _car$show_location2.split(",")[1]));
+    (car === null || car === void 0 ? void 0 : car.photos) && setPhotoSelected(car === null || car === void 0 ? void 0 : car.photos[0]);
   }, [car]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [newChatView && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_NewChat__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -7078,7 +7084,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "car-photo",
             style: {
-              backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")"),
+              backgroundImage: "url(".concat((photoSelected === null || photoSelected === void 0 ? void 0 : photoSelected.url) || "/storage/images/" + homeImages[Math.floor(Math.random() * 2)], ")"),
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center"
@@ -7103,17 +7109,20 @@ var AdminSingleCar = function AdminSingleCar(props) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "photos",
-              children: [(car === null || car === void 0 ? void 0 : (_car$photos = car.photos) === null || _car$photos === void 0 ? void 0 : _car$photos.length) != 0 && (car === null || car === void 0 ? void 0 : (_car$photots = car.photots) === null || _car$photots === void 0 ? void 0 : _car$photots.map(function (carImg, index) {
+              children: [(car === null || car === void 0 ? void 0 : (_car$photos = car.photos) === null || _car$photos === void 0 ? void 0 : _car$photos.length) != 0 && (car === null || car === void 0 ? void 0 : (_car$photos2 = car.photos) === null || _car$photos2 === void 0 ? void 0 : _car$photos2.map(function (photo, index) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "photo",
+                  onClick: function onClick(e) {
+                    setPhotoSelected(photo);
+                  },
                   style: {
-                    backgroundImage: "url(/storage/media/".concat(homeImages[Math.floor(Math.random() * 2)], ")"),
+                    backgroundImage: "url(".concat(photo.url, ")"),
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center"
                   }
                 }, index);
-              })), (car === null || car === void 0 ? void 0 : (_car$car_images = car.car_images) === null || _car$car_images === void 0 ? void 0 : _car$car_images.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              })), (car === null || car === void 0 ? void 0 : (_car$photos3 = car.photos) === null || _car$photos3 === void 0 ? void 0 : _car$photos3.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "no-photo",
                 onClick: function onClick(e) {
                   return photoRef.current.click();
@@ -7250,6 +7259,12 @@ var CarListing = function CarListing(_ref) {
     dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(pageUrl));
   };
 
+  var getCarPhoto = function getCarPhoto(singleCar) {
+    var _singleCar$photos$;
+
+    return (singleCar === null || singleCar === void 0 ? void 0 : singleCar.photos.length) != 0 ? singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos$ = singleCar.photos[0]) === null || _singleCar$photos$ === void 0 ? void 0 : _singleCar$photos$.url : "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
+  };
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(MyCars ? "/auth/mycars" : inAdmin ? "/auth/cars" : "/cars"));
   }, []);
@@ -7295,7 +7310,7 @@ var CarListing = function CarListing(_ref) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_CarCard__WEBPACK_IMPORTED_MODULE_2__["default"], {
             inAdmin: inAdmin,
             car: car,
-            bgImg: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")")
+            bgImg: "url(".concat(getCarPhoto(car), ")")
           }, index);
         })
       }), fullMode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {

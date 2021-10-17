@@ -17,6 +17,7 @@ const AdminSingleCar = (props) => {
     const [car, setCar] = useState({});
     const [mapView, setMapView] = useState(false);
     const [newChatView, setChatView] = useState(false);
+    const [photoSelected, setPhotoSelected] = useState({});
 
     const [latitude, setLat] = useState(-1.292066);
     const [longitude, setLong] = useState(36.821945);
@@ -45,9 +46,8 @@ const AdminSingleCar = (props) => {
                 axios
                 .post(`/auth/single-car-media/${props.match.params.carID}`, formData)
                 .then((res) => {
-                    if (res.status == 200) {
+                    if (res.status == 201) {
                         getData();
-
                     }
                 })
                 .catch((err) => {});
@@ -64,6 +64,7 @@ const AdminSingleCar = (props) => {
             .then((res) => {
                 if (res.status == 200) {
                     setCar(res.data.data);
+
                 }
             })
             .catch((err) => {});
@@ -83,6 +84,9 @@ const AdminSingleCar = (props) => {
     useEffect(() => {
         setLat(parseFloat(car?.show_location?.split(",")[0]));
         setLong(parseFloat(car?.show_location?.split(",")[1]));
+
+        car?.photos && setPhotoSelected(car?.photos[0]);
+
     }, [car]);
 
     return (
@@ -119,9 +123,7 @@ const AdminSingleCar = (props) => {
                         <div
                             className="car-photo"
                             style={{
-                                backgroundImage: `url(/storage/images/${
-                                    homeImages[Math.floor(Math.random() * 2)]
-                                })`,
+                                backgroundImage: `url(${ photoSelected?.url || "/storage/images/" +homeImages[Math.floor(Math.random() * 2)] })`,
                                 backgroundRepeat: "no-repeat",
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
@@ -143,18 +145,15 @@ const AdminSingleCar = (props) => {
 
                             <div className="photos">
                                 {car?.photos?.length != 0 && (
-                                    car?.photots?.map((carImg, index) => (
+                                    car?.photos?.map((photo, index) => (
                                         <div
                                             className="photo"
                                             key={index}
+                                            onClick={e =>{
+                                                setPhotoSelected(photo);
+                                            }}
                                             style={{
-                                                backgroundImage: `url(/storage/media/${
-                                                    homeImages[
-                                                        Math.floor(
-                                                            Math.random() * 2
-                                                        )
-                                                    ]
-                                                })`,
+                                                backgroundImage: `url(${photo.url})`,
                                                 backgroundRepeat: "no-repeat",
                                                 backgroundSize: "cover",
                                                 backgroundPosition: "center",
@@ -163,7 +162,7 @@ const AdminSingleCar = (props) => {
                                     ))
                                 )}
                                 
-                                {car?.car_images?.length < 5 && (
+                                {car?.photos?.length < 5 && (
                                     <div className="no-photo" onClick={ e =>  photoRef.current.click()}>
                                         <i className="ti-plus"></i>
                                         <input type="file" name="photo" ref={photoRef} onChange={askToUpload} hidden={true}/>

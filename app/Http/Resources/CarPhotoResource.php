@@ -14,6 +14,14 @@ class CarPhotoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'uuid' => $this->uuid,
+            'name' => $this->name,
+            'file_name' => $this->file_name,
+            'url' => $this->getUrl(),
+            'size' => $this->size,
+            'custom_properties' => $this->custom_properties
+        ];
     }
 }
