@@ -30,7 +30,6 @@ const AddCar = ({ setIsOpen }) => {
     const saveCar = (e) => {
         e.preventDefault();
 
-        // console.log(FileUploadRef.current);
 
         let formData = new FormData();
 
@@ -45,7 +44,7 @@ const AddCar = ({ setIsOpen }) => {
             .post("/auth/add-car",formData)
             .then((res) => {
                 if (res.status == 200) {
-                    console.log(res);
+                    setIsOpen(false);
                 }
             })
             .catch((err) => {

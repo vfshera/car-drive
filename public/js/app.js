@@ -5656,17 +5656,28 @@ var FileUpload = function FileUpload(_ref) {
       file = _useState2[0],
       setFile = _useState2[1];
 
+  var getFileSize = function getFileSize() {
+    var sizeInKB = Math.round(file.size / 1024);
+
+    if (sizeInKB > 1024) {
+      var size = sizeInKB / 1024;
+      return size.toFixed(2) + " MB";
+    }
+
+    return sizeInKB.toFixed(2) + " KB";
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "cardrive-file-upload-wrapper",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "file-upload min-h-300 w-full rounded-md shadow flex justify-center items-center",
+      className: "file-upload ",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         onClick: function onClick(e) {
           return fileInputRef.current.click();
         },
-        className: "browse-area border-2  border-dashed rounded-md border-blue-500 h-300 w-full flex justify-center items-center cursor-pointer hover:bg-gray-300",
+        className: "browse-area ",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "info flex flex-col justify-center items-center",
+          className: "info ",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "file",
             name: "carImage",
@@ -5677,13 +5688,13 @@ var FileUpload = function FileUpload(_ref) {
               setFile(e.target.files[0]);
             }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-            className: "ti-cloud mb-2 text-blue-500 text-3xl"
+            className: "ti-cloud-up"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "font-bold",
-            children: file == undefined ? "Browse Files" : file.name
+            className: "file-name",
+            children: file == undefined ? "Choose Image" : file.name
           }), file != undefined && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
             className: "file-size",
-            children: [file.size, " KB"]
+            children: [getFileSize(), " "]
           })]
         })
       })
@@ -6730,8 +6741,7 @@ var AddCar = function AddCar(_ref) {
   var FileUploadRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
 
   var saveCar = function saveCar(e) {
-    e.preventDefault(); // console.log(FileUploadRef.current);
-
+    e.preventDefault();
     var formData = new FormData();
     formData.append("make", selectedMake);
     formData.append("model", selectedModel);
@@ -6740,7 +6750,7 @@ var AddCar = function AddCar(_ref) {
     formData.append("photo", FileUploadRef.current.files[0]);
     axios__WEBPACK_IMPORTED_MODULE_5___default().post("/auth/add-car", formData).then(function (res) {
       if (res.status == 200) {
-        console.log(res);
+        setIsOpen(false);
       }
     })["catch"](function (err) {
       console.log(err);
@@ -6951,7 +6961,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AdminSingleCar = function AdminSingleCar(props) {
-  var _car$user, _car$car_images, _car$car_images2, _car$user2;
+  var _car$user, _car$car_images, _car$car_images2, _car$car_images3, _car$user2, _car$user3;
 
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
@@ -6960,6 +6970,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
       loading = authUser.loading,
       auth = authUser.auth,
       error = authUser.error;
+  var photoRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var hist = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
@@ -6988,6 +6999,10 @@ var AdminSingleCar = function AdminSingleCar(props) {
       setLong = _useState10[1];
 
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
+
+  var askToUpload = function askToUpload() {
+    alert("Upload File?");
+  };
 
   var getData = function getData() {
     axios.get("/auth/single-car/".concat(props.match.params.carID)).then(function (res) {
@@ -7067,9 +7082,9 @@ var AdminSingleCar = function AdminSingleCar(props) {
               children: ["Owner ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                 children: car === null || car === void 0 ? void 0 : (_car$user = car.user) === null || _car$user === void 0 ? void 0 : _car$user.name
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "photos",
-              children: (car === null || car === void 0 ? void 0 : (_car$car_images = car.car_images) === null || _car$car_images === void 0 ? void 0 : _car$car_images.length) != 0 ? car === null || car === void 0 ? void 0 : (_car$car_images2 = car.car_images) === null || _car$car_images2 === void 0 ? void 0 : _car$car_images2.map(function (carImg, index) {
+              children: [(car === null || car === void 0 ? void 0 : (_car$car_images = car.car_images) === null || _car$car_images === void 0 ? void 0 : _car$car_images.length) != 0 && (car === null || car === void 0 ? void 0 : (_car$car_images2 = car.car_images) === null || _car$car_images2 === void 0 ? void 0 : _car$car_images2.map(function (carImg, index) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "photo",
                   style: {
@@ -7079,9 +7094,21 @@ var AdminSingleCar = function AdminSingleCar(props) {
                     backgroundPosition: "center"
                   }
                 }, index);
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                className: "no-photo"
-              })
+              })), (car === null || car === void 0 ? void 0 : (_car$car_images3 = car.car_images) === null || _car$car_images3 === void 0 ? void 0 : _car$car_images3.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "no-photo",
+                onClick: function onClick(e) {
+                  return photoRef.current.click();
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+                  className: "ti-plus"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                  type: "file",
+                  name: "photo",
+                  ref: photoRef,
+                  onChange: askToUpload,
+                  hidden: true
+                })]
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "actions",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
@@ -7103,6 +7130,14 @@ var AdminSingleCar = function AdminSingleCar(props) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                   className: "ti-comments"
                 }), "Chat"]
+              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user3 = car.user) === null || _car$user3 === void 0 ? void 0 : _car$user3.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
+                onClick: function onClick(e) {
+                  ;
+                },
+                className: "remove-post",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+                  className: "ti-trash"
+                }), "Remove"]
               })]
             })]
           })]
@@ -7534,6 +7569,9 @@ var Chats = function Chats() {
     return state.authUser;
   });
   var loggedInUser = AuthUser.loggedInUser;
+  var AppLoading = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.appLoading;
+  });
   var chats = AppChats.chats;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -7552,7 +7590,21 @@ var Chats = function Chats() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [newChatView && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_NewChat__WEBPACK_IMPORTED_MODULE_3__["default"], {
       setChatView: setChatView
-    }), !newChatView && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    }), !newChatView && chats.length == 0 && !AppLoading.loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "no-chats ",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+        children: "Oops Seems You dont have chats"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+        children: "Start Here"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        className: "start-messaging",
+        onClick: function onClick(e) {
+          e.preventDefault();
+          setChatView(true);
+        },
+        children: "Create Message"
+      })]
+    }), !newChatView && chats.length != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "chat-wrapper",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "chat-head chats-home",
@@ -7568,7 +7620,7 @@ var Chats = function Chats() {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "chats",
-        children: chats.length != 0 && (chats === null || chats === void 0 ? void 0 : chats.map(function (thread, index) {
+        children: chats === null || chats === void 0 ? void 0 : chats.map(function (thread, index) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
             to: "/dashboard/chat/".concat(thread.id, "/messages"),
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -7598,7 +7650,7 @@ var Chats = function Chats() {
               })]
             })
           }, index);
-        }))
+        })
       })]
     })]
   });

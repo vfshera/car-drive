@@ -10,7 +10,6 @@ use App\Http\Resources\{
     AdminCarResource
 };
 use CarData;
-use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -89,7 +88,7 @@ class CarController extends Controller
 
 
         if($request->hasFile('photo')){
-
+            $car->addMediaFromRequest('photo')->toMediaCollection();
         }
 
 

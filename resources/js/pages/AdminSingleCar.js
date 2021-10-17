@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -9,6 +9,8 @@ const AdminSingleCar = (props) => {
     const authUser = useSelector((state) => state.authUser);
 
     const { loggedInUser, loading, auth, error } = authUser;
+
+    const photoRef = useRef();
 
     const hist = useHistory();
 
@@ -21,6 +23,11 @@ const AdminSingleCar = (props) => {
 
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
+
+
+    const askToUpload = () =>{
+        alert("Upload File?")
+    }
 
     const getData = () =>{
         axios
@@ -106,7 +113,7 @@ const AdminSingleCar = (props) => {
                             </p>
 
                             <div className="photos">
-                                {car?.car_images?.length != 0 ? (
+                                {car?.car_images?.length != 0 && (
                                     car?.car_images?.map((carImg, index) => (
                                         <div
                                             className="photo"
@@ -125,8 +132,13 @@ const AdminSingleCar = (props) => {
                                             }}
                                         ></div>
                                     ))
-                                ) : (
-                                    <div className="no-photo"></div>
+                                )}
+                                
+                                {car?.car_images?.length < 5 && (
+                                    <div className="no-photo" onClick={ e =>  photoRef.current.click()}>
+                                        <i className="ti-plus"></i>
+                                        <input type="file" name="photo" ref={photoRef} onChange={askToUpload} hidden={true}/>
+                                    </div>
                                 )}
                             </div>
 
@@ -159,6 +171,17 @@ const AdminSingleCar = (props) => {
                                     >
                                         <i className="ti-comments"></i>
                                         Chat
+                                    </button>
+                                )}
+
+                                {loggedInUser?.id == car?.user?.id && (
+                                    <button
+                                        onClick={(e) => {;
+                                        }}
+                                        className="remove-post"
+                                    >
+                                        <i className="ti-trash"></i>
+                                        Remove
                                     </button>
                                 )}
                             </div>

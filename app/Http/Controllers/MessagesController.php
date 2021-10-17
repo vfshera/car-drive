@@ -77,6 +77,9 @@ class MessagesController extends Controller
         })->flatten()->unique()->values()->all();
 
 
+        array_push($notAllowedIDs , Auth::id());
+
+
 
 
         $users = User::whereNotIn('id', $notAllowedIDs)->get();
