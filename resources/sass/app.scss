@@ -872,7 +872,29 @@ section.admin-content {
 
             .details {
                 .car-photo {
-                    @apply w-full lg:w-3/4 h-full;
+                    @apply w-full lg:w-3/4 h-full flex justify-end;
+
+                    .delete-image{
+                        @apply self-end font-bold bg-white px-3 py-2 hover:bg-red-500 hover:text-white cursor-pointer;
+
+                        i{
+                            @apply text-base text-red-500  font-bold;
+                        }
+
+                        span{
+                            @apply hidden ml-2 text-base;
+                        }
+
+                        &:hover{
+                            i{
+                                @apply text-white;
+
+                            }
+                            span{
+                                @apply inline
+                            }
+                        }
+                    }
                 }
 
                 .description {
@@ -880,6 +902,8 @@ section.admin-content {
 
                     .photos {
                         @apply grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 mt-3 gap-2;
+
+
 
                         .no-photo {
                             @apply bg-gray-300 flex justify-center items-center cursor-pointer;
