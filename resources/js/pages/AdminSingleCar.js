@@ -18,7 +18,7 @@ const AdminSingleCar = (props) => {
     const [mapView, setMapView] = useState(false);
     const [newChatView, setChatView] = useState(false);
     const [photoSelected, setPhotoSelected] = useState({});
-    const [photoIndex, setPhotoIndex] = useState({});
+    const [photoIndex, setPhotoIndex] = useState(0);
 
     const [latitude, setLat] = useState(-1.292066);
     const [longitude, setLong] = useState(36.821945);

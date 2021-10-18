@@ -352,34 +352,36 @@ html,
 // DASHBOARD PAGE 
 
 .dashboard-page{
-    @apply min-h-app-screen p-10;
+    @apply min-h-app-screen p-5 lg:p-10;
 
      h1{
-        @apply text-xl md:text-2xl lg:text-3xl text-brand-1 font-bold;
+        @apply text-base md:text-2xl lg:text-3xl text-brand-1 font-bold;
 
     }
 
     section.dash-items{
-        @apply grid grid-cols-4 gap-5 mt-5 ;
+        @apply grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 ;
 
+       a{
         .item-card{
 
-            @apply border border-brand-1 shadow flex flex-col justify-center  items-center rounded-md p-10 bg-white;
+            @apply border border-gray-100 shadow flex flex-col justify-center  items-center rounded-md py-7 sm:p-5 lg:p-10 bg-white;
 
             i{
-                @apply font-bold text-3xl text-brand-1;
+                @apply font-bold text-2xl lg:text-3xl text-brand-1;
             }
 
             p{
-                @apply font-bold text-2xl text-gray-700;
+                @apply font-bold text-xl lg:text-2xl text-gray-700;
 
             }
 
             span{
-                @apply font-semibold text-2xl text-gray-600;
+                @apply font-semibold text-xl lg:text-2xl text-gray-700;
 
             }
         }
+       }
     }
 }
 // DASHBOARD PAGE END
@@ -576,10 +578,10 @@ section.car-list-wrapper {
         height: calc(100vh - 4rem);
 
         aside.sidebar {
-            @apply w-2/12  h-full  border-r border-brand-1 fixed  left-0 z-10;
+            @apply hidden md:block w-2/12  h-full  border-r border-brand-1 fixed  left-0 z-10;
 
             .countd {
-                @apply text-brand-1 font-semibold text-sm p-10 border-b border-brand-1;
+                @apply text-brand-1 font-semibold text-xs lg:text-sm p-5 lg:p-10 border-b border-brand-1;
 
                 i {
                     @apply mr-1;
@@ -587,18 +589,18 @@ section.car-list-wrapper {
             }
 
             ul.navigation {
-                @apply flex flex-col gap-3 p-10;
+                @apply flex flex-col gap-3 p-5 lg:p-10;
 
                 li {
                     a {
-                        @apply text-brand-1 font-bold text-xl;
+                        @apply text-brand-1 font-bold text-base lg:text-xl;
                     }
                 }
             }
         }
 
         section.admin-content {
-            @apply w-10/12 ml-auto   bg-brand-3 h-full;
+            @apply w-full md:w-10/12 ml-auto   bg-brand-3 h-full;
         }
     }
 }
