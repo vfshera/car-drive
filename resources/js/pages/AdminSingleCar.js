@@ -206,6 +206,7 @@ const AdminSingleCar = (props) => {
                                 )}
                             </div>
                             <div className="description">
+                                <div className="information">
                                 <p>
                                     Make <span>{car.make}</span>
                                 </p>
@@ -218,6 +219,7 @@ const AdminSingleCar = (props) => {
                                 <p>
                                     Owner <span>{car?.user?.name}</span>
                                 </p>
+                                </div>
 
                                 <div className="photos">
                                     {car?.photos?.length != 0 &&
