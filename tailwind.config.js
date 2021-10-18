@@ -1,6 +1,7 @@
 module.exports = {
     purge: ["./resources/**/*.blade.php", "./resources/**/*.js"],
     darkMode: false,
+    
     theme: {
         extend: {
             spacing: {
@@ -33,6 +34,7 @@ module.exports = {
                 "3/4vh": "75vh",
                 "4/5vh": "80vh",
                 100: "100px",
+                135: "135px",
                 150: "150px",
                 200: "200px",
                 280: "280px",
@@ -53,6 +55,7 @@ module.exports = {
                 "2/3vh": "60vh",
                 "3/4vh": "75vh",
                 "4/5vh": "80vh",
+                "fullvh": "100vh",
                 appFull: "calc(100vh - 4rem)",
                 full: "100%",
             },
