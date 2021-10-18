@@ -8,7 +8,7 @@ import {
 } from "../constants/AuthConstants";
 
 export const LoginReducer = (
-    state = { loggedInUser: {}, auth: false, loading: false , error: false},
+    state = { loggedInUser: {}, auth: false, loading: false ,stats: {}, error: false},
     action
 ) => {
     switch (action.type) {
@@ -22,6 +22,7 @@ export const LoginReducer = (
             return {
                 loading: false,
                 loggedInUser: action.payload.admin,
+                stats: action.payload.stats,
                 auth: true,
                 error: false
             };

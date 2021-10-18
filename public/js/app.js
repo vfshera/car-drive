@@ -4923,8 +4923,9 @@ var registerUser = function registerUser(user) {
               dispatch({
                 type: _constants_AppConstants__WEBPACK_IMPORTED_MODULE_2__.NOT_LOADING
               });
+              P;
 
-            case 13:
+            case 14:
             case "end":
               return _context3.stop();
           }
@@ -8578,17 +8579,44 @@ function Dashboard() {
   });
   var auth = authUser.auth,
       loggedInUser = authUser.loggedInUser,
-      loading = authUser.loading;
-
-  var findUser = function findUser() {};
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    findUser();
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h1", {
-      children: ["Welcome To The Dashboard ", loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.name, "!"]
-    })
+      loading = authUser.loading,
+      stats = authUser.stats;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "dashboard-page",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h1", {
+      children: ["Welcome Back ", loggedInUser.name]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+      className: "dash-items",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "item-card",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+          className: "ti-car"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Cars"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          children: stats.cars
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "item-card",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+          className: "ti-crown"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "My Cars"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          children: stats.mycars
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "item-card",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+          className: "ti-comments"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Messages"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          children: stats.messages
+        })]
+      })]
+    })]
   });
 }
 
@@ -8680,6 +8708,7 @@ var LoginReducer = function LoginReducer() {
     loggedInUser: {},
     auth: false,
     loading: false,
+    stats: {},
     error: false
   };
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -8705,6 +8734,7 @@ var LoginReducer = function LoginReducer() {
       return {
         loading: false,
         loggedInUser: action.payload.admin,
+        stats: action.payload.stats,
         auth: true,
         error: false
       };

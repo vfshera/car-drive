@@ -347,6 +347,51 @@ html,
     }
 }
 
+
+
+// DASHBOARD PAGE 
+
+.dashboard-page{
+    @apply min-h-app-screen p-10;
+
+     h1{
+        @apply text-xl md:text-2xl lg:text-3xl text-brand-1 font-bold;
+
+    }
+
+    section.dash-items{
+        @apply grid grid-cols-4 gap-5 mt-5 ;
+
+        .item-card{
+
+            @apply border border-brand-1 shadow flex flex-col justify-center  items-center rounded-md p-10 bg-white;
+
+            i{
+                @apply font-bold text-3xl text-brand-1;
+            }
+
+            p{
+                @apply font-bold text-2xl text-gray-700;
+
+            }
+
+            span{
+                @apply font-semibold text-2xl text-gray-600;
+
+            }
+        }
+    }
+}
+// DASHBOARD PAGE END
+
+
+
+
+
+
+
+
+
 // CAR LISTING COMPONENT
 section.car-list-wrapper {
     @apply my-4 sm:my-7 lg:my-10 flex flex-col;
