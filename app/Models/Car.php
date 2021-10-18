@@ -15,9 +15,6 @@ class Car extends Model implements HasMedia
     protected $fillable = ['make','model','year','show_location','user_id'];
 
 
-    public function carImages(){
-        return $this->hasMany(CarImage::class);
-    }
 
     public function getPhotosAttribute(){
         return $this->getMedia('car-photos');

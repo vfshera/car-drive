@@ -75,7 +75,11 @@ class CarController extends Controller
         if($request->hasFile('photo')){
             $car->addMediaFromRequest('photo')->sanitizingFileName(function($fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
-             })->toMediaCollection('car-photos');
+             })->withCustomProperties([
+                 'make' => $car->make,
+                 'model' => $car->model,
+                 'year' => $car->year
+             ])->toMediaCollection('car-photos');
         }
 
         
@@ -93,6 +97,10 @@ class CarController extends Controller
             'show_location' => 'required|string',
         ]);
 
+        $request->validate([
+            'photo' => 'required|file|image|mimes:jpg,webp,png'
+        ]);
+
         $data["user_id"] = Auth::user()->id;
 
 
@@ -106,7 +114,11 @@ class CarController extends Controller
         if($request->hasFile('photo')){
             $car->addMediaFromRequest('photo')->sanitizingFileName(function($fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
-             })->toMediaCollection('car-photos');
+             })->withCustomProperties([
+                'make' => $car->make,
+                'model' => $car->model,
+                'year' => $car->year
+            ])->toMediaCollection('car-photos');
         }
 
 
