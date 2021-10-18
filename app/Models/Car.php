@@ -20,7 +20,7 @@ class Car extends Model implements HasMedia
     }
 
     public function getPhotosAttribute(){
-        return $this->getMedia();
+        return $this->getMedia('car-photos');
     }
 
 

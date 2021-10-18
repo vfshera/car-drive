@@ -18,6 +18,7 @@ const AdminSingleCar = (props) => {
     const [mapView, setMapView] = useState(false);
     const [newChatView, setChatView] = useState(false);
     const [photoSelected, setPhotoSelected] = useState({});
+    const [photoIndex, setPhotoIndex] = useState({});
 
     const [latitude, setLat] = useState(-1.292066);
     const [longitude, setLong] = useState(36.821945);
@@ -49,6 +50,7 @@ const AdminSingleCar = (props) => {
 
     const deleteSelectedImage = () => {
         if (car.photos <= 1) {
+
             Swal.fire({
                 icon: "warning",
                 title: "Bad Idea",
@@ -68,14 +70,14 @@ const AdminSingleCar = (props) => {
             confirmButtonText: "Yes!",
         }).then((result) => {
             if (result.isConfirmed) {
-                // axios
-                //     .delete(`/auth/single-car/${car.id}`)
-                //     .then((res) => {
-                //         if (res.status == 200) {
-                //             hist.goBack();
-                //         }
-                //     })
-                //     .catch((err) => {});
+                axios
+                    .delete(`/auth/single-car-image/${car.id}/${photoIndex}`)
+                    .then((res) => {
+                        if (res.status == 200) {
+                            getData();
+                        }
+                    })
+                    .catch((err) => {});
             }
         });
     };
@@ -225,6 +227,7 @@ const AdminSingleCar = (props) => {
                                                 key={index}
                                                 onClick={(e) => {
                                                     setPhotoSelected(photo);
+                                                    setPhotoIndex(index);
                                                 }}
                                                 style={{
                                                     backgroundImage: `url(${photo.url})`,
@@ -237,7 +240,7 @@ const AdminSingleCar = (props) => {
                                             ></div>
                                         ))}
 
-                                    {car?.photos?.length < 5 && (
+                                    {(car?.photos?.length < 5) && (loggedInUser?.id == car?.user?.id) && (
                                         <div
                                             className="no-photo"
                                             onClick={(e) =>

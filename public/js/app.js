@@ -6961,7 +6961,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AdminSingleCar = function AdminSingleCar(props) {
-  var _car$photos, _car$user, _car$photos2, _car$photos3, _car$photos4, _car$user2, _car$user3;
+  var _car$photos, _car$user, _car$photos2, _car$photos3, _car$photos4, _car$user2, _car$user3, _car$user4;
 
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
@@ -6993,15 +6993,20 @@ var AdminSingleCar = function AdminSingleCar(props) {
       photoSelected = _useState8[0],
       setPhotoSelected = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1.292066),
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState10 = _slicedToArray(_useState9, 2),
-      latitude = _useState10[0],
-      setLat = _useState10[1];
+      photoIndex = _useState10[0],
+      setPhotoIndex = _useState10[1];
 
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(36.821945),
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(-1.292066),
       _useState12 = _slicedToArray(_useState11, 2),
-      longitude = _useState12[0],
-      setLong = _useState12[1];
+      latitude = _useState12[0],
+      setLat = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(36.821945),
+      _useState14 = _slicedToArray(_useState13, 2),
+      longitude = _useState14[0],
+      setLong = _useState14[1];
 
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
 
@@ -7044,14 +7049,12 @@ var AdminSingleCar = function AdminSingleCar(props) {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes!"
     }).then(function (result) {
-      if (result.isConfirmed) {// axios
-        //     .delete(`/auth/single-car/${car.id}`)
-        //     .then((res) => {
-        //         if (res.status == 200) {
-        //             hist.goBack();
-        //         }
-        //     })
-        //     .catch((err) => {});
+      if (result.isConfirmed) {
+        axios["delete"]("/auth/single-car-image/".concat(car.id, "/").concat(photoIndex)).then(function (res) {
+          if (res.status == 200) {
+            getData();
+          }
+        })["catch"](function (err) {});
       }
     });
   };
@@ -7177,6 +7180,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                   className: "photo",
                   onClick: function onClick(e) {
                     setPhotoSelected(photo);
+                    setPhotoIndex(index);
                   },
                   style: {
                     backgroundImage: "url(".concat(photo.url, ")"),
@@ -7185,7 +7189,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                     backgroundPosition: "center"
                   }
                 }, index);
-              })), (car === null || car === void 0 ? void 0 : (_car$photos4 = car.photos) === null || _car$photos4 === void 0 ? void 0 : _car$photos4.length) < 5 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              })), (car === null || car === void 0 ? void 0 : (_car$photos4 = car.photos) === null || _car$photos4 === void 0 ? void 0 : _car$photos4.length) < 5 && (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user2 = car.user) === null || _car$user2 === void 0 ? void 0 : _car$user2.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "no-photo",
                 onClick: function onClick(e) {
                   return photoRef.current.click();
@@ -7211,7 +7215,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                   className: "ti-location-pin"
                 }), "Get Location"]
-              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) != (car === null || car === void 0 ? void 0 : (_car$user2 = car.user) === null || _car$user2 === void 0 ? void 0 : _car$user2.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
+              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) != (car === null || car === void 0 ? void 0 : (_car$user3 = car.user) === null || _car$user3 === void 0 ? void 0 : _car$user3.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
                 onClick: function onClick(e) {
                   e.preventDefault();
                   (car === null || car === void 0 ? void 0 : car.threadID) && hist.push("/dashboard/chat/".concat(car === null || car === void 0 ? void 0 : car.threadID, "/messages"));
@@ -7221,7 +7225,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                   className: "ti-comments"
                 }), "Chat"]
-              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user3 = car.user) === null || _car$user3 === void 0 ? void 0 : _car$user3.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
+              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user4 = car.user) === null || _car$user4 === void 0 ? void 0 : _car$user4.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
                 onClick: function onClick(e) {
                   e.preventDefault();
                   deleteCar();

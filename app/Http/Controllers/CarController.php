@@ -75,7 +75,7 @@ class CarController extends Controller
         if($request->hasFile('photo')){
             $car->addMediaFromRequest('photo')->sanitizingFileName(function($fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
-             })->toMediaCollection();
+             })->toMediaCollection('car-photos');
         }
 
         
@@ -106,7 +106,7 @@ class CarController extends Controller
         if($request->hasFile('photo')){
             $car->addMediaFromRequest('photo')->sanitizingFileName(function($fileName) {
                 return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
-             })->toMediaCollection();
+             })->toMediaCollection('car-photos');
         }
 
 
@@ -130,6 +130,24 @@ class CarController extends Controller
         }
 
         return response("Failed To delete Car!" , Response::HTTP_BAD_REQUEST);
+
+    }
+
+
+
+
+    public function destroyImage(Car $car , $photoIndex){
+
+
+        $photos = $car->getMedia('car-photos');
+
+        if($photos[$photoIndex]->delete()){
+       
+            return response("Car Image Deleted Successfully!" , Response::HTTP_OK);
+
+        }
+
+        return response("Failed To delete Car Image!" , Response::HTTP_BAD_REQUEST);
 
     }
 
