@@ -18,7 +18,7 @@ const AdminSingleCar = (props) => {
     const [mapView, setMapView] = useState(false);
     const [newChatView, setChatView] = useState(false);
     const [photoSelected, setPhotoSelected] = useState({});
-    const [photoIndex, setPhotoIndex] = useState({});
+    const [photoIndex, setPhotoIndex] = useState(0);
 
     const [latitude, setLat] = useState(-1.292066);
     const [longitude, setLong] = useState(36.821945);
@@ -206,6 +206,7 @@ const AdminSingleCar = (props) => {
                                 )}
                             </div>
                             <div className="description">
+                                <div className="information">
                                 <p>
                                     Make <span>{car.make}</span>
                                 </p>
@@ -218,6 +219,7 @@ const AdminSingleCar = (props) => {
                                 <p>
                                     Owner <span>{car?.user?.name}</span>
                                 </p>
+                                </div>
 
                                 <div className="photos">
                                     {car?.photos?.length != 0 &&

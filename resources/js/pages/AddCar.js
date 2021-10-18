@@ -93,7 +93,7 @@ const AddCar = ({ setIsOpen }) => {
 
                 <form action="" onSubmit={saveCar}>
                     <div className="form-input-section">
-                        <div className="form-col mr-5">
+                        <div className="form-col mr-0 sm:mr-5">
                             <div className="input-group">
                                 <label>Make</label>
 
@@ -167,7 +167,7 @@ const AddCar = ({ setIsOpen }) => {
                             </div>
                         </div>
 
-                        <div className="form-col ml-5">
+                        <div className="form-col ml-0 sm:ml-5">
                             <div className="showroom">
                                 <h3>Show Room Location</h3>
                                 <div className="location">

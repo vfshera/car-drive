@@ -107,7 +107,7 @@ const Chats = () => {
                                                           " "
                                                       )[0] + " : "}
                                             </span>
-                                            {thread.latest_message.body}
+                                            {thread.latest_message.body.length > 150 ? thread.latest_message.body.slice(0 ,150)+"..." : thread.latest_message.body}
                                         </p>
                                     </div>
                                 </div>

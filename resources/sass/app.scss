@@ -86,10 +86,10 @@ html,
 
 .cardrive-file-upload-wrapper {
     .file-upload {
-        @apply min-h-300 w-full rounded-md shadow flex justify-center items-center bg-white;
+        @apply min-h-150 md:min-h-300 w-full rounded-md shadow flex justify-center items-center bg-white;
 
         .browse-area {
-            @apply border-2  border-dashed rounded-md border-blue-500 min-h-280 w-95/100 flex justify-center items-center cursor-pointer bg-white hover:bg-gray-100;
+            @apply border-2  border-dashed rounded-md border-blue-500 min-h-135 md:min-h-280 w-95/100 flex justify-center items-center cursor-pointer bg-white hover:bg-gray-100;
 
             .info {
                 @apply flex flex-col justify-center items-center;
@@ -212,9 +212,71 @@ html,
 }
 
 // INPUT GLOBAL STYLES END
+.mobile-nav {
+    @apply min-h-screen fixed items-center  py-10  flex flex-col z-50 top-0 left-0 w-full p-5;
+
+    .branding {
+        img {
+            height: 3.5rem !important;
+        }
+    }
+
+    i.nav-toggle {
+        @apply mt-5;
+    }
+
+    nav {
+        @apply flex flex-col;
+
+        display: block !important;
+
+        ul.link-list {
+            @apply flex flex-col md:flex-row my-10 md:my-0 gap-5 md:gap-8 items-center;
+
+            li {
+                @apply border-b-2 border-transparent hover:border-brand-2 transition-all delay-100;
+                a{
+                    @apply uppercase;
+                }
+            }
+
+            &.guest-routes {
+                @apply flex justify-center flex-col md:flex-row gap-3 items-center mt-10;
+                margin-left: 0 !important;
+
+                li {
+                    @apply border border-brand-2 hover:bg-brand-2 hover:border-transparent px-4 py-1.5 rounded-md;
+
+                    a {
+                        @apply sm:font-semibold lg:font-bold;
+                    }
+                }
+            }
+
+            &.auth-routes {
+                @apply mt-5 md:mt-0 md:ml-10;
+                margin-left: 0 !important;
+
+                li.admin-nav {
+                    @media (min-width: 640px) {
+                        display: none !important;
+                    }
+                }
+
+                span {
+                    @apply uppercase;
+                }
+            }
+        }
+    }
+}
+
+.normal-nav {
+    @apply flex justify-between items-center h-16;
+}
 
 .navbar-wrapper {
-    @apply bg-brand-1 h-16 text-white  flex justify-between items-center;
+    @apply bg-brand-1  text-white;
 
     .branding {
         img {
@@ -223,7 +285,7 @@ html,
     }
 
     i.nav-toggle {
-        @apply text-brand-2 text-xl sm:hidden cursor-pointer;
+        @apply text-brand-2 text-3xl sm:text-xl sm:hidden cursor-pointer;
     }
 
     nav {
@@ -250,8 +312,10 @@ html,
 
             &.auth-routes {
                 @apply ml-10;
-                // span {
-                // }
+
+                li.admin-nav-link {
+                    @apply sm:hidden;
+                }
             }
         }
     }
@@ -347,50 +411,38 @@ html,
     }
 }
 
+// DASHBOARD PAGE
 
+.dashboard-page {
+    @apply min-h-app-screen p-5 lg:p-10;
 
-// DASHBOARD PAGE 
-
-.dashboard-page{
-    @apply min-h-app-screen p-10;
-
-     h1{
-        @apply text-xl md:text-2xl lg:text-3xl text-brand-1 font-bold;
-
+    h1 {
+        @apply text-base md:text-2xl lg:text-3xl text-brand-1 font-bold;
     }
 
-    section.dash-items{
-        @apply grid grid-cols-4 gap-5 mt-5 ;
+    section.dash-items {
+        @apply grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-5 mt-5;
 
-        .item-card{
+        a {
+            .item-card {
+                @apply border border-gray-100 shadow flex flex-col justify-center  items-center rounded-md py-7 sm:p-5 lg:p-10 bg-white;
 
-            @apply border border-brand-1 shadow flex flex-col justify-center  items-center rounded-md p-10 bg-white;
+                i {
+                    @apply font-bold text-2xl lg:text-3xl text-brand-1;
+                }
 
-            i{
-                @apply font-bold text-3xl text-brand-1;
-            }
+                p {
+                    @apply font-bold text-xl lg:text-2xl text-gray-700;
+                }
 
-            p{
-                @apply font-bold text-2xl text-gray-700;
-
-            }
-
-            span{
-                @apply font-semibold text-2xl text-gray-600;
-
+                span {
+                    @apply font-semibold text-xl lg:text-2xl text-gray-700;
+                }
             }
         }
     }
 }
 // DASHBOARD PAGE END
-
-
-
-
-
-
-
-
 
 // CAR LISTING COMPONENT
 section.car-list-wrapper {
@@ -430,17 +482,17 @@ section.car-list-wrapper {
     }
 
     section.car-list {
-        @apply mt-4 grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-8;
+        @apply mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 lg:gap-8;
 
         a {
             .car-card {
-                @apply bg-brand-1 cursor-pointer h-150 md:h-200 lg:h-300 transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
+                @apply bg-brand-1 cursor-pointer h-200 lg:h-300 transition-all delay-100 ease-in-out  hover:rounded-md hover:shadow-md;
 
                 .caption-wrapper {
                     @apply flex justify-end h-full w-full;
 
                     .caption {
-                        @apply bg-brand-3 text-brand-1 w-1/2 lg:w-2/5 h-1/4 sm:h-1/5  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between hover:rounded-tl;
+                        @apply bg-brand-3 text-brand-1 w-1/2 lg:w-2/5 h-1/5  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between hover:rounded-tl;
 
                         .title {
                             @apply border-r-2 border-brand-2;
@@ -482,7 +534,7 @@ section.car-list-wrapper {
         @apply flex justify-between items-center mt-10;
 
         button {
-            @apply bg-gray-200 text-brand-1 font-semibold  shadow px-4 sm:px-5 py-1 lg:px-10 lg:py-2 hover:bg-brand-1 hover:text-brand-3;
+            @apply bg-gray-200 text-brand-1 font-semibold text-sm sm:text-base   shadow px-4 sm:px-5 py-1 lg:px-10 lg:py-2 hover:bg-brand-1 hover:text-brand-3;
 
             &.disabled {
                 @apply bg-gray-200 text-gray-400;
@@ -491,19 +543,19 @@ section.car-list-wrapper {
 
         .page-numbers {
             button {
-                @apply bg-brand-1 text-brand-3 sm:font-semibold shadow mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-gray-200 hover:text-brand-1;
+                @apply bg-brand-1 text-brand-3 text-sm sm:text-base   sm:font-semibold shadow mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-gray-200 hover:text-brand-1;
             }
 
             button.current-page {
-                @apply bg-brand-3 text-brand-1 sm:font-bold shadow border-t-2 border-brand-2 mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-brand-1 hover:text-brand-2;
+                @apply bg-brand-3 text-brand-1 text-sm sm:text-base   sm:font-bold shadow border-t-2 border-brand-2 mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-brand-1 hover:text-brand-2;
             }
 
             button.peak-page {
-                @apply bg-brand-3 border-2 border-brand-1 text-brand-1 sm:font-bold shadow mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-brand-1 hover:text-brand-2;
+                @apply bg-brand-3 border-2 text-sm sm:text-base border-brand-1 text-brand-1 sm:font-bold shadow mx-1 py-1 px-4 lg:px-5 lg:py-2 hover:bg-brand-1 hover:text-brand-2;
             }
 
             button.showmore.disabled {
-                @apply bg-gray-100 text-brand-1 py-1 px-2 lg:px-3 lg:py-2 shadow-none;
+                @apply bg-gray-100 text-sm sm:text-base  text-brand-1 py-1 px-2 lg:px-3 lg:py-2 shadow-none;
             }
         }
     }
@@ -513,8 +565,9 @@ section.car-list-wrapper {
 // SINGLE CAR PAGE
 
 .single-car-page {
+    @apply min-h-app-screen;
     .single-car-wrapper {
-        @apply flex flex-col mt-10;
+        @apply flex flex-col my-3 sm:mt-10;
 
         .title {
             @apply flex text-brand-1 items-center mb-3;
@@ -535,22 +588,28 @@ section.car-list-wrapper {
         }
 
         .details {
-            @apply flex flex-col lg:flex-row justify-between;
-            height: 70vh;
+            @apply flex flex-col min-h-app-screen sm:h-3/4vh lg:flex-row lg:justify-between;
+            // height: 70vh;
 
             .car-photo {
-                @apply w-full lg:w-4/5 h-full;
+                @apply w-full lg:w-4/5 h-300 lg:h-3/4vh;
             }
 
             .description {
-                @apply w-full lg:w-1/5 p-3 bg-brand-3 flex flex-col;
+                @apply w-full lg:w-1/5 p-0 sm:p-3 bg-brand-3 flex flex-col;
 
-                p {
-                    @apply text-brand-1;
-                    span {
-                        @apply font-bold;
+
+                .information{
+
+                    @apply flex flex-row justify-between lg:flex-col;
+                    p {
+                        @apply text-brand-1 ;
+                        span {
+                            @apply font-bold;
+                        }
                     }
                 }
+               
 
                 .photos {
                     @apply grid grid-cols-3 md:grid-cols-7 lg:grid-cols-3 mt-3 gap-1;
@@ -561,6 +620,8 @@ section.car-list-wrapper {
                         height: 80px;
                     }
                 }
+
+                
             }
         }
     }
@@ -571,15 +632,15 @@ section.car-list-wrapper {
 // DASBOARD
 .dash-wrapper {
     .dash {
-        @apply flex justify-between;
+        @apply flex justify-between min-h-app-screen sm:min-h-0 sm:h-appFull;
 
-        height: calc(100vh - 4rem);
+        // height: calc(100vh - 4rem);
 
         aside.sidebar {
-            @apply w-2/12  h-full  border-r border-brand-1 fixed  left-0 z-10;
+            @apply hidden md:block w-2/12  h-full  border-r border-brand-1 fixed  left-0 z-10;
 
             .countd {
-                @apply text-brand-1 font-semibold text-sm p-10 border-b border-brand-1;
+                @apply text-brand-1 font-semibold text-xs lg:text-sm p-5 lg:p-10 border-b border-brand-1;
 
                 i {
                     @apply mr-1;
@@ -587,18 +648,18 @@ section.car-list-wrapper {
             }
 
             ul.navigation {
-                @apply flex flex-col gap-3 p-10;
+                @apply flex flex-col gap-3 p-5 lg:p-10;
 
                 li {
                     a {
-                        @apply text-brand-1 font-bold text-xl;
+                        @apply text-brand-1 font-bold text-base lg:text-xl;
                     }
                 }
             }
         }
 
         section.admin-content {
-            @apply w-10/12 ml-auto   bg-brand-3 h-full;
+            @apply w-full md:w-10/12 ml-auto   bg-brand-3 h-full;
         }
     }
 }
@@ -655,26 +716,26 @@ section.admin-content {
 
     .chat-wrapper {
         .chat-head {
-            @apply px-10 mt-3;
+            @apply px-3 sm:px-10 mt-5 sm:mt-3;
 
             h1 {
-                @apply text-xl md:text-2xl lg:text-3xl  text-brand-1 font-bold;
+                @apply text-2xl lg:text-3xl  text-brand-1 font-bold;
             }
 
             &.chats-home {
-                @apply flex justify-between;
+                @apply flex justify-between items-center;
 
                 button {
-                    @apply px-6 py-2 bg-brand-1 text-white rounded-md;
+                    @apply px-4 sm:px-6 py-2 bg-brand-1 text-white rounded-md;
                 }
             }
         }
 
         .chat-user-wrapper {
-            @apply flex;
+            @apply flex min-h-app-screen;
 
             .recepient-profile {
-                @apply w-1/4 shadow-lg bg-white min-h-app-screen;
+                @apply hidden sm:block  sm:w-1/4 shadow-lg bg-white min-h-app-screen;
 
                 .profile-pic {
                     @apply h-2/5 border-b border-gray-100 relative;
@@ -725,10 +786,10 @@ section.admin-content {
             }
 
             .user-chats {
-                @apply w-3/4 flex flex-col bg-white;
+                @apply w-full sm:w-3/4 flex flex-col bg-brand-3;
 
                 .chat-head {
-                    @apply px-4 py-1;
+                    @apply px-4 py-1 mt-0 bg-white;
 
                     h1 {
                         @apply text-lg md:text-xl lg:text-2xl  text-brand-1 font-bold;
@@ -740,45 +801,53 @@ section.admin-content {
                 }
 
                 .message-input {
-                    @apply flex px-4 mt-auto pb-4 shadow-sm bg-brand-3;
+                    @apply flex items-center px-4 mt-auto pb-2 sm:pb-4 shadow-sm bg-brand-3;
 
                     input {
-                        @apply w-11/12 p-2 rounded-tl-md rounded-bl-md  text-gray-700 bg-white;
+                        @apply w-4/5 sm:w-11/12 p-2 rounded-tl-md rounded-bl-md  text-gray-700 bg-white;
                     }
 
                     button {
-                        @apply w-1/12 py-2 bg-brand-1 font-bold  rounded-tr-md rounded-br-md text-white;
+                        @apply w-1/5 sm:w-1/12 py-2 bg-brand-1 font-bold  rounded-tr-md rounded-br-md text-white;
                     }
                 }
                 .chats {
-                    @apply bg-brand-3 overflow-hidden overflow-y-scroll  h-3/4vh;
+                    @apply bg-brand-3 overflow-hidden overflow-y-scroll   h-4/5vh;
 
                     .received,
                     .sent {
                         @apply w-full px-4;
 
                         .message-wrapper {
-                            @apply w-2/3 p-4 my-2 shadow-sm;
+                            @apply w-full sm:w-2/3 py-2 px-3 sm:p-4 my-2  rounded-lg sm:rounded-2xl shadow sm:shadow-sm;
 
                             .sender {
                                 @apply flex justify-between;
 
                                 h2 {
-                                    @apply text-base text-white font-bold;
+                                    @apply text-sm sm:text-base text-white font-semibold sm:font-bold;
                                 }
+
+                                span{
+                                    @apply text-xs sm:text-base;
+                                }
+                            }
+
+                            .message{
+
                             }
                         }
                     }
 
                     .received {
                         .message-wrapper {
-                            @apply bg-white text-brand-1 rounded-2xl rounded-bl-none mr-auto;
+                            @apply bg-white text-brand-1  rounded-bl-none mr-auto;
 
                             .sender {
                                 @apply flex justify-between;
 
                                 h2 {
-                                    @apply text-base text-brand-1 font-bold;
+                                    @apply  text-brand-1 font-bold;
                                 }
 
                                 span {
@@ -794,13 +863,13 @@ section.admin-content {
 
                     .sent {
                         .message-wrapper {
-                            @apply bg-brand-1 text-brand-3 rounded-2xl rounded-br-none ml-auto;
+                            @apply bg-brand-1 text-brand-3  rounded-br-none ml-auto;
 
                             .sender {
                                 @apply flex justify-between;
 
                                 h2 {
-                                    @apply text-base text-brand-3 font-bold;
+                                    @apply  text-brand-3 font-bold;
                                 }
 
                                 span {
@@ -809,7 +878,7 @@ section.admin-content {
                             }
 
                             .message {
-                                @apply text-brand-3;
+                                @apply text-white;
                             }
                         }
                     }
@@ -818,11 +887,18 @@ section.admin-content {
         }
 
         .chats {
-            @apply bg-brand-3 overflow-hidden overflow-y-scroll  h-4/5vh flex flex-col py-2;
+            @apply bg-brand-3 overflow-hidden overflow-y-scroll  h-4/5vh flex flex-col py-3 sm:py-2;
 
             a {
+                &:first-child {
+                    .chat-preview {
+                        @apply border-t border-gray-300;
+                    }
+                }
+
+
                 .chat-preview {
-                    @apply flex   border-b border-gray-200 py-2 my-2 px-10  hover:bg-white cursor-pointer;
+                    @apply flex  border-b border-gray-300 py-2 sm:py-4  px-3 sm:px-10  hover:bg-white cursor-pointer;
 
                     .profile {
                         @apply flex  items-center;
@@ -842,7 +918,7 @@ section.admin-content {
                             }
 
                             span {
-                                @apply text-gray-600;
+                                @apply text-xs sm:text-base text-gray-600;
                             }
                         }
 
@@ -859,10 +935,10 @@ section.admin-content {
 
     // ADD CAR SEARCH
     aside.search-drawer-wrapper {
-        @apply relative -top-10 right-0   w-full;
+        @apply relative top-0 sm:-top-10 right-0   w-full;
 
         .search-drawer {
-            @apply z-50 absolute top-0 right-0  min-h-app-screen ml-auto w-full sm:w-2/3  xl:w-1/3 flex flex-col  items-center shadow;
+            @apply z-20 absolute top-0 right-0  min-h-app-screen ml-0 sm:ml-auto w-full sm:w-2/3  xl:w-1/3 flex flex-col  items-center shadow;
             backdrop-filter: blur(25px) saturate(200%);
             background-color: rgba(236, 236, 236, 0.9);
 
@@ -909,60 +985,58 @@ section.admin-content {
     //SINGLECAR FIX
     .single-car-page {
         .single-car-wrapper {
-            @apply flex flex-col mt-10;
+            @apply flex flex-col ;
 
             button {
                 @apply text-2xl font-bold;
             }
 
             .details {
-                .car-photo {
-                    @apply w-full lg:w-3/4 h-full flex justify-end;
 
-                    .delete-image{
+                .car-photo {
+                    @apply w-full lg:w-3/4    flex justify-end;
+
+                    .delete-image {
                         @apply self-end font-bold bg-white px-3 py-2 hover:bg-red-500 hover:text-white cursor-pointer;
 
-                        i{
+                        i {
                             @apply text-base text-red-500  font-bold;
                         }
 
-                        span{
+                        span {
                             @apply hidden ml-2 text-base;
                         }
 
-                        &:hover{
-                            i{
+                        &:hover {
+                            i {
                                 @apply text-white;
-
                             }
-                            span{
-                                @apply inline
+                            span {
+                                @apply inline;
                             }
                         }
                     }
                 }
 
                 .description {
-                    @apply w-full lg:w-1/4;
+                    @apply w-full lg:w-1/4 mt-3 sm:mt-0;
 
                     .photos {
-                        @apply grid grid-cols-2 md:grid-cols-4 lg:grid-cols-3 mt-3 gap-2;
-
-
+                        @apply grid grid-cols-3 md:grid-cols-4 lg:grid-cols-3 mt-3 gap-2;
 
                         .no-photo {
                             @apply bg-gray-300 flex justify-center items-center cursor-pointer;
                             width: 80px;
                             height: 80px;
 
-                            i{
+                            i {
                                 @apply text-brand-1 font-bold text-2xl transition-all delay-100;
                             }
 
-                            &:hover{
+                            &:hover {
                                 @apply bg-blue-500;
 
-                                i{
+                                i {
                                     @apply text-3xl font-extrabold text-white;
                                 }
                             }
@@ -970,10 +1044,11 @@ section.admin-content {
                     }
 
                     .actions {
-                        @apply flex flex-col mt-10;
+                        @apply flex flex-col mt-10  sm:flex-row sm:justify-between lg:flex-col;
+                      
 
                         button {
-                            @apply w-full py-3 rounded-md transition-all delay-75;
+                            @apply w-full sm:w-5/12 lg:w-full py-3 rounded-md transition-all delay-75;
 
                             i {
                                 @apply mr-2;
@@ -991,7 +1066,7 @@ section.admin-content {
                             }
 
                             &:not(:last-child) {
-                                @apply mb-3;
+                                @apply mb-3 sm:mb-0 lg:mb-3;
                             }
                         }
                     }
@@ -1028,8 +1103,10 @@ section.admin-content {
 
     //CAR LISTING FIX
     .car-list-wrapper {
+        @apply min-h-app-screen;
+
         .add-car-form-wrapper {
-            @apply h-3/4vh bg-brand-3;
+            @apply  bg-brand-3;
 
             .add-car-form {
                 @apply flex flex-col justify-center items-center pt-5;
@@ -1042,10 +1119,10 @@ section.admin-content {
                     @apply w-11/12  lg:w-4/5 flex flex-col justify-center;
 
                     .form-input-section {
-                        @apply flex justify-between;
+                        @apply flex flex-col sm:flex-row sm:justify-between;
 
                         .form-col {
-                            @apply w-1/2;
+                            @apply w-full sm:w-1/2;
 
                             .showroom {
                                 @apply my-3;
@@ -1118,17 +1195,17 @@ section.admin-content {
         }
 
         section.car-list {
-            @apply mt-4 grid grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 lg:gap-6;
+            @apply mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1 md:gap-3 lg:gap-6;
 
             a {
                 .car-card {
-                    @apply bg-brand-1 cursor-pointer h-100 md:h-150 lg:h-200;
+                    @apply bg-brand-1 cursor-pointer h-200 md:h-150 lg:h-200;
 
                     .caption-wrapper {
                         @apply flex justify-end h-full w-full;
 
                         .caption {
-                            @apply w-1/2 lg:w-2/5 h-1/4 sm:h-1/4  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between;
+                            @apply w-1/2 lg:w-2/5 h-1/5 sm:h-1/4  self-end px-2 py-1 lg:p-2 flex flex-col lg:justify-between;
 
                             .title {
                                 @apply border-r-2 border-brand-2;

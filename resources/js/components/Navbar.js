@@ -1,44 +1,32 @@
-import React,{useEffect,useState , Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Dialog, Transition } from "@headlessui/react";
 
-import { logoutUser , refreshUser} from "../actions/AuthActions";
-
-
+import { logoutUser, refreshUser } from "../actions/AuthActions";
 
 const Navbar = () => {
     const dispatch = useDispatch();
 
-
-    const[sessionTimer,setTimer] = useState(0)
+    const [sessionTimer, setTimer] = useState(0);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [toggleClasses, setToggleClasses] = useState("ti-menu");
 
     const authUser = useSelector((state) => state.authUser);
     const { auth, loggedInUser, loading } = authUser;
 
-
     const userTime = useSelector((state) => state.userTime);
 
-
-
-    let toggleClasses = "ti-menu ";
-
-    const toggleHamburger = (e) =>{
-        e.preventDefault();
-        setMenuOpen(!menuOpen);
-
-        if(menuOpen){
-            toggleClasses = "ti-close menu-opened"
-        } else{
-            toggleClasses = "ti-menu"
+    useEffect(() => {
+        if (menuOpen) {
+            setToggleClasses("ti-close menu-opened");
+        } else {
+            setToggleClasses("ti-menu");
         }
 
-
-    }
-
-
+        console.log("MENU OPEN EFFECT");
+    }, [menuOpen]);
 
     const logout = (e) => {
         e.preventDefault();
@@ -46,27 +34,45 @@ const Navbar = () => {
         dispatch(logoutUser());
     };
 
-
-
-
-
     return (
-        <div className={`navbar-wrapper car-drive-container ${auth && "user-logged-in" } ` }>
+        <div
+            className={`navbar-wrapper car-drive-container ${
+                auth ? "user-logged-in" : ""
+            }  ${menuOpen ? "mobile-nav" : "normal-nav"}`}
+        >
             <div className="branding">
-            <img src="/storage/images/cardrive.png" alt="Car Drive Logo" />
+                <img src="/storage/images/cardrive.png" alt="Car Drive Logo" />
             </div>
-            <i className={`nav-toggle  ${toggleClasses}`} onClick={toggleHamburger}></i>
+            <i
+                className={`nav-toggle  ${toggleClasses}`}
+                onClick={(e) => {
+                    e.preventDefault();
+                    setMenuOpen(!menuOpen);
+                }}
+            ></i>
             <nav>
                 <ul className="link-list">
-                    <li>
+                    <li
+                        onClick={(e) => {
+                            setMenuOpen(false);
+                        }}
+                    >
                         <Link to="/"> Home </Link>
                     </li>
 
-                    <li>
+                    <li
+                        onClick={(e) => {
+                            setMenuOpen(false);
+                        }}
+                    >
                         <Link to="/contact"> Contact </Link>
                     </li>
 
-                    <li>
+                    <li
+                        onClick={(e) => {
+                            setMenuOpen(false);
+                        }}
+                    >
                         <Link to="/about"> About</Link>
                     </li>
                 </ul>
@@ -74,9 +80,51 @@ const Navbar = () => {
                 {auth ? (
                     <>
                         <ul className="link-list auth-routes">
+                            
+                                <li
+                                className="admin-nav-link"
+                                    onClick={(e) => {
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    <Link to="/dashboard">Dashboard</Link>
+                                </li>
+
+                                <li
+                                className="admin-nav-link"
+                                    onClick={(e) => {
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    <Link to="/dashboard/cars">Cars</Link>
+                                </li>
+
+                                <li
+                                className="admin-nav-link"
+                                    onClick={(e) => {
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    <Link to="/dashboard/mycars">My Cars</Link>
+                                </li>
+
+                                <li
+                                className="admin-nav-link"
+                                    onClick={(e) => {
+                                        setMenuOpen(false);
+                                    }}
+                                >
+                                    <Link to="/dashboard/chats">Chat</Link>
+                                </li>
+                         
+
                             <span> {loggedInUser.name}</span>
 
-                            <li>
+                            <li
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
                                 <button onClick={logout}> Logout</button>
                             </li>
                         </ul>
@@ -84,24 +132,25 @@ const Navbar = () => {
                 ) : (
                     <>
                         <ul className="link-list guest-routes">
-                            <li>
+                            <li
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
                                 <Link to="/login"> Login </Link>
                             </li>
 
-                            <li>
+                            <li
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
                                 <Link to="/register"> Register</Link>
                             </li>
                         </ul>
                     </>
                 )}
             </nav>
-
-
-
-
-
-
-
         </div>
     );
 };

@@ -100,7 +100,6 @@ function App() {
             <ProtectedRoute path="/dashboard/cars" exact component={() => (<CarListing fullMode={true} inAdmin={true}/>)}/>
             <ProtectedRoute path="/dashboard/mycars" exact component={() => (<CarListing fullMode={true} inAdmin={true} MyCars={true}/>)}/>
             <ProtectedRoute path="/dashboard/:carID-:carSlug" exact component={AdminSingleCar}/>
-            {/* <ProtectedRoute path="/dashboard/mycars" exact component={MyCars}/> */}
             <ProtectedRoute path="/dashboard/chats" exact component={Chats}/>
             <ProtectedRoute path="/dashboard/chat/:threadID/messages" exact component={ChatUI}/>
             <ProtectedRoute path="/dashboard" exact component={Dashboard}/>

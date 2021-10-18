@@ -22,7 +22,7 @@ class CarResource extends JsonResource
             'model' => $this->model,
             'year' => $this->year,
             'slug' => $this->slug,
-            'photos' => CarPhotoResource::collection($this->photos),
+            'photos' => CarPhotoResource::collection($this->photos->take(2)),
             'created_at' => $this->created_at,
             'user' => $this->user->only(['id','name'])
         ];
