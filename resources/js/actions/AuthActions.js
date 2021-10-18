@@ -144,7 +144,7 @@ export const registerUser = (user) => async (dispatch) => {
         });
     }
 
-    dispatch({ type: NOT_LOADING});
+    dispatch({ type: NOT_LOADING});P
 
 };
 

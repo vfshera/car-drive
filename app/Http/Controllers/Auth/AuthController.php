@@ -5,7 +5,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\User;
+use App\Models\{
+    User,
+    Car
+};
+
+use Cmgmyr\Messenger\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -78,9 +83,13 @@ class AuthController extends Controller
 
     public function profile(){
 
+        $stats = [
+            'cars' => Car::count(),
+            'mycars' => Car::where('user_id' , Auth::id())->count(),
+            'messages' => Message::where('user_id' , Auth::id())->count(),
+        ];
 
-
-        return response()->json(['admin' => Auth::user()->only(['id','name','email'])]);
+        return response()->json(['admin' => Auth::user()->only(['id','name','email']) , 'stats' => $stats]);
 
     }
 
