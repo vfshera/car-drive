@@ -12,9 +12,37 @@ const ChatUI = ({ match }) => {
     const { loggedInUser } = AuthUser;
 
     const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
-    const postingCount = [1, 2, 3, 4, 5];
 
     const msgBottomRef = useRef();
+
+    const getCarPhoto = (singleCar) => {
+        if (singleCar?.photos?.length > 0) {
+            return singleCar?.photos[Math.floor(Math.random() * (singleCar?.photos?.length - 1))]?.url;
+        }
+
+        return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
+    };
+
+    const getMainPhoto = () => {
+        let carsLength = thread?.chat_with?.user_cars?.length;
+
+        let choosenCar =
+            thread?.chat_with?.user_cars[
+                Math.floor(Math.random() * (carsLength - 1))
+            ];
+
+        let photosLength = choosenCar?.photos.length;
+
+
+
+        if (photosLength > 0) {
+            return choosenCar?.photos[
+                Math.floor(Math.random() * (photosLength - 1))
+            ]?.url;
+        }
+
+        return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
+    };
 
     const sendMessage = () => {
         if (newMsg != "") {
@@ -125,9 +153,7 @@ const ChatUI = ({ match }) => {
                     <div
                         className="profile-pic"
                         style={{
-                            backgroundImage: `url(/storage/images/${
-                                homeImages[Math.floor(Math.random() * 3)]
-                            })`,
+                            backgroundImage: `url(${getMainPhoto()})`,
                             backgroundRepeat: "no-repeat",
                             backgroundSize: "cover",
                             backgroundPosition: "center",
@@ -143,9 +169,7 @@ const ChatUI = ({ match }) => {
                     <div className="postings">
                         <div className="posting-count">
                             <h3>Cars </h3>
-                            <span>
-                                {thread?.chat_with?.user_cars?.length}
-                            </span>
+                            <span>{thread?.chat_with?.user_cars?.length}</span>
                         </div>
 
                         <div className="photos">
@@ -155,19 +179,13 @@ const ChatUI = ({ match }) => {
                                         <Link
                                             to={`/dashboard/${carPost.id}-${carPost.slug}`}
                                             key={index}
-
                                         >
                                             <div
                                                 className="photo"
                                                 style={{
-                                                    backgroundImage: `url(/storage/images/${
-                                                        homeImages[
-                                                            Math.floor(
-                                                                Math.random() *
-                                                                    2
-                                                            )
-                                                        ]
-                                                    })`,
+                                                    backgroundImage: `url(${getCarPhoto(
+                                                        carPost
+                                                    )})`,
                                                     backgroundRepeat:
                                                         "no-repeat",
                                                     backgroundSize: "cover",

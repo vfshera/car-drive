@@ -31,7 +31,6 @@ class AdminCarResource extends JsonResource
             'show_location' => $this->show_location,
             'created_at' => $this->created_at,
             'user' => new UserResource($this->user),
-            'car_images' =>  $this->carImages,
             'threadID' =>  $thread->id ?? null
         ];
     }

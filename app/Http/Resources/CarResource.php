@@ -24,8 +24,7 @@ class CarResource extends JsonResource
             'slug' => $this->slug,
             'photos' => CarPhotoResource::collection($this->photos),
             'created_at' => $this->created_at,
-            'user' => $this->user->only(['id','name']),
-            'car_images' =>  $this->carImages
+            'user' => $this->user->only(['id','name'])
         ];
     }
 }
