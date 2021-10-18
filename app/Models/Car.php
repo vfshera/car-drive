@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Support\Str;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Car extends Model implements HasMedia
 {
@@ -25,6 +26,10 @@ class Car extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->nonQueued()->height(200)->width(200);
+    }
 
 
     public function getSlugAttribute()

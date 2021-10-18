@@ -16,10 +16,11 @@ class CarPhotoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'uuid' => $this->uuid,
+            // 'uuid' => $this->uuid,
             'name' => $this->name,
             'file_name' => $this->file_name,
             'url' => $this->getUrl(),
+            'thumbnail' => $this->getUrl('thumb'),
             'size' => $this->size,
             'custom_properties' => $this->custom_properties
         ];
