@@ -6961,7 +6961,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var AdminSingleCar = function AdminSingleCar(props) {
-  var _car$photos, _car$user, _car$photos2, _car$photos3, _car$photos4, _car$user2, _car$user3, _car$user4;
+  var _car$user, _car$photos, _car$user2, _car$photos2, _car$photos3, _car$photos4, _car$user3, _car$user4, _car$user5;
 
   var authUser = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.authUser;
@@ -7143,7 +7143,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
               backgroundSize: "cover",
               backgroundPosition: "center"
             },
-            children: (car === null || car === void 0 ? void 0 : (_car$photos = car.photos) === null || _car$photos === void 0 ? void 0 : _car$photos.length) > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            children: (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user = car.user) === null || _car$user === void 0 ? void 0 : _car$user.id) && (car === null || car === void 0 ? void 0 : (_car$photos = car.photos) === null || _car$photos === void 0 ? void 0 : _car$photos.length) > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "delete-image",
               onClick: function onClick(e) {
                 e.preventDefault();
@@ -7171,7 +7171,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
               children: ["Owner ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                children: car === null || car === void 0 ? void 0 : (_car$user = car.user) === null || _car$user === void 0 ? void 0 : _car$user.name
+                children: car === null || car === void 0 ? void 0 : (_car$user2 = car.user) === null || _car$user2 === void 0 ? void 0 : _car$user2.name
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "photos",
@@ -7183,13 +7183,13 @@ var AdminSingleCar = function AdminSingleCar(props) {
                     setPhotoIndex(index);
                   },
                   style: {
-                    backgroundImage: "url(".concat(photo.url, ")"),
+                    backgroundImage: "url(".concat(photo === null || photo === void 0 ? void 0 : photo.url, ")"),
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center"
                   }
                 }, index);
-              })), (car === null || car === void 0 ? void 0 : (_car$photos4 = car.photos) === null || _car$photos4 === void 0 ? void 0 : _car$photos4.length) < 5 && (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user2 = car.user) === null || _car$user2 === void 0 ? void 0 : _car$user2.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              })), (car === null || car === void 0 ? void 0 : (_car$photos4 = car.photos) === null || _car$photos4 === void 0 ? void 0 : _car$photos4.length) < 5 && (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user3 = car.user) === null || _car$user3 === void 0 ? void 0 : _car$user3.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                 className: "no-photo",
                 onClick: function onClick(e) {
                   return photoRef.current.click();
@@ -7215,7 +7215,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                   className: "ti-location-pin"
                 }), "Get Location"]
-              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) != (car === null || car === void 0 ? void 0 : (_car$user3 = car.user) === null || _car$user3 === void 0 ? void 0 : _car$user3.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
+              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) != (car === null || car === void 0 ? void 0 : (_car$user4 = car.user) === null || _car$user4 === void 0 ? void 0 : _car$user4.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
                 onClick: function onClick(e) {
                   e.preventDefault();
                   (car === null || car === void 0 ? void 0 : car.threadID) && hist.push("/dashboard/chat/".concat(car === null || car === void 0 ? void 0 : car.threadID, "/messages"));
@@ -7225,7 +7225,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
                   className: "ti-comments"
                 }), "Chat"]
-              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user4 = car.user) === null || _car$user4 === void 0 ? void 0 : _car$user4.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
+              }), (loggedInUser === null || loggedInUser === void 0 ? void 0 : loggedInUser.id) == (car === null || car === void 0 ? void 0 : (_car$user5 = car.user) === null || _car$user5 === void 0 ? void 0 : _car$user5.id) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", {
                 onClick: function onClick(e) {
                   e.preventDefault();
                   deleteCar();
@@ -7448,7 +7448,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var ChatUI = function ChatUI(_ref) {
-  var _thread$chat_with, _thread$chat_with2, _thread$messages2, _thread$messages4, _thread$chat_with3, _thread$chat_with3$us, _thread$chat_with4, _thread$chat_with4$us, _thread$chat_with5, _thread$chat_with5$us;
+  var _thread$chat_with3, _thread$chat_with4, _thread$messages2, _thread$messages4, _thread$chat_with5, _thread$chat_with5$us, _thread$chat_with6, _thread$chat_with6$us, _thread$chat_with7, _thread$chat_with7$us;
 
   var match = _ref.match;
 
@@ -7467,8 +7467,35 @@ var ChatUI = function ChatUI(_ref) {
   });
   var loggedInUser = AuthUser.loggedInUser;
   var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
-  var postingCount = [1, 2, 3, 4, 5];
   var msgBottomRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+
+  var getCarPhoto = function getCarPhoto(singleCar) {
+    var _singleCar$photos;
+
+    if ((singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos = singleCar.photos) === null || _singleCar$photos === void 0 ? void 0 : _singleCar$photos.length) > 0) {
+      var _singleCar$photos$Mat, _singleCar$photos2;
+
+      return singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos$Mat = singleCar.photos[Math.floor(Math.random() * ((singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos2 = singleCar.photos) === null || _singleCar$photos2 === void 0 ? void 0 : _singleCar$photos2.length) - 1))]) === null || _singleCar$photos$Mat === void 0 ? void 0 : _singleCar$photos$Mat.url;
+    }
+
+    return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
+  };
+
+  var getMainPhoto = function getMainPhoto() {
+    var _thread$chat_with, _thread$chat_with$use, _thread$chat_with2;
+
+    var carsLength = thread === null || thread === void 0 ? void 0 : (_thread$chat_with = thread.chat_with) === null || _thread$chat_with === void 0 ? void 0 : (_thread$chat_with$use = _thread$chat_with.user_cars) === null || _thread$chat_with$use === void 0 ? void 0 : _thread$chat_with$use.length;
+    var choosenCar = thread === null || thread === void 0 ? void 0 : (_thread$chat_with2 = thread.chat_with) === null || _thread$chat_with2 === void 0 ? void 0 : _thread$chat_with2.user_cars[Math.floor(Math.random() * (carsLength - 1))];
+    var photosLength = choosenCar === null || choosenCar === void 0 ? void 0 : choosenCar.photos.length;
+
+    if (photosLength > 0) {
+      var _choosenCar$photos$Ma;
+
+      return choosenCar === null || choosenCar === void 0 ? void 0 : (_choosenCar$photos$Ma = choosenCar.photos[Math.floor(Math.random() * (photosLength - 1))]) === null || _choosenCar$photos$Ma === void 0 ? void 0 : _choosenCar$photos$Ma.url;
+    }
+
+    return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
+  };
 
   var sendMessage = function sendMessage() {
     if (newMsg != "") {
@@ -7518,9 +7545,9 @@ var ChatUI = function ChatUI(_ref) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "chat-head",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
-            children: thread === null || thread === void 0 ? void 0 : (_thread$chat_with = thread.chat_with) === null || _thread$chat_with === void 0 ? void 0 : _thread$chat_with.name
+            children: thread === null || thread === void 0 ? void 0 : (_thread$chat_with3 = thread.chat_with) === null || _thread$chat_with3 === void 0 ? void 0 : _thread$chat_with3.name
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            children: thread === null || thread === void 0 ? void 0 : (_thread$chat_with2 = thread.chat_with) === null || _thread$chat_with2 === void 0 ? void 0 : _thread$chat_with2.email
+            children: thread === null || thread === void 0 ? void 0 : (_thread$chat_with4 = thread.chat_with) === null || _thread$chat_with4 === void 0 ? void 0 : _thread$chat_with4.email
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "chats",
@@ -7580,7 +7607,7 @@ var ChatUI = function ChatUI(_ref) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "profile-pic",
           style: {
-            backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 3)], ")"),
+            backgroundImage: "url(".concat(getMainPhoto(), ")"),
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center"
@@ -7602,17 +7629,17 @@ var ChatUI = function ChatUI(_ref) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
               children: "Cars "
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-              children: thread === null || thread === void 0 ? void 0 : (_thread$chat_with3 = thread.chat_with) === null || _thread$chat_with3 === void 0 ? void 0 : (_thread$chat_with3$us = _thread$chat_with3.user_cars) === null || _thread$chat_with3$us === void 0 ? void 0 : _thread$chat_with3$us.length
+              children: thread === null || thread === void 0 ? void 0 : (_thread$chat_with5 = thread.chat_with) === null || _thread$chat_with5 === void 0 ? void 0 : (_thread$chat_with5$us = _thread$chat_with5.user_cars) === null || _thread$chat_with5$us === void 0 ? void 0 : _thread$chat_with5$us.length
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "photos",
-            children: (thread === null || thread === void 0 ? void 0 : (_thread$chat_with4 = thread.chat_with) === null || _thread$chat_with4 === void 0 ? void 0 : (_thread$chat_with4$us = _thread$chat_with4.user_cars) === null || _thread$chat_with4$us === void 0 ? void 0 : _thread$chat_with4$us.length) && (thread === null || thread === void 0 ? void 0 : (_thread$chat_with5 = thread.chat_with) === null || _thread$chat_with5 === void 0 ? void 0 : (_thread$chat_with5$us = _thread$chat_with5.user_cars) === null || _thread$chat_with5$us === void 0 ? void 0 : _thread$chat_with5$us.map(function (carPost, index) {
+            children: (thread === null || thread === void 0 ? void 0 : (_thread$chat_with6 = thread.chat_with) === null || _thread$chat_with6 === void 0 ? void 0 : (_thread$chat_with6$us = _thread$chat_with6.user_cars) === null || _thread$chat_with6$us === void 0 ? void 0 : _thread$chat_with6$us.length) && (thread === null || thread === void 0 ? void 0 : (_thread$chat_with7 = thread.chat_with) === null || _thread$chat_with7 === void 0 ? void 0 : (_thread$chat_with7$us = _thread$chat_with7.user_cars) === null || _thread$chat_with7$us === void 0 ? void 0 : _thread$chat_with7$us.map(function (carPost, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
                 to: "/dashboard/".concat(carPost.id, "-").concat(carPost.slug),
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                   className: "photo",
                   style: {
-                    backgroundImage: "url(/storage/images/".concat(homeImages[Math.floor(Math.random() * 2)], ")"),
+                    backgroundImage: "url(".concat(getCarPhoto(carPost), ")"),
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center"

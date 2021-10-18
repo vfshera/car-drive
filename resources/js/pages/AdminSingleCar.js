@@ -192,7 +192,7 @@ const AdminSingleCar = (props) => {
                                     backgroundPosition: "center",
                                 }}
                             >
-                                {car?.photos?.length > 1 && (
+                                {(loggedInUser?.id == car?.user?.id) && (car?.photos?.length > 1) && (
                                     <div
                                         className="delete-image"
                                         onClick={(e) => {
@@ -230,7 +230,7 @@ const AdminSingleCar = (props) => {
                                                     setPhotoIndex(index);
                                                 }}
                                                 style={{
-                                                    backgroundImage: `url(${photo.url})`,
+                                                    backgroundImage: `url(${photo?.url})`,
                                                     backgroundRepeat:
                                                         "no-repeat",
                                                     backgroundSize: "cover",
