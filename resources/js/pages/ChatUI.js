@@ -17,7 +17,7 @@ const ChatUI = ({ match }) => {
 
     const getCarPhoto = (singleCar) => {
         if (singleCar?.photos?.length > 0) {
-            return singleCar?.photos[Math.floor(Math.random() * (singleCar?.photos?.length - 1))]?.url;
+            return singleCar?.photos[Math.floor(Math.random() * (singleCar?.photos?.length - 1))]?.thumbnail;
         }
 
         return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];

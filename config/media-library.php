@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\MediaLibrary\CustomMediaPathGenerator;
+
 return [
 
     /*
@@ -43,7 +45,8 @@ return [
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
+    // 'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
+    'path_generator' => CustomMediaPathGenerator::class,
 
     /*
      * When urls to files get generated, this class will be called. Use the default

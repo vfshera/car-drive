@@ -230,7 +230,7 @@ const AdminSingleCar = (props) => {
                                                     setPhotoIndex(index);
                                                 }}
                                                 style={{
-                                                    backgroundImage: `url(${photo?.url})`,
+                                                    backgroundImage: `url(${photo?.thumbnail})`,
                                                     backgroundRepeat:
                                                         "no-repeat",
                                                     backgroundSize: "cover",

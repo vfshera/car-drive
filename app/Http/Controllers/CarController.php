@@ -17,9 +17,7 @@ class CarController extends Controller
 {
     public function index(){
 
-        $cars = Car::with(['user','carImages' => function($query){
-                $query->take(2);
-            }])->latest()->paginate(12);
+        $cars = Car::with(['user'])->latest()->paginate(12);
 
 
         return CarResource::collection($cars)->response()->setStatusCode(Response::HTTP_OK);
@@ -29,7 +27,7 @@ class CarController extends Controller
 
     public function authIndex(){
 
-        $cars = Car::with(['user','carImages'])->latest()->paginate(6);
+        $cars = Car::with(['user'])->latest()->paginate(6);
 
       return AdminCarResource::collection($cars)->response()->setStatusCode(Response::HTTP_OK);
     }

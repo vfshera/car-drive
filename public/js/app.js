@@ -7183,7 +7183,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
                     setPhotoIndex(index);
                   },
                   style: {
-                    backgroundImage: "url(".concat(photo === null || photo === void 0 ? void 0 : photo.url, ")"),
+                    backgroundImage: "url(".concat(photo === null || photo === void 0 ? void 0 : photo.thumbnail, ")"),
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     backgroundPosition: "center"
@@ -7475,7 +7475,7 @@ var ChatUI = function ChatUI(_ref) {
     if ((singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos = singleCar.photos) === null || _singleCar$photos === void 0 ? void 0 : _singleCar$photos.length) > 0) {
       var _singleCar$photos$Mat, _singleCar$photos2;
 
-      return singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos$Mat = singleCar.photos[Math.floor(Math.random() * ((singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos2 = singleCar.photos) === null || _singleCar$photos2 === void 0 ? void 0 : _singleCar$photos2.length) - 1))]) === null || _singleCar$photos$Mat === void 0 ? void 0 : _singleCar$photos$Mat.url;
+      return singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos$Mat = singleCar.photos[Math.floor(Math.random() * ((singleCar === null || singleCar === void 0 ? void 0 : (_singleCar$photos2 = singleCar.photos) === null || _singleCar$photos2 === void 0 ? void 0 : _singleCar$photos2.length) - 1))]) === null || _singleCar$photos$Mat === void 0 ? void 0 : _singleCar$photos$Mat.thumbnail;
     }
 
     return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
