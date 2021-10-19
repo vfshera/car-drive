@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-const MessageBlock = ({ fromMe, message , deleteMessage , editMessage }) => {
+const MessageBlock = ({ fromMe, message , deleteMessage }) => {
     const [actions, setActions] = useState(false);
 
   
@@ -26,15 +26,7 @@ const MessageBlock = ({ fromMe, message , deleteMessage , editMessage }) => {
 
                 {fromMe && actions && (
                     <div className="actions">
-                        <div
-                            className="action-cover right-14"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                editMessage();
-                            }}
-                        >
-                            <i className="ti-pencil text-blue-500"></i>
-                        </div>
+                        
                         <div
                             className="action-cover right-0"
                             onClick={(e) => {
