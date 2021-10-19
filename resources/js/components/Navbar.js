@@ -25,7 +25,6 @@ const Navbar = () => {
             setToggleClasses("ti-menu");
         }
 
-        console.log("MENU OPEN EFFECT");
     }, [menuOpen]);
 
     const logout = (e) => {
@@ -114,7 +113,7 @@ const Navbar = () => {
                                         setMenuOpen(false);
                                     }}
                                 >
-                                    <Link to="/dashboard/chats">Chat</Link>
+                                    <Link to="/dashboard/chats">Chats</Link>
                                 </li>
                          
 
