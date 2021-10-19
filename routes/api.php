@@ -44,6 +44,7 @@ Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
         Route::get('recipients', [MessagesController::class,'recipients']);
         Route::get('{thread}', [MessagesController::class,'show']);
         Route::put('{thread}', [MessagesController::class,'update']);
+        Route::delete('/single-msg/{message}', [MessagesController::class,'destroyMessage']);
     });
 
 

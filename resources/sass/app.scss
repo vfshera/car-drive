@@ -235,7 +235,7 @@ html,
 
             li {
                 @apply border-b-2 border-transparent hover:border-brand-2 transition-all delay-100;
-                a{
+                a {
                     @apply uppercase;
                 }
             }
@@ -588,7 +588,7 @@ section.car-list-wrapper {
         }
 
         .details {
-            @apply flex flex-col min-h-app-screen sm:h-3/4vh lg:flex-row lg:justify-between;
+            @apply flex flex-col  sm:h-3/4vh lg:flex-row lg:justify-between;
             // height: 70vh;
 
             .car-photo {
@@ -598,18 +598,15 @@ section.car-list-wrapper {
             .description {
                 @apply w-full lg:w-1/5 p-0 sm:p-3 bg-brand-3 flex flex-col;
 
-
-                .information{
-
+                .information {
                     @apply flex flex-row justify-between lg:flex-col;
                     p {
-                        @apply text-brand-1 ;
+                        @apply text-brand-1;
                         span {
                             @apply font-bold;
                         }
                     }
                 }
-               
 
                 .photos {
                     @apply grid grid-cols-3 md:grid-cols-7 lg:grid-cols-3 mt-3 gap-1;
@@ -620,8 +617,6 @@ section.car-list-wrapper {
                         height: 80px;
                     }
                 }
-
-                
             }
         }
     }
@@ -812,14 +807,14 @@ section.admin-content {
                     }
                 }
                 .chats {
-                    @apply bg-brand-3 overflow-hidden overflow-y-scroll   h-4/5vh;
+                    @apply bg-brand-3 overflow-hidden overflow-y-scroll   h-4/5vh md:h-3/4vh;
 
                     .received,
                     .sent {
                         @apply w-full px-4;
 
                         .message-wrapper {
-                            @apply w-full sm:w-2/3 py-2 px-3 sm:p-4 my-2  rounded-lg sm:rounded-2xl shadow sm:shadow-sm;
+                            @apply w-full sm:w-2/3 py-2 px-3 sm:p-4 my-3  rounded-lg sm:rounded-2xl shadow sm:shadow-sm;
 
                             .sender {
                                 @apply flex justify-between;
@@ -828,13 +823,12 @@ section.admin-content {
                                     @apply text-sm sm:text-base text-white font-semibold sm:font-bold;
                                 }
 
-                                span{
+                                span {
                                     @apply text-xs sm:text-base;
                                 }
                             }
 
-                            .message{
-
+                            .message {
                             }
                         }
                     }
@@ -847,7 +841,7 @@ section.admin-content {
                                 @apply flex justify-between;
 
                                 h2 {
-                                    @apply  text-brand-1 font-bold;
+                                    @apply text-brand-1 font-bold;
                                 }
 
                                 span {
@@ -863,13 +857,13 @@ section.admin-content {
 
                     .sent {
                         .message-wrapper {
-                            @apply bg-brand-1 text-brand-3  rounded-br-none ml-auto;
+                            @apply bg-brand-1 text-brand-3  rounded-br-none cursor-pointer ml-auto;
 
                             .sender {
                                 @apply flex justify-between;
 
                                 h2 {
-                                    @apply  text-brand-3 font-bold;
+                                    @apply text-brand-3 font-bold;
                                 }
 
                                 span {
@@ -880,6 +874,20 @@ section.admin-content {
                             .message {
                                 @apply text-white;
                             }
+
+                            
+                                .actions {
+                                    @apply  relative bottom-0 right-0;
+
+                                    .action-cover {
+                                        @apply absolute z-10 bg-white flex justify-center items-center -bottom-7 h-8 w-8 rounded shadow-sm;
+                                        i {
+                                            @apply font-bold text-lg;
+                                        }
+                                    }
+                                }
+
+                            
                         }
                     }
                 }
@@ -895,7 +903,6 @@ section.admin-content {
                         @apply border-t border-gray-300;
                     }
                 }
-
 
                 .chat-preview {
                     @apply flex  border-b border-gray-300 py-2 sm:py-4  px-3 sm:px-10  hover:bg-white cursor-pointer;
@@ -985,14 +992,13 @@ section.admin-content {
     //SINGLECAR FIX
     .single-car-page {
         .single-car-wrapper {
-            @apply flex flex-col ;
+            @apply flex flex-col;
 
             button {
                 @apply text-2xl font-bold;
             }
 
             .details {
-
                 .car-photo {
                     @apply w-full lg:w-3/4    flex justify-end;
 
@@ -1045,7 +1051,6 @@ section.admin-content {
 
                     .actions {
                         @apply flex flex-col mt-10  sm:flex-row sm:justify-between lg:flex-col;
-                      
 
                         button {
                             @apply w-full sm:w-5/12 lg:w-full py-3 rounded-md transition-all delay-75;
@@ -1106,7 +1111,7 @@ section.admin-content {
         @apply min-h-app-screen;
 
         .add-car-form-wrapper {
-            @apply  bg-brand-3;
+            @apply bg-brand-3;
 
             .add-car-form {
                 @apply flex flex-col justify-center items-center pt-5;

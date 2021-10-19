@@ -16,7 +16,7 @@ class MessageResource extends JsonResource
     {
 
         return [
-            'thread_id' => $this->thread_id,
+            'id' => $this->id,
             'sender' => new UserResource($this->user),
             'receiver' => new UserResource($this->recipients->first()->user),
             'body' => $this->body,

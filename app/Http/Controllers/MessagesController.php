@@ -147,6 +147,15 @@ class MessagesController extends Controller
         return response(['message' => 'Message updated successfully!'] , Response::HTTP_CREATED);
     }
 
+    public function destroyMessage(Message $message)
+    {
+        $message->delete();
+
+        return response(['message' => 'Message deleted successfully!'] , Response::HTTP_OK);
+    }
+
+
+
     public function destroy(Thread $thread)
     {
         $thread->removeParticipant(Auth::id());
