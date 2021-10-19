@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 
 
-const MessageBlock = ({ fromMe, message }) => {
+const MessageBlock = ({ fromMe, message , deleteMessage , editMessage }) => {
     const [actions, setActions] = useState(false);
 
-    const editMessage = () => {
-        Toast.fire({
-            icon: "success",
-            title: "Edit Message" + message.id,
-        });
-    };
+  
 
-    const deleteMessage = () => {
-        Toast.fire({
-            icon: "success",
-            title: "Delete Message" + message.id,
-        });
-    };
+   
 
     return (
         <div
@@ -49,7 +39,7 @@ const MessageBlock = ({ fromMe, message }) => {
                             className="action-cover right-0"
                             onClick={(e) => {
                                 e.preventDefault();
-                                deleteMessage();
+                                deleteMessage(message.id);
                             }}
                         >
                             <i className="ti-trash text-red-500"></i>

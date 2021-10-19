@@ -60,6 +60,31 @@ const ChatUI = ({ match }) => {
                 .catch((err) => console.log(err));
         }
     };
+    const deleteMessage = (id) => {
+        if (id != null) {
+
+
+            Swal.fire({
+                title: "Delete This Message?",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios
+                    .delete(`/auth/messages/single-msg/${id}`)
+                    .then((res) => {
+                        if (res.status == 200) {
+                            getMessages();
+                        }
+                    })
+                    .catch((err) => console.log(err));
+                }
+            });
+          
+        }
+    };
 
     const getMessages = () => {
         axios
@@ -93,7 +118,7 @@ const ChatUI = ({ match }) => {
                     <div className="chats">
                         {thread?.messages?.map((msg, index) => (
 
-                            <MessageBlock  key={index} fromMe={msg.sender.id == loggedInUser.id} message={msg}/>
+                            <MessageBlock deleteMessage={deleteMessage} key={index} fromMe={msg.sender.id == loggedInUser.id} message={msg}/>
                         ))}
 
                         <div

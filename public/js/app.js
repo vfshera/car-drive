@@ -6047,26 +6047,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var MessageBlock = function MessageBlock(_ref) {
   var fromMe = _ref.fromMe,
-      message = _ref.message;
+      message = _ref.message,
+      deleteMessage = _ref.deleteMessage,
+      editMessage = _ref.editMessage;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       actions = _useState2[0],
       setActions = _useState2[1];
-
-  var editMessage = function editMessage() {
-    Toast.fire({
-      icon: "success",
-      title: "Edit Message" + message.id
-    });
-  };
-
-  var deleteMessage = function deleteMessage() {
-    Toast.fire({
-      icon: "success",
-      title: "Delete Message" + message.id
-    });
-  };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: fromMe ? "sent" : "received",
@@ -6101,7 +6089,7 @@ var MessageBlock = function MessageBlock(_ref) {
           className: "action-cover right-0",
           onClick: function onClick(e) {
             e.preventDefault();
-            deleteMessage();
+            deleteMessage(message.id);
           },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "ti-trash text-red-500"
@@ -7677,6 +7665,28 @@ var ChatUI = function ChatUI(_ref) {
     }
   };
 
+  var deleteMessage = function deleteMessage(id) {
+    if (id != null) {
+      Swal.fire({
+        title: "Delete This Message?",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!"
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/auth/messages/single-msg/".concat(id)).then(function (res) {
+            if (res.status == 200) {
+              getMessages();
+            }
+          })["catch"](function (err) {
+            return console.log(err);
+          });
+        }
+      });
+    }
+  };
+
   var getMessages = function getMessages() {
     axios__WEBPACK_IMPORTED_MODULE_1___default().get("/auth/messages/".concat(match.params.threadID)).then(function (res) {
       return setThread(res.data.data);
@@ -7718,6 +7728,7 @@ var ChatUI = function ChatUI(_ref) {
           className: "chats",
           children: [thread === null || thread === void 0 ? void 0 : (_thread$messages2 = thread.messages) === null || _thread$messages2 === void 0 ? void 0 : _thread$messages2.map(function (msg, index) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_MessageBlock__WEBPACK_IMPORTED_MODULE_3__["default"], {
+              deleteMessage: deleteMessage,
               fromMe: msg.sender.id == loggedInUser.id,
               message: msg
             }, index);
