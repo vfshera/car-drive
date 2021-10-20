@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     Auth\AuthController,
     CarController,
-    MessagesController,
-    TemporaryFileController
+    InboxController,
+    MessagesController
 };
 
 
@@ -34,6 +34,13 @@ Route::get('/cars', [CarController::class , 'index']);
 Route::get('/single-car/{car}', [CarController::class , 'singleCar']);
 
 Route::get('/car-information', [CarController::class , 'carInfo']);
+
+
+
+
+Route::post('/inbox' , [InboxController::class , 'create']);
+
+
 
 
 Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {

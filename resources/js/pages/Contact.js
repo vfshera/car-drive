@@ -1,5 +1,5 @@
+import axios from "axios";
 import React, { useState } from "react";
-import Swal from "sweetalert2";
 
 import InputField from "../components/form-elements/InputField";
 import TextAreaInputField from "../components/form-elements/TextAreaInputField";
@@ -8,25 +8,37 @@ const Contact = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [sent, setSent] = useState(false);
 
-
-    const contactUs = (e) =>{
+    const contactUs = (e) => {
         e.preventDefault();
 
-        Swal.fire({
-            icon: 'success',
-            text: name + email + message
-        })
-
-        setName("")
-        setEmail("")
-        setMessage("")
-
-    }
+        axios
+            .post("/inbox", {
+                name: name,
+                email: email,
+                message: message,
+            })
+            .then((res) => {
+                if (res.status == 201) {
+                    setSent(true)
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <div className="contact-page">
-            <div className="contact-form-wrapper">
+           {sent ? (
+               <div className="is-sent">
+                   <i className="ti-check"></i>
+                   <h2>Your Message Was Sent!</h2>
+                   <p>We will get back to you soon!</p>
+               </div>
+           ) : (
+                <div className="contact-form-wrapper">
                 <h1>Contact Us</h1>
 
                 <form onSubmit={contactUs}>
@@ -55,14 +67,17 @@ const Contact = () => {
                     <TextAreaInputField
                         onChange={(e) => setMessage(e.target.value)}
                         id="message"
+                        rows="5"
                         textareaName="message"
                         labelText="Message"
                     />
 
-
-                    <button type="submit" >SEND</button>
+                    <button type="submit">SEND</button>
                 </form>
             </div>
+           )}
+
+
         </div>
     );
 };

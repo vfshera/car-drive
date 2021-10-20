@@ -339,6 +339,22 @@ html,
 .contact-page {
     @apply flex flex-col justify-center items-center w-full;
 
+    .is-sent{
+        @apply flex flex-col min-h-3/4vh justify-center items-center;
+
+        i{
+            @apply text-7xl text-green-600 mb-2 border-4 border-green-600 p-10 rounded-full;
+        }
+
+        h2{
+            @apply text-brand-1 text-xl font-semibold;
+        }
+
+        p{
+            @apply text-gray-600;
+        }
+    }
+
     .contact-form-wrapper{
         @apply w-full;
 
