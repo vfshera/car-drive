@@ -1,5 +1,5 @@
+import axios from "axios";
 import React, { useState } from "react";
-import Swal from "sweetalert2";
 
 import InputField from "../components/form-elements/InputField";
 import TextAreaInputField from "../components/form-elements/TextAreaInputField";
@@ -9,20 +9,26 @@ const Contact = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-
-    const contactUs = (e) =>{
+    const contactUs = (e) => {
         e.preventDefault();
 
-        Swal.fire({
-            icon: 'success',
-            text: name + email + message
-        })
-
-        setName("")
-        setEmail("")
-        setMessage("")
-
-    }
+        axios
+            .post("/inbox", {
+                name: name,
+                email: email,
+                message: message,
+            })
+            .then((res) => {
+                if (res.status == 201) {
+                    setName("");
+                    setEmail("");
+                    setMessage("");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <div className="contact-page">
@@ -55,12 +61,12 @@ const Contact = () => {
                     <TextAreaInputField
                         onChange={(e) => setMessage(e.target.value)}
                         id="message"
+                        rows="5"
                         textareaName="message"
                         labelText="Message"
                     />
 
-
-                    <button type="submit" >SEND</button>
+                    <button type="submit">SEND</button>
                 </form>
             </div>
         </div>
