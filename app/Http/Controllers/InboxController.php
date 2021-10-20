@@ -22,7 +22,8 @@ class InboxController extends Controller
         $senderMsg = Inbox::create($data);
 
         if($senderMsg){
-            Mail::to('fshera96@gmail.com')->send(new ContactEmail($senderMsg));
+            
+            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactEmail($senderMsg));
 
             return response('Message Sent Successfully',201);
 

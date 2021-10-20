@@ -7996,6 +7996,11 @@ var Contact = function Contact() {
       message = _useState6[0],
       setMessage = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      sent = _useState8[0],
+      setSent = _useState8[1];
+
   var contactUs = function contactUs(e) {
     e.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_0___default().post("/inbox", {
@@ -8004,9 +8009,7 @@ var Contact = function Contact() {
       message: message
     }).then(function (res) {
       if (res.status == 201) {
-        setName("");
-        setEmail("");
-        setMessage("");
+        setSent(true);
       }
     })["catch"](function (err) {
       console.log(err);
@@ -8015,7 +8018,16 @@ var Contact = function Contact() {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "contact-page",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: sent ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "is-sent",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+        className: "ti-check"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+        children: "Your Message Was Sent!"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+        children: "We will get back to you soon!"
+      })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "contact-form-wrapper",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
         children: "Contact Us"

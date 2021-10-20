@@ -31,12 +31,14 @@ class ContactEmail extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
+        
+
+        return $this->from($this->mailMsg->email, $this->mailMsg->name)
+                     ->subject('Contact Mail From '.$this->mailMsg->name)
                     ->view('emails.contact-email')
                     ->with([
                         'name' => $this->mailMsg->name,
-                        'email' => $this->mailMsg->email,
-                        'message' => $this->mailMsg->message
+                        'msgContent' => $this->mailMsg->message
                     ]);
     }
 }

@@ -8,6 +8,7 @@ const Contact = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [sent, setSent] = useState(false);
 
     const contactUs = (e) => {
         e.preventDefault();
@@ -20,9 +21,7 @@ const Contact = () => {
             })
             .then((res) => {
                 if (res.status == 201) {
-                    setName("");
-                    setEmail("");
-                    setMessage("");
+                    setSent(true)
                 }
             })
             .catch((err) => {
@@ -32,7 +31,14 @@ const Contact = () => {
 
     return (
         <div className="contact-page">
-            <div className="contact-form-wrapper">
+           {sent ? (
+               <div className="is-sent">
+                   <i className="ti-check"></i>
+                   <h2>Your Message Was Sent!</h2>
+                   <p>We will get back to you soon!</p>
+               </div>
+           ) : (
+                <div className="contact-form-wrapper">
                 <h1>Contact Us</h1>
 
                 <form onSubmit={contactUs}>
@@ -69,6 +75,9 @@ const Contact = () => {
                     <button type="submit">SEND</button>
                 </form>
             </div>
+           )}
+
+
         </div>
     );
 };
