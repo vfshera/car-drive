@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ErrorMessage } from "formik";
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { refreshUser } from "../actions/AuthActions";
@@ -77,6 +77,12 @@ const Profile = () => {
                 });
         }
     };
+
+
+
+    useEffect(() => {
+        document.querySelector('title').text = 'CarDrive | Profile'
+    }, [])
 
     return (
         <div className="profile-page">

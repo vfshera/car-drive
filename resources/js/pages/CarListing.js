@@ -47,6 +47,8 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
     };
 
     useEffect(() => {
+
+        document.querySelector('title').text = 'CarDrive'
         dispatch(
             loadCars(MyCars ? "/auth/mycars" : inAdmin ? "/auth/cars" : "/cars")
         );

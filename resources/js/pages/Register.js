@@ -63,6 +63,7 @@ const Register = () => {
     }, [loggedInUser, auth]);
 
     useEffect(() => {
+        document.querySelector('title').text = 'CarDrive | Register'
         dispatch(refreshUser());
     }, []);
 

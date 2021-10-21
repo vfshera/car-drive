@@ -55,4 +55,31 @@ class UserTest extends TestCase
         $res->assertStatus(200);
     }
 
+    
+     
+    public function test_user_can_update_password_and_username()
+    {
+        $this->withExceptionHandling();
+
+        $response = $this->post('/api/register', [            
+                'name' => "Franklin",
+                'email' => "frank@testing.com",
+                'password' => "12345678"            
+            ]);
+      
+        
+        $response->assertStatus(201);
+
+        $user = User::findOrFail(1);
+
+
+        $res = $this->actingAs($user)->put('/api/auth/update-profile',[
+                'name' => "Franklin Shera",
+                'password' => "newpassword",  
+                'current_password' => "12345678"   
+        ]);
+
+        $res->assertStatus(200);
+    }
+
 }

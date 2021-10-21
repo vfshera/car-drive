@@ -6763,6 +6763,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var About = function About() {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | About';
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "about-page",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
@@ -7296,6 +7299,7 @@ var AdminSingleCar = function AdminSingleCar(props) {
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getData();
+    document.querySelector('title').text = 'CarDive | Admin Single Car View';
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (!newChatView) {
@@ -7548,6 +7552,7 @@ var CarListing = function CarListing(_ref) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive';
     dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_3__.loadCars)(MyCars ? "/auth/mycars" : inAdmin ? "/auth/cars" : "/cars"));
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("section", {
@@ -7758,6 +7763,7 @@ var ChatUI = function ChatUI(_ref) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | Chat UI';
     getMessages();
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -7937,6 +7943,7 @@ var Chats = function Chats() {
     }
   }, [newChatView]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | Chats';
     dispatch((0,_actions_GeneralAppActions__WEBPACK_IMPORTED_MODULE_2__.loadChats)());
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
@@ -8084,6 +8091,9 @@ var Contact = function Contact() {
     });
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | Contact';
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "contact-page",
     children: sent ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -8273,6 +8283,7 @@ var Login = function Login(_ref) {
     }
   }, [loggedInUser, auth]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | Login';
     dispatch((0,_actions_AuthActions__WEBPACK_IMPORTED_MODULE_5__.refreshUser)());
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -8663,6 +8674,9 @@ var Profile = function Profile() {
     }
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | Profile';
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "profile-page",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
@@ -8860,6 +8874,7 @@ var Register = function Register() {
     }
   }, [loggedInUser, auth]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | Register';
     dispatch((0,_actions_AuthActions__WEBPACK_IMPORTED_MODULE_6__.refreshUser)());
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -9173,7 +9188,9 @@ function Dashboard() {
       loggedInUser = authUser.loggedInUser,
       loading = authUser.loading,
       stats = authUser.stats;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    document.querySelector('title').text = 'CarDrive | Dashboard';
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "dashboard-page",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h1", {

@@ -6,7 +6,10 @@ function Dashboard() {
     const authUser = useSelector((state) => state.authUser);
     const { auth, loggedInUser, loading, stats } = authUser;
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+
+        document.querySelector('title').text = 'CarDrive | Dashboard'
+    }, []);
 
     return (
         <div className="dashboard-page">

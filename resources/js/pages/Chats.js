@@ -28,6 +28,7 @@ const Chats = () => {
     }, [newChatView]);
 
     useEffect(() => {
+        document.querySelector('title').text = 'CarDrive | Chats'
         dispatch(loadChats());
     }, []);
 

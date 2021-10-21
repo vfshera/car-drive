@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 
 import InputField from "../components/form-elements/InputField";
 import TextAreaInputField from "../components/form-elements/TextAreaInputField";
@@ -29,6 +29,11 @@ const Contact = () => {
             });
     };
 
+
+
+    useEffect(() => {
+        document.querySelector('title').text = 'CarDrive | Contact'
+    }, [])
     return (
         <div className="contact-page">
            {sent ? (

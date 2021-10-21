@@ -48,6 +48,7 @@ const Login = ({location}) => {
     }, [loggedInUser, auth]);
 
     useEffect(() => {
+        document.querySelector('title').text = 'CarDrive | Login'
         dispatch(refreshUser());
     }, []);
 

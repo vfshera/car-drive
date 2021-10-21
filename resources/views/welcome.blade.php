@@ -16,7 +16,7 @@
     <body >
      <main id="app">
 
-     </main>
+</main>
 
      <script src="{{ mix('js/app.js')}}"></script>
     </body>
