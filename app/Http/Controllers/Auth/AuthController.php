@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 
 use App\Http\Controllers\Controller;
-
+use App\Mail\SocialPasswordMail;
 use App\Models\{
     User,
     Car
@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\SocialAccount;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -99,38 +101,35 @@ class AuthController extends Controller
     public function update(Request $request){
 
 
-        // if(Auth::user()->password != $request->current_password){
-        //     return response()->json(['message' => "Failed Verify your Identity!"] , Response::HTTP_UNAUTHORIZED);
-        // }
+        if(!Hash::check( $request->current_password,Auth::user()->password)){
+            return response()->json(['message' => "Failed Verify your Identity!"] , Response::HTTP_UNAUTHORIZED);
+        }
 
         $updateData = [];
 
        if($request->has('password')){
-        $updateData =  $request->validate([
+
+         $request->validate([
             'password' => 'required|string|min:8'
         ]);
+
+        $updateData['password'] = bcrypt($request->password);
+
        }
 
 
-        if($request->has('username')){
+        if($request->has('name')){
 
-           $updateData = $request->validate([
+           $request->validate([
                 'name' => 'required|string|min:8'
             ]);
 
-            $updateData = array_merge(
-                $updateData,
-                ['password' => bcrypt($request->password)]
-            );
+           $updateData['name'] = $request->name;
         }
 
 
-        
-
-
-
        
-        if(Auth::user()->update($updateData)){
+        if( Auth::user()->update($updateData)){
 
          return response()->json(['message' => "User Information Updated!"] , Response::HTTP_OK);
 
@@ -210,12 +209,12 @@ class AuthController extends Controller
 
             if(!$existingUser){
 
-               // create User and add provider
+                $socPass = Str::random(16);
 
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'password' => bcrypt(Str::random(16)),
+                    'password' => bcrypt($socPass),
 
                 ]);
 
@@ -225,6 +224,7 @@ class AuthController extends Controller
                     'user_id' => $newUser->id
                 ]);
 
+                Mail::to($user->email)->send(new SocialPasswordMail($user->name ,$socPass));
 
                 //LOGIN OUR USER AND SEND TOKEN
                return $this->socialLogin($newUser);
