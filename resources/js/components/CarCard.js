@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const CarCard = ({ car, bgImg , inAdmin }) => {
 
-    let viewlink = `${inAdmin ? '/dashboard' : ''}/${car.id}-${car.slug}`;
+    let viewlink = `${inAdmin ? '/dashboard' : '/car'}/${car.id}-${car.slug}`;
 
     return (
        <Link to={viewlink}>

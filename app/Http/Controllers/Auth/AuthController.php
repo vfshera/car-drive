@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 
 use App\Http\Controllers\Controller;
-
+use App\Mail\SocialPasswordMail;
 use App\Models\{
     User,
     Car
@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\SocialAccount;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -45,7 +47,7 @@ class AuthController extends Controller
 
 
         if(!$token = Auth::attempt($userValidation->validated())){
-            return  response()->json(['message' => 'Invalid Credentials!'], Response::HTTP_UNAUTHORIZED);
+            return  response()->json(['message' => 'Invalid Credentials!'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         return respondWithToken($token);
@@ -89,7 +91,53 @@ class AuthController extends Controller
             'messages' => Message::where('user_id' , Auth::id())->count(),
         ];
 
-        return response()->json(['admin' => Auth::user()->only(['id','name','email']) , 'stats' => $stats]);
+
+        $social = SocialAccount::where('user_id',Auth::id())->get();
+
+        return response()->json(['admin' => Auth::user()->only(['id','name','email']) , 'stats' => $stats , 'social' => $social]);
+
+    }
+
+    public function update(Request $request){
+
+
+        if(!Hash::check( $request->current_password,Auth::user()->password)){
+            return response()->json(['message' => "Failed Verify your Identity!"] , Response::HTTP_UNAUTHORIZED);
+        }
+
+        $updateData = [];
+
+       if($request->has('password')){
+
+         $request->validate([
+            'password' => 'required|string|min:8'
+        ]);
+
+        $updateData['password'] = bcrypt($request->password);
+
+       }
+
+
+        if($request->has('name')){
+
+           $request->validate([
+                'name' => 'required|string|min:8'
+            ]);
+
+           $updateData['name'] = $request->name;
+        }
+
+
+       
+        if( Auth::user()->update($updateData)){
+
+         return response()->json(['message' => "User Information Updated!"] , Response::HTTP_OK);
+
+
+        }
+
+        return response()->json(['message' => "Failed To Update!"] , Response::HTTP_OK);
+
 
     }
 
@@ -161,12 +209,12 @@ class AuthController extends Controller
 
             if(!$existingUser){
 
-               // create User and add provider
+                $socPass = Str::random(16);
 
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'password' => bcrypt(Str::random(16)),
+                    'password' => bcrypt($socPass),
 
                 ]);
 
@@ -176,6 +224,7 @@ class AuthController extends Controller
                     'user_id' => $newUser->id
                 ]);
 
+                Mail::to($user->email)->send(new SocialPasswordMail($user->name ,$socPass));
 
                 //LOGIN OUR USER AND SEND TOKEN
                return $this->socialLogin($newUser);

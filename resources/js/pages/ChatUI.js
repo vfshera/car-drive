@@ -98,6 +98,7 @@ const ChatUI = ({ match }) => {
     };
 
     useEffect(() => {
+        document.querySelector('title').text = 'CarDrive | Chat UI'
         getMessages();
     }, []);
 

@@ -125,6 +125,7 @@ const AdminSingleCar = (props) => {
 
     useEffect(() => {
         getData();
+        document.querySelector('title').text = 'CarDive | Admin Single Car View'
     }, []);
 
     useEffect(() => {

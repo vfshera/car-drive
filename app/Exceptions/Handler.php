@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -35,7 +36,12 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            Log::channel('slack')->error($e->getMessage() ,[
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
+                'status code' => $e->getCode(),
+                'StackTrace' => $e->getTrace()
+            ]);
         });
     }
 }

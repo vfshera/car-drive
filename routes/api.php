@@ -68,6 +68,7 @@ Route::prefix('auth')->middleware(['tokencookie','api'])->group(function () {
 
 
     Route::get('/profile', [AuthController::class , 'profile']);
+    Route::put('/update-profile', [AuthController::class , 'update']);
     Route::get('/refresh-token', [AuthController::class , 'refresh']);
     Route::post('/logout' , [AuthController::class , 'logout']);
 });

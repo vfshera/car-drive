@@ -13,6 +13,7 @@ import {
 
 import axios from "axios";
 
+
 axios.defaults.withCredentials = true;
 
 
@@ -65,11 +66,24 @@ export const loginUser = (user) => async (dispatch) => {
                          }
 
                      }).catch(error =>{
-                         return false;
+
+                        Swal.fire({
+                            icon:'error',
+                            title: error.message
+                        })
+
+                        dispatch({
+                            type: USER_LOGIN_FAIL,
+                            payload: "Invalid Credentials!",
+                        });
                  });
 
              })
              .catch(err => {
+                Swal.fire({
+                    icon:'error',
+                    title: error.message
+                })
 
                  dispatch({
                              type: USER_LOGIN_FAIL,
@@ -95,7 +109,7 @@ export const socialLogin = (code, provider) => async (dispatch) => {
             params: code,
         });
 
-        const loggedClient = await axios.get("/auth/profile");
+        const loggedUser = await axios.get("/auth/profile");
 
         dispatch({type: TIME_SUCCESS,
             payload: { tst: data.tst, overtime :data.overtime}
@@ -111,12 +125,11 @@ export const socialLogin = (code, provider) => async (dispatch) => {
 
     } catch (error) {
 
-
-
         dispatch({
             type: USER_LOGIN_FAIL,
             error: "Social Login Failed!",
         });
+
     }
 
     dispatch({ type: NOT_LOADING});
