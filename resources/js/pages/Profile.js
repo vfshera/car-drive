@@ -3,7 +3,7 @@ import { ErrorMessage } from "formik";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {refreshUser} from '../actions/AuthActions'
+import { refreshUser } from "../actions/AuthActions";
 
 const Profile = () => {
     const authUser = useSelector((state) => state.authUser);
@@ -16,10 +16,8 @@ const Profile = () => {
 
     const [updateErrors, setUpdateErrors] = useState([]);
 
-
-
-    const checkFields = () => {   
-
+    const checkFields = () => {
+        let valid = true;
 
         if (passwordConfirm === "") {
             Swal.fire({
@@ -27,57 +25,57 @@ const Profile = () => {
                 title: "Current Pasword Field Can'not be Empty",
             });
 
-            return false
-            
+            valid = false;
         }
 
-
-        if (newPassword != "" || newUsername != "") {
-
+        if (newPassword === "" && newUsername === "") {
             Swal.fire({
                 icon: "error",
                 title: "Fill Username or New Password Field",
             });
 
-            return false
+            valid = false;
         }
 
+        return valid;
     };
 
     const updateProfile = () => {
-        checkFields();
+        if (checkFields()) {
+            let updateData = {
+                current_password: passwordConfirm,
+            };
 
-        let updateData = {
-            current_password: passwordConfirm,
-        };
+            if (newUsername != "") {
+                updateData.name = newUsername;
+            }
 
-        if (newPassword != "") {
-            updateData.name = newUsername;
+            if (newPassword != "") {
+                updateData.password = newPassword;
+            }
+
+            axios
+                .put("/auth/update-profile", updateData)
+                .then((res) => {
+                    if (res.status == 200) {
+                        window.location.reload();
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+
+                    if (err?.response?.status == 401) {
+                        Swal.fire({
+                            icon: "error",
+                            title: err.response.data.message,
+                        });
+                    }
+
+                    if (err?.response?.status == 422) {
+                        setUpdateErrors(err.response.data.errors);
+                    }
+                });
         }
-
-        if (newUsername != "") {
-            updateData.password = newPassword;
-        }
-
-        axios
-            .put("/auth/update-profile", updateData)
-            .then((res) => {
-                if (res.status == 200) {
-                    refreshUser();
-                }
-            })
-            .catch((err) => {
-                if (err.response.status == 401) {
-                    Swal.fire({
-                        icon: "error",
-                        title: err.response.data.message,
-                    });
-                }
-
-                if (err.response.status == 422) {
-                    setUpdateErrors(err.response.data.errors);
-                }
-            });
     };
 
     return (
@@ -117,52 +115,12 @@ const Profile = () => {
                 <h1>Update Info</h1>
 
                 <div className="update-actions">
-                    <span>Username or New Password Can be left empty hence will not be updated!</span>
-                    {/* <span>Action  </span> */}
-
-
-
-                    {/* <div className="choices">
-                        <div
-                            className={`choice ${
-                                updateAction == 0 ? "active " : ""
-                            }`}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setAction(0);
-                            }}
-                        >
-                            <i
-                                className={`${
-                                    updateAction == 0
-                                        ? " ti-check-box"
-                                        : "ti-control-stop"
-                                }`}
-                            ></i>
-
-                            <label>Full Update</label>
-                        </div>
-
-                        <div
-                            className={`choice ${
-                                updateAction == 1 ? "active " : ""
-                            }`}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setAction(1);
-                            }}
-                        >
-                            <i
-                                className={`${
-                                    updateAction == 1
-                                        ? " ti-check-box"
-                                        : "ti-control-stop"
-                                }`}
-                            ></i>
-
-                            <label>Update Password</label>
-                        </div>
-                    </div> */}
+                    <div className="note">
+                        <p>
+                            <span>NOTE : </span>If Username or New Password is
+                            left empty it will not be updated!
+                        </p>
+                    </div>
                 </div>
 
                 <div className="allowed-updates">
