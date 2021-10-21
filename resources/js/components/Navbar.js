@@ -117,7 +117,7 @@ const Navbar = () => {
                                 </li>
                          
 
-                            <span> {loggedInUser.name}</span>
+                            <span> <Link to="/dashboard">{loggedInUser.name}</Link></span>
 
                             <li
                                 onClick={(e) => {
