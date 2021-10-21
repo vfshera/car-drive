@@ -165,7 +165,7 @@ html,
     }
 
     label {
-        @apply text-xl font-semibold text-gray-800;
+        @apply text-base sm:text-lg lg:text-xl font-semibold text-gray-800;
     }
 
     label .hint-box {
@@ -205,7 +205,7 @@ html,
 
     input,
     textarea {
-        @apply flex flex-col mt-3 mb-6;
+        @apply flex flex-col mt-1 sm:mt-3 mb-3 sm:mb-6;
     }
 }
 
@@ -344,43 +344,35 @@ html,
     .about-content {
         @apply flex flex-col justify-center  items-center w-11/12 sm:w-2/3 lg:w-1/2;
 
-        .content-item{
-            @apply grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10 ;
+        .content-item {
+            @apply flex flex-col mt-10 items-center;
 
-            .explanation{
-                
-
-                p{
-
+            .explanation {
+                p {
                 }
-
             }
 
-            .tech-stack{
-                @apply flex flex-col justify-center items-center md:items-start;
+            .tech-stack {
+                @apply flex flex-col justify-center items-center mt-10 w-95/100 sm:w-2/3;
 
-                p{
-                    @apply text-brand-1 text-lg font-semibold ;
+                p {
+                    @apply text-brand-1 text-lg font-semibold;
                 }
 
-                .stacks{
+                .stacks {
+                    @apply grid grid-cols-3 mt-5 gap-4 w-3/4 sm:w-full;
 
-                    @apply grid grid-cols-3 mt-5 sm:mt-2 gap-y-4 gap-x-2 w-2/3 sm:w-full ;
-
-                    .stack{
-                        @apply flex flex-col justify-center items-center;
-                        img{
-                            @apply h-10 sm:h-8;
+                    .stack {
+                        @apply flex flex-col justify-center items-center my-2;
+                        img {
+                            @apply h-7 sm:h-8;
                         }
 
-                        p{
+                        p {
                             @apply text-sm;
                         }
                     }
                 }
-
-
-
             }
         }
     }
@@ -445,6 +437,128 @@ html,
 
                 i {
                     @apply ml-2;
+                }
+            }
+        }
+    }
+}
+.profile-page {
+    @apply flex flex-col p-5 lg:p-10 min-h-app-screen;
+
+    h1 {
+        @apply text-brand-1 text-xl sm:text-3xl font-bold;
+    }
+
+    .update-info {
+        @apply mt-12;
+
+        h1 {
+            @apply text-lg  font-bold;
+        }
+
+        .update-actions {
+            @apply flex flex-col sm:flex-row my-3;
+
+            span {
+                @apply mr-0 sm:mr-5 mt-0 sm:mt-2 text-lg mb-2 sm:mb-0 text-brand-1 font-semibold;
+            }
+
+            .choices {
+                @apply flex space-x-2 sm:space-x-5;
+
+                .choice {
+                    @apply flex items-center cursor-pointer p-3 sm:p-2 rounded-md hover:bg-blue-50;
+
+                    &.active{
+                        @apply bg-blue-50 border border-blue-500 font-semibold;
+
+                        i{
+                            @apply text-blue-800;
+                        }
+                    }
+
+                    i {
+                        @apply mr-2 cursor-pointer;
+
+                        
+                    }
+
+                    label {
+                        @apply text-brand-1 text-sm sm:text-base cursor-pointer;
+                    }
+                }
+            }
+        }
+        .allowed-updates {
+            @apply flex flex-col justify-between mt-5;
+
+            .fields {
+                @apply w-full flex flex-col sm:flex-row sm:justify-between lg:space-x-4 transition-all;
+
+                .input-group {
+                   
+                    &.two-fields{
+                        @apply w-full sm:w-30/100 lg:w-1/2;
+                    }
+                   
+                    &.three-fields{
+                        @apply w-full sm:w-30/100 lg:w-1/3;
+                    }
+
+                    label {
+                        
+                    }
+
+                    input {
+                    }
+                }
+            }
+
+            button {
+                @apply w-full md:w-1/3 lg:w-1/4 px-10 py-5 font-semibold bg-blue-500 text-white hover:rounded-md;
+            }
+        }
+    }
+
+    .current-info {
+        @apply grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 sm:mt-5;
+
+        .details {
+            @apply flex flex-row sm:flex-col;
+
+            .detail {
+                @apply  w-1/2 sm:w-full flex flex-col lg:border-l-2 lg:pl-2 lg:border-brand-2;
+
+                .title {
+                    @apply text-brand-1 text-base sm:text-xl font-semibold sm:font-bold;
+                }
+
+                .value {
+                    @apply text-gray-800 text-base sm:text-lg;
+                }
+
+                &:not(:last-child) {
+                    @apply mb-0 sm:mb-5;
+                }
+            }
+        }
+
+        .social-accounts {
+            @apply flex flex-col my-3 sm:my-0;
+
+            h2 {
+                @apply text-brand-1 text-lg sm:text-xl font-semibold sm:font-bold;
+            }
+
+            .social-account {
+                @apply flex items-center;
+
+                i {
+                    @apply text-brand-1 text-xl;
+                }
+
+                .brand {
+                    @apply text-gray-700 ml-2 text-lg;
                 }
             }
         }

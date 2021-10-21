@@ -37,6 +37,7 @@ import SingleCar from './pages/SingleCar'
 import ChatUI from "./pages/ChatUI";
 import Chats from "./pages/Chats";
 import AdminSingleCar from "./pages/AdminSingleCar";
+import Profile from './pages/Profile'
 
 
 
@@ -91,7 +92,7 @@ function App() {
             <Route path="/" exact component={Home}/>
             <Route path="/listing" exact component={() => (<CarListing fullMode={true} inAdmin={false}/>)}/>
 
-            <Route path="/:carID-:carSlug" exact component={SingleCar}/>
+            <Route path="/car/:carID-:carSlug" exact component={SingleCar}/>
             <Route path="/about" exact component={About}/>
             <Route path="/contact" exact component={Contact}/>
             <Route path="/login" exact component={Login}/>
@@ -101,6 +102,7 @@ function App() {
             <ProtectedRoute path="/dashboard/mycars" exact component={() => (<CarListing fullMode={true} inAdmin={true} MyCars={true}/>)}/>
             <ProtectedRoute path="/dashboard/:carID-:carSlug" exact component={AdminSingleCar}/>
             <ProtectedRoute path="/dashboard/chats" exact component={Chats}/>
+            <ProtectedRoute path="/dashboard/profile" exact component={Profile}/>
             <ProtectedRoute path="/dashboard/chat/:threadID/messages" exact component={ChatUI}/>
             <ProtectedRoute path="/dashboard" exact component={Dashboard}/>
 

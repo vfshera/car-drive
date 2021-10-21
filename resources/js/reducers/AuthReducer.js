@@ -13,16 +13,17 @@ export const LoginReducer = (
 ) => {
     switch (action.type) {
         case USER_LOGIN_REQUEST:
-            return { loading: true, loggedInUser: {}, auth: false , error: false};
+            return { loading: true, loggedInUser: {}, auth: false ,social:[], error: false};
 
         case USER_LOGOUT:
-            return { loading: false, loggedInUser: {}, auth: false , error: false};
+            return { loading: false, loggedInUser: {}, auth: false ,social:[] , error: false};
 
         case USER_LOGIN_SUCCESS:
             return {
                 loading: false,
                 loggedInUser: action.payload.admin,
                 stats: action.payload.stats,
+                social: action.payload.social,
                 auth: true,
                 error: false
             };

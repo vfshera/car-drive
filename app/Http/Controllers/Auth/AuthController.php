@@ -45,7 +45,7 @@ class AuthController extends Controller
 
 
         if(!$token = Auth::attempt($userValidation->validated())){
-            return  response()->json(['message' => 'Invalid Credentials!'], Response::HTTP_UNAUTHORIZED);
+            return  response()->json(['message' => 'Invalid Credentials!'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         return respondWithToken($token);
@@ -89,7 +89,56 @@ class AuthController extends Controller
             'messages' => Message::where('user_id' , Auth::id())->count(),
         ];
 
-        return response()->json(['admin' => Auth::user()->only(['id','name','email']) , 'stats' => $stats]);
+
+        $social = SocialAccount::where('user_id',Auth::id())->get();
+
+        return response()->json(['admin' => Auth::user()->only(['id','name','email']) , 'stats' => $stats , 'social' => $social]);
+
+    }
+
+    public function update(Request $request){
+
+
+        // if(Auth::user()->password != $request->current_password){
+        //     return response()->json(['message' => "Failed Verify your Identity!"] , Response::HTTP_UNAUTHORIZED);
+        // }
+
+        $updateData = [];
+
+       if($request->has('password')){
+        $updateData =  $request->validate([
+            'password' => 'required|string|min:8'
+        ]);
+       }
+
+
+        if($request->has('username')){
+
+           $updateData = $request->validate([
+                'name' => 'required|string|min:8'
+            ]);
+
+            $updateData = array_merge(
+                $updateData,
+                ['password' => bcrypt($request->password)]
+            );
+        }
+
+
+        
+
+
+
+       
+        if(Auth::user()->update($updateData)){
+
+         return response()->json(['message' => "User Information Updated!"] , Response::HTTP_OK);
+
+
+        }
+
+        return response()->json(['message' => "Failed To Update!"] , Response::HTTP_OK);
+
 
     }
 
