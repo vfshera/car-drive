@@ -1,33 +1,32 @@
-import React,{useState , useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 
-
-
-const Pagination = ({ inFirstPage ,inLastPage , links ,pagesToShow = 5, getPage ,currentPage, prevPage,nextPage }) =>{
-
-
+const Pagination = ({
+    inFirstPage,
+    inLastPage,
+    links,
+    pagesToShow = 5,
+    getPage,
+    currentPage,
+    prevPage,
+    nextPage,
+}) => {
     const pageNumberLimit = pagesToShow || 5;
-    const [minPageNumberLimit,setMinLimit] = useState(0);
-    const [maxPageNumberLimit,setMaxLimit] = useState(5);
-
-
-
+    const [minPageNumberLimit, setMinLimit] = useState(0);
+    const [maxPageNumberLimit, setMaxLimit] = useState(5);
 
     useEffect(() => {
+        const coefficient = Math.ceil(currentPage / 5) * pageNumberLimit;
 
-          const coefficient = Math.ceil((currentPage /5 )) * pageNumberLimit;
-
-
-
-        if(currentPage > maxPageNumberLimit){
-            setMaxLimit(coefficient)
-            setMinLimit(coefficient - pageNumberLimit)
+        if (currentPage > maxPageNumberLimit) {
+            setMaxLimit(coefficient);
+            setMinLimit(coefficient - pageNumberLimit);
             // setMaxLimit(maxPageNumberLimit + pageNumberLimit)
             // setMinLimit(minPageNumberLimit + pageNumberLimit)
         }
 
-        if(currentPage <= minPageNumberLimit){
-            setMaxLimit(coefficient)
-            setMinLimit(coefficient - pageNumberLimit)
+        if (currentPage <= minPageNumberLimit) {
+            setMaxLimit(coefficient);
+            setMinLimit(coefficient - pageNumberLimit);
 
             //  setMaxLimit(maxPageNumberLimit - pageNumberLimit)
             // setMinLimit(minPageNumberLimit - pageNumberLimit)
@@ -40,25 +39,21 @@ const Pagination = ({ inFirstPage ,inLastPage , links ,pagesToShow = 5, getPage 
         //
         // console.log(`Max Limit --> ${maxPageNumberLimit}`)
         // console.log(`Min Limit --> ${minPageNumberLimit}`)
-
-
-    },[currentPage])
+    }, [currentPage]);
 
     return (
         <section className="pagination car-drive-container">
             <button
-                className={inFirstPage && "disabled"}
+                className={`prev ${inFirstPage ? "disabled" : ""}`}
                 onClick={(e) => {
                     e.preventDefault();
-                    !inFirstPage &&
-                    getPage(prevPage);
+                    !inFirstPage && getPage(prevPage);
                 }}
             >
                 PREV
             </button>
             <section className="page-numbers">
-
-                {minPageNumberLimit !=0 && (
+                {/* {minPageNumberLimit !=0 && (
                     <>
 
                         <button
@@ -82,48 +77,51 @@ const Pagination = ({ inFirstPage ,inLastPage , links ,pagesToShow = 5, getPage 
 
 
                     </>
-                )}
+                )} */}
 
-
-                {links?.map((pageLink , index) => {
-
-                    // if (index != 0 && index != links?.length - 1 ) {
-                    if (index != 0 && index != links?.length - 1 && (index <= maxPageNumberLimit  && index > minPageNumberLimit )) {
-
+                {links?.map((pageLink, index) => {
+                    if (index != 0 && index != links?.length - 1 ) {
+                    // if (
+                    //     index != 0 &&
+                    //     index != links?.length - 1 &&
+                    //     index <= maxPageNumberLimit &&
+                    //     index > minPageNumberLimit
+                    // ) {
                         return (
                             <button
-                                className={pageLink.label == currentPage && "current-page"}
+                                className={
+                                    pageLink.label == currentPage &&
+                                    "current-page"
+                                }
                                 onClick={(e) => {
                                     e.preventDefault();
                                     getPage(pageLink.url);
 
-                                    console.log("Page "+pageLink.label+"-->"+pageLink.url)
+                                    console.log(
+                                        "Page " +
+                                            pageLink.label +
+                                            "-->" +
+                                            pageLink.url
+                                    );
                                 }}
                                 key={index}
                             >
-                                 {pageLink.label}
+                                {pageLink.label}
                             </button>
                         );
-
                     }
-
                 })}
 
-
-                {!inLastPage && (
+                {/* {!inLastPage && (
                     <>
-
-
                         <button
                             className="showmore disabled"
                             onClick={(e) => {
                                 e.preventDefault();
                             }}
-
                         >
                             [...]
                         </button>
-
 
                         <button
                             className="peak-page"
@@ -131,27 +129,23 @@ const Pagination = ({ inFirstPage ,inLastPage , links ,pagesToShow = 5, getPage 
                                 e.preventDefault();
                                 getPage(links?.[links?.length - 2].url);
                             }}
-
                         >
                             {links?.[links?.length - 2].label ?? "Last"}
                         </button>
-
-
                     </>
-                )}
+                )} */}
             </section>
             <button
-                className={inLastPage && "disabled"}
+                className={`next ${inLastPage ? "disabled" : ""}`}
                 onClick={(e) => {
                     e.preventDefault();
-                    !inLastPage &&
-                    getPage(nextPage);
+                    !inLastPage && getPage(nextPage);
                 }}
             >
                 NEXT
             </button>
         </section>
-    )
-}
+    );
+};
 
 export default Pagination;
