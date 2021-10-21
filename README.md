@@ -1,4 +1,4 @@
-<p align="center"><a href="https://cardrive.sheraclassics.co.ke" target="_blank"><img src="public/images/cardrive.png" width="400"></a></p>
+<p align="center"><a href="https://cardrive.sheraclassics.co.ke" target="_blank"><img src="cardrive.png" width="400"></a></p>
 
 
 
