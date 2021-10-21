@@ -6270,7 +6270,10 @@ var Navbar = function Navbar() {
               children: "Chats"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-            children: [" ", loggedInUser.name]
+            children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+              to: "/dashboard",
+              children: loggedInUser.name
+            })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
             onClick: function onClick(e) {
               setMenuOpen(false);
@@ -6340,10 +6343,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var Pagination = function Pagination(_ref) {
-  var _links$label;
-
   var inFirstPage = _ref.inFirstPage,
       inLastPage = _ref.inLastPage,
       links = _ref.links,
@@ -6390,32 +6390,22 @@ var Pagination = function Pagination(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
     className: "pagination car-drive-container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      className: inFirstPage && "disabled",
+      className: "prev ".concat(inFirstPage ? "disabled" : ""),
       onClick: function onClick(e) {
         e.preventDefault();
         !inFirstPage && getPage(prevPage);
       },
       children: "PREV"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("section", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
       className: "page-numbers",
-      children: [minPageNumberLimit != 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          className: "peak-page",
-          onClick: function onClick(e) {
-            e.preventDefault();
-            getPage(links === null || links === void 0 ? void 0 : links[1].url);
-          },
-          children: links === null || links === void 0 ? void 0 : links[1].label
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          className: "showmore disabled",
-          onClick: function onClick(e) {
-            e.preventDefault();
-          },
-          children: "[...]"
-        })]
-      }), links === null || links === void 0 ? void 0 : links.map(function (pageLink, index) {
-        // if (index != 0 && index != links?.length - 1 ) {
-        if (index != 0 && index != (links === null || links === void 0 ? void 0 : links.length) - 1 && index <= maxPageNumberLimit && index > minPageNumberLimit) {
+      children: links === null || links === void 0 ? void 0 : links.map(function (pageLink, index) {
+        if (index != 0 && index != (links === null || links === void 0 ? void 0 : links.length) - 1) {
+          // if (
+          //     index != 0 &&
+          //     index != links?.length - 1 &&
+          //     index <= maxPageNumberLimit &&
+          //     index > minPageNumberLimit
+          // ) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
             className: pageLink.label == currentPage && "current-page",
             onClick: function onClick(e) {
@@ -6426,24 +6416,9 @@ var Pagination = function Pagination(_ref) {
             children: pageLink.label
           }, index);
         }
-      }), !inLastPage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          className: "showmore disabled",
-          onClick: function onClick(e) {
-            e.preventDefault();
-          },
-          children: "[...]"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-          className: "peak-page",
-          onClick: function onClick(e) {
-            e.preventDefault();
-            getPage(links === null || links === void 0 ? void 0 : links[(links === null || links === void 0 ? void 0 : links.length) - 2].url);
-          },
-          children: (_links$label = links === null || links === void 0 ? void 0 : links[(links === null || links === void 0 ? void 0 : links.length) - 2].label) !== null && _links$label !== void 0 ? _links$label : "Last"
-        })]
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      className: inLastPage && "disabled",
+      className: "next ".concat(inLastPage ? "disabled" : ""),
       onClick: function onClick(e) {
         e.preventDefault();
         !inLastPage && getPage(nextPage);
@@ -8630,53 +8605,62 @@ var Profile = function Profile() {
       setUpdateErrors = _useState10[1];
 
   var checkFields = function checkFields() {
+    var valid = true;
+
     if (passwordConfirm === "") {
       Swal.fire({
         icon: "error",
         title: "Current Pasword Field Can'not be Empty"
       });
-      return false;
+      valid = false;
     }
 
-    if (newPassword != "" || newUsername != "") {
+    if (newPassword === "" && newUsername === "") {
       Swal.fire({
         icon: "error",
         title: "Fill Username or New Password Field"
       });
-      return false;
+      valid = false;
     }
+
+    return valid;
   };
 
   var updateProfile = function updateProfile() {
-    checkFields();
-    var updateData = {
-      current_password: passwordConfirm
-    };
+    if (checkFields()) {
+      var updateData = {
+        current_password: passwordConfirm
+      };
 
-    if (newPassword != "") {
-      updateData.name = newUsername;
+      if (newUsername != "") {
+        updateData.name = newUsername;
+      }
+
+      if (newPassword != "") {
+        updateData.password = newPassword;
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().put("/auth/update-profile", updateData).then(function (res) {
+        if (res.status == 200) {
+          window.location.reload();
+        }
+      })["catch"](function (err) {
+        var _err$response, _err$response2;
+
+        console.log(err);
+
+        if ((err === null || err === void 0 ? void 0 : (_err$response = err.response) === null || _err$response === void 0 ? void 0 : _err$response.status) == 401) {
+          Swal.fire({
+            icon: "error",
+            title: err.response.data.message
+          });
+        }
+
+        if ((err === null || err === void 0 ? void 0 : (_err$response2 = err.response) === null || _err$response2 === void 0 ? void 0 : _err$response2.status) == 422) {
+          setUpdateErrors(err.response.data.errors);
+        }
+      });
     }
-
-    if (newUsername != "") {
-      updateData.password = newPassword;
-    }
-
-    axios__WEBPACK_IMPORTED_MODULE_0___default().put("/auth/update-profile", updateData).then(function (res) {
-      if (res.status == 200) {
-        (0,_actions_AuthActions__WEBPACK_IMPORTED_MODULE_4__.refreshUser)();
-      }
-    })["catch"](function (err) {
-      if (err.response.status == 401) {
-        Swal.fire({
-          icon: "error",
-          title: err.response.data.message
-        });
-      }
-
-      if (err.response.status == 422) {
-        setUpdateErrors(err.response.data.errors);
-      }
-    });
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -8728,8 +8712,13 @@ var Profile = function Profile() {
         children: "Update Info"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "update-actions",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          children: "Username or New Password Can be left empty hence will not be updated!"
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          className: "note",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+              children: "NOTE : "
+            }), "If Username or New Password is left empty it will not be updated!"]
+          })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "allowed-updates",
