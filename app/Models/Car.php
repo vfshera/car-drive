@@ -28,7 +28,7 @@ class Car extends Model implements HasMedia
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion('thumb')->nonQueued()->height(200)->width(200);
+        $this->addMediaConversion('thumb')->height(200)->width(200);
     }
 
 
