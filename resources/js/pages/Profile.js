@@ -106,6 +106,7 @@ const Profile = () => {
                 <div className="social-accounts">
                     <h2>OAUTH Accounts </h2>
 
+                   
                     {social?.length > 0 &&
                         social?.map((socialac) => (
                             <div className="social-account">

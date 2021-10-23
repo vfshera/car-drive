@@ -40,7 +40,7 @@ const Navbar = () => {
             }  ${menuOpen ? "mobile-nav" : "normal-nav"}`}
         >
             <div className="branding">
-                <img src="/storage/images/cardrive.png" alt="Car Drive Logo" />
+                <Link to="/" ><img src="/storage/images/cardrive.png" alt="Car Drive Logo" /></Link>
             </div>
             <i
                 className={`nav-toggle  ${toggleClasses}`}

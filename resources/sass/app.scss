@@ -214,8 +214,10 @@ html,
     @apply min-h-screen fixed items-center  py-10  flex flex-col z-50 top-0 left-0 w-full p-5;
 
     .branding {
-        img {
-            height: 3.5rem !important;
+        a{
+            img {
+                height: 3.5rem !important;
+            }
         }
     }
 
@@ -351,7 +353,13 @@ html,
                 @apply w-95/100 md:w-2/3;
 
                 p {
-                    @apply text-center;
+                    @apply text-center text-gray-800;
+
+                    a{
+                        strong{
+                            @apply text-brand-2;
+                        }
+                    }
                 }
             }
 
@@ -372,7 +380,7 @@ html,
                         }
 
                         p {
-                            @apply text-sm;
+                            @apply text-gray-800 text-sm;
                         }
                     }
                 }
@@ -543,10 +551,10 @@ html,
             }
 
             .social-account {
-                @apply flex items-center;
+                @apply flex items-center my-2;
 
                 i {
-                    @apply text-brand-1 text-xl;
+                    @apply text-brand-1 text-xl mr-2;
                 }
 
                 .brand {
@@ -630,15 +638,17 @@ html,
 section.car-list-wrapper {
     @apply my-4 sm:my-7 lg:my-10 flex flex-col;
 
+    .add-cars, .list-header button.add-cars {
+        @apply py-1 px-5 bg-brand-1 text-white hover:rounded;
+
+        i {
+        }
+    }
+
     .list-header {
         @apply flex justify-between items-center;
 
-        button.add-cars {
-            @apply py-1 px-5 bg-brand-1 text-white hover:rounded;
-
-            i {
-            }
-        }
+       
 
         h1 {
             @apply text-xl md:text-2xl lg:text-3xl text-brand-1 font-bold;

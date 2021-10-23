@@ -119,6 +119,10 @@ const AdminLayout = (props) => {
                         <Link to="/dashboard/chats">Chats</Link>
                     </li>
 
+                    <li>
+                        <Link to="/dashboard/profile">Profile</Link>
+                    </li>
+
                 </ul>
             </aside>
 
