@@ -36,19 +36,15 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
     };
 
     const getCarPhoto = (singleCar) => {
-
-        if((singleCar?.photos?.length) != 0) {
+        if (singleCar?.photos?.length != 0) {
             return singleCar?.photos[0]?.url;
-        }  
-        
-        
-        
-        return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)]; ;
+        }
+
+        return "/storage/images/" + homeImages[Math.floor(Math.random() * 2)];
     };
 
     useEffect(() => {
-
-        document.querySelector('title').text = 'CarDrive'
+        document.querySelector("title").text = "CarDrive";
         dispatch(
             loadCars(MyCars ? "/auth/mycars" : inAdmin ? "/auth/cars" : "/cars")
         );
@@ -60,9 +56,7 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
 
             {MyCars && isOpen && (
                 <section className="add-car-form-wrapper">
-
-                        <AddCar setIsOpen={setIsOpen}/>
-
+                    <AddCar setIsOpen={setIsOpen} />
                 </section>
             )}
 
@@ -79,7 +73,7 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
 
             {/* DISPLAY CARS */}
 
-            {(cars.length != 0 && !AppLoading.loading && !isOpen) && (
+            {cars.length != 0 && !AppLoading.loading && !isOpen && (
                 <>
                     <div className="list-header car-drive-container">
                         <h1>{MyCars ? "My Cars" : "Top Listings"}</h1>
@@ -117,7 +111,7 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
                                 inAdmin={inAdmin}
                                 car={car}
                                 key={index}
-                                bgImg={`url(${ getCarPhoto(car) })`}
+                                bgImg={`url(${getCarPhoto(car)})`}
                             />
                         ))}
                     </section>
@@ -137,11 +131,37 @@ const CarListing = ({ fullMode = true, inAdmin = false, MyCars = false }) => {
             )}
 
             {/* NO CARS */}
-            {cars.length == 0 && !AppLoading.loading && (
-                <div className="h-1/2vh flex justify-center items-center w-full">
-                    <h1 className="text-brand-1 font-semibold text-xl">
-                        No Cars
+            {cars.length == 0 && !AppLoading.loading && !inAdmin && (
+                <div className="h-1/2vh flex flex-col justify-center items-center w-full">
+                    <h1 className="text-brand-1 font-bold text-2xl">
+                        No Cars Posted Yet!
                     </h1>
+                    <p className="text-gray-800  text-lg italic">
+                        You can{" "}
+                        <Link to="/login" className="text-brand-2">
+                            Create Your Account Here
+                        </Link>{" "}
+                        and start posting instantly!
+                    </p>
+                </div>
+            )}
+            {/* ADMIN NO CARS */}
+            {cars.length == 0 && !AppLoading.loading && inAdmin && (
+                <div className="h-3/4vh flex flex-col justify-center items-center w-full">
+                    <p className="mb-3 text-brand-1 text-xl text-center">
+                        Seems We couldn't Find Cars!
+                    </p>
+                    {inAdmin && (
+                        <button
+                            className="add-cars"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setIsOpen(true);
+                            }}
+                        >
+                            Add <i className="ti-plus"></i>
+                        </button>
+                    )}
                 </div>
             )}
         </section>
