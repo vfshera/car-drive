@@ -15,11 +15,11 @@
     @yield('header')
 </div>
 
-<div class="email-body" style="padding:10px;border-left: rgb(20, 33, 61) 2px dashed; border-right: rgb(20, 33, 61) 2px dashed;">
+<div class="email-body" style="height:300px;padding:10px;border-left: rgb(20, 33, 61) 2px dashed; border-right: rgb(20, 33, 61) 2px dashed;">
 @yield('body')
 </div>
 
-<div class="footer" style="background: rgb(20, 33, 61); padding:10px">
+<div class="footer" style="background: rgb(20, 33, 61); padding:5px 10px">
 @yield('footer')
 </div>
 

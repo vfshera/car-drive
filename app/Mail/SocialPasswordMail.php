@@ -34,7 +34,7 @@ class SocialPasswordMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from('noreply@cardrive.co.ke', env('APP_NAME'))
+        return $this->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'))
         ->subject('Login Credentials '.env('APP_NAME'))
        ->view('emails.social-password');
     }

@@ -24,7 +24,6 @@ const Navbar = () => {
         } else {
             setToggleClasses("ti-menu");
         }
-
     }, [menuOpen]);
 
     const logout = (e) => {
@@ -40,7 +39,12 @@ const Navbar = () => {
             }  ${menuOpen ? "mobile-nav" : "normal-nav"}`}
         >
             <div className="branding">
-                <Link to="/" ><img src="/storage/images/cardrive.png" alt="Car Drive Logo" /></Link>
+                <Link to="/">
+                    <img
+                        src="/storage/images/cardrive.png"
+                        alt="Car Drive Logo"
+                    />
+                </Link>
             </div>
             <i
                 className={`nav-toggle  ${toggleClasses}`}
@@ -79,45 +83,52 @@ const Navbar = () => {
                 {auth ? (
                     <>
                         <ul className="link-list auth-routes">
-                            
-                                <li
+                            <li
                                 className="admin-nav-link"
-                                    onClick={(e) => {
-                                        setMenuOpen(false);
-                                    }}
-                                >
-                                    <Link to="/dashboard">Dashboard</Link>
-                                </li>
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
+                                <Link to="/dashboard">Dashboard</Link>
+                            </li>
 
-                                <li
+                            <li
                                 className="admin-nav-link"
-                                    onClick={(e) => {
-                                        setMenuOpen(false);
-                                    }}
-                                >
-                                    <Link to="/dashboard/cars">Cars</Link>
-                                </li>
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
+                                <Link to="/dashboard/cars">Cars</Link>
+                            </li>
 
-                                <li
+                            <li
                                 className="admin-nav-link"
-                                    onClick={(e) => {
-                                        setMenuOpen(false);
-                                    }}
-                                >
-                                    <Link to="/dashboard/mycars">My Cars</Link>
-                                </li>
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
+                                <Link to="/dashboard/mycars">My Cars</Link>
+                            </li>
 
-                                <li
+                            <li
                                 className="admin-nav-link"
-                                    onClick={(e) => {
-                                        setMenuOpen(false);
-                                    }}
-                                >
-                                    <Link to="/dashboard/chats">Chats</Link>
-                                </li>
-                         
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
+                                <Link to="/dashboard/chats">Chats</Link>
+                            </li>
 
-                            <span> <Link to="/dashboard">{loggedInUser.name}</Link></span>
+                            <span
+                                onClick={(e) => {
+                                    setMenuOpen(false);
+                                }}
+                            >
+                                {" "}
+                                <Link to="/dashboard/profile">
+                                    {loggedInUser.name}
+                                </Link>
+                            </span>
 
                             <li
                                 onClick={(e) => {

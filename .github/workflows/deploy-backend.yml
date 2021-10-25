@@ -1,0 +1,38 @@
+on: 
+  pull_request:
+    branches: [ main ]
+name: 🚀 Deploy Backend
+jobs:
+  Deploy-Backend:
+    name: Laravel Backend
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'        
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        server-dir: ${{ secrets.BACKEND_DIR }}
+        protocol: ftps
+        exclude:
+          - public
+          - .env
+          - storage
+          - server
+    - name: Post to a Slack channel
+      id: slack
+      uses: slackapi/slack-github-action@v1.14.0
+      with:
+        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}  
+        slack-message: 'CarDrive Backend Deployment Successful!'
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+

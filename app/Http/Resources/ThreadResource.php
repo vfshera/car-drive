@@ -17,7 +17,7 @@ class ThreadResource extends JsonResource
         return [
             'id' => $this->id,
             'messages_count' => $this->messages_count,
-            'subject' => $this->subject,
+            // 'subject' => $this->subject,
             'creator' => new UserResource($this->creator()),
             'created_at' => $this->created_at,
             'latest_message' => new MessageResource($this->latest_message),

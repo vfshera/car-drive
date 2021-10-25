@@ -16,11 +16,11 @@ const NewChat = ({ setChatView , withUser = false , toUser={} }) => {
     const sendMessage = (e) =>{
         e.preventDefault();
 
-        if((withUser || userID != "" ) && subject != "" && message != "" ){
+        if((withUser || userID != "" )  && message != "" ){
             axios
             .post("/auth/messages",{
                 recipient: withUser ? toUser.id : userID,
-                subject: subject,
+                subject: "INBOX",
                 message: message
             })
             .then((res) => {
@@ -60,10 +60,10 @@ const NewChat = ({ setChatView , withUser = false , toUser={} }) => {
             <h1>Start Chatting</h1>
             <div className="create-message-form">
                 <form onSubmit={sendMessage}>
-                   <div className="flex justify-between">
+                   <div className="form-inputs">
                        
                        {withUser && (
-                           <div className="input-group">
+                           <div className="input-group with-user">
                            <label >To</label>
                            <p className="text-xl font-semibold text-gray-800 mt-3">{toUser.name}</p>
                        </div>
@@ -76,21 +76,21 @@ const NewChat = ({ setChatView , withUser = false , toUser={} }) => {
                        selectOptions={recipients}
                        selectID="recepient"
                        selectName="recepient"
-                       parentClasses=" w-1/2 mr-2"
+                       parentClasses="recepient-input"
                        onChange={(e) => setUserID(e.target.value)}
                    />
                    )}
 
-                    <InputField
+                    {/* <InputField
                         labelText="Subject"
                         type="text"
                         id="subject"
                         name="subject"
                         placeholder="Type subject here..."
-                        parentClasses=" w-1/2 ml-2"
+                        parentClasses="subject-input"
                         onChange={(e) => setSubject(e.target.value)}
 
-                    />
+                    /> */}
                    </div>
 
                     <TextAreaInputField

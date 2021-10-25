@@ -4864,8 +4864,8 @@ var socialLogin = function socialLogin(code, provider) {
               dispatch({
                 type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.TIME_SUCCESS,
                 payload: {
-                  tst: data.tst,
-                  overtime: data.overtime
+                  tst: res.data.tst,
+                  overtime: res.data.overtime
                 }
               });
               dispatch({
@@ -4904,8 +4904,7 @@ var socialLogin = function socialLogin(code, provider) {
 var registerUser = function registerUser(user) {
   return /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(dispatch) {
-      var _data;
-
+      var data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -4921,7 +4920,7 @@ var registerUser = function registerUser(user) {
               return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/register", user);
 
             case 5:
-              _data = _context3.sent;
+              data = _context3.sent;
               dispatch({
                 type: USER_REGISTER_SUCCESS
               });
@@ -6278,8 +6277,11 @@ var Navbar = function Navbar() {
               children: "Chats"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+            onClick: function onClick(e) {
+              setMenuOpen(false);
+            },
             children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-              to: "/dashboard",
+              to: "/dashboard/profile",
               children: loggedInUser.name
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
@@ -8442,10 +8444,10 @@ var NewChat = function NewChat(_ref) {
   var sendMessage = function sendMessage(e) {
     e.preventDefault();
 
-    if ((withUser || userID != "") && subject != "" && message != "") {
+    if ((withUser || userID != "") && message != "") {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("/auth/messages", {
         recipient: withUser ? toUser.id : userID,
-        subject: subject,
+        subject: "INBOX",
         message: message
       }).then(function (res) {
         if (res.status == 201) {
@@ -8483,9 +8485,9 @@ var NewChat = function NewChat(_ref) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
         onSubmit: sendMessage,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "flex justify-between",
+          className: "form-inputs",
           children: [withUser && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-            className: "input-group",
+            className: "input-group with-user",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
               children: "To"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
@@ -8497,19 +8499,9 @@ var NewChat = function NewChat(_ref) {
             selectOptions: recipients,
             selectID: "recepient",
             selectName: "recepient",
-            parentClasses: " w-1/2 mr-2",
+            parentClasses: "recepient-input",
             onChange: function onChange(e) {
               return setUserID(e.target.value);
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_form_elements_InputField__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            labelText: "Subject",
-            type: "text",
-            id: "subject",
-            name: "subject",
-            placeholder: "Type subject here...",
-            parentClasses: " w-1/2 ml-2",
-            onChange: function onChange(e) {
-              return setSubject(e.target.value);
             }
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_form_elements_TextAreaInputField__WEBPACK_IMPORTED_MODULE_3__["default"], {

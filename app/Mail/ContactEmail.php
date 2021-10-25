@@ -33,8 +33,8 @@ class ContactEmail extends Mailable implements  ShouldQueue
     {
         
 
-        return $this->from($this->mailMsg->email, $this->mailMsg->name)
-                     ->subject('Contact Mail From '.$this->mailMsg->name)
+        return $this->from($this->mailMsg->email,$this->mailMsg->name." Sent a message!")                    
+                     ->subject($this->mailMsg->name." (".$this->mailMsg->email.")")
                     ->view('emails.contact-email')
                     ->with([
                         'name' => $this->mailMsg->name,
