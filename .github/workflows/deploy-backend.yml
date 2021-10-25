@@ -23,8 +23,8 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        server_dir: ${{ secrets.BACKEND_DIR }}
-        protocal: ftps
+        server-dir: ${{ secrets.BACKEND_DIR }}
+        protocol: ftps
 
         exclude:
           - **/.git*
@@ -34,3 +34,13 @@ jobs:
           - .env
           - storage
           - server
+
+    - name: Post to a Slack channel
+      id: slack
+      uses: slackapi/slack-github-action@v1.14.0
+      with:
+        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}  
+        slack-message: 'CarDrive Backend Deployment Successful!'
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
