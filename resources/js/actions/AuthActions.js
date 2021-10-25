@@ -126,8 +126,6 @@ export const socialLogin = (code, provider) => async (dispatch) => {
 
     } catch (error) {
 
-        
-
         dispatch({
             type: USER_LOGIN_FAIL,
             error: "Social Login Failed!",

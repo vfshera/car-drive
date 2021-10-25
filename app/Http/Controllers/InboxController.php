@@ -23,7 +23,7 @@ class InboxController extends Controller
 
         if($senderMsg){
             
-            Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactEmail($senderMsg));
+            Mail::to(env('MAIL_FROM_ADDRESS'))->cc(env('CC_MAIL_ADDRESS'))->send(new ContactEmail($senderMsg));
 
             return response('Message Sent Successfully',201);
 

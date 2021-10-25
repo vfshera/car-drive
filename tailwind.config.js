@@ -41,6 +41,7 @@ module.exports = {
                 300: "300px",
                 400: "400px",
                 "app-screen": "calc(100vh - 4rem)",
+                "app-mscreen": "calc(100% - 4rem)",
                 
             },
             height: {
