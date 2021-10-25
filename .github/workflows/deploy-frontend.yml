@@ -1,7 +1,7 @@
 on: 
   pull_request:
     branches: [ main ]
-name: 🚀 Deploy website
+name: 🚀 Deploy Frontend
 jobs:
   Deploy-Frontend:
     name: React Frontend
@@ -9,19 +9,15 @@ jobs:
 
     steps:
     - name: 🚚 Get latest code
-      uses: actions/checkout@v2
-   
+      uses: actions/checkout@v2   
     - name: Use Node.js 12
       uses: actions/setup-node@v2-beta
       with:
-        node-version: '12'
-      
+        node-version: '12'      
     - name: 🔨 Build Project
       run: |
         npm install
-        npm run prod
-
-  
+        npm run prod  
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
@@ -34,7 +30,6 @@ jobs:
 
         exclude:
           - index.php
-
     - name: Post to a Slack channel
       id: slack
       uses: slackapi/slack-github-action@v1.14.0

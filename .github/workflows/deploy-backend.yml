@@ -1,7 +1,7 @@
 on: 
   pull_request:
     branches: [ main ]
-name: 🚀 Deploy website
+name: 🚀 Deploy Backend
 jobs:
   Deploy-Backend:
     name: Laravel Backend
@@ -11,12 +11,9 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.4'
-        
+        php-version: '7.4'        
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
-
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
@@ -25,7 +22,6 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         server-dir: ${{ secrets.BACKEND_DIR }}
         protocol: ftps
-
         exclude:
           - **/.git*/**
           - **/node_modules/**
@@ -33,7 +29,6 @@ jobs:
           - .env
           - storage
           - server
-
     - name: Post to a Slack channel
       id: slack
       uses: slackapi/slack-github-action@v1.14.0
