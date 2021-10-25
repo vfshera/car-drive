@@ -1,4 +1,4 @@
-name: 🚀 Deploy Laravel Application
+name: Deploy CarDrive Application
 
 on: 
   pull_request:
