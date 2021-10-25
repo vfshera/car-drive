@@ -38,7 +38,7 @@ jobs:
       id: slack
       uses: slackapi/slack-github-action@v1.14.0
       with:
-        channel-id: ${{ secrets.SLACK_BOT_TOKEN }}  
+        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}  
         slack-message: 'CarDrive Test Successful!'
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
