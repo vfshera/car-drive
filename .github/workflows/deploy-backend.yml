@@ -3,7 +3,7 @@ on:
     branches: [ main ]
 name: 🚀 Deploy website
 jobs:
-  Deploy Backend:
+  Deploy-Backend:
     name: Laravel Backend
     runs-on: ubuntu-latest
 

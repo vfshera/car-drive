@@ -3,7 +3,7 @@ on:
     branches: [ main ]
 name: 🚀 Deploy website
 jobs:
-  Deploy Frontend:
+  Deploy-Frontend:
     name: React Frontend
     runs-on: ubuntu-latest
 
