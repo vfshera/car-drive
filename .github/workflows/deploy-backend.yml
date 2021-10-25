@@ -27,7 +27,6 @@ jobs:
         protocol: ftps
 
         exclude:
-          - **/.git*
           - **/.git*/**
           - **/node_modules/**
           - public

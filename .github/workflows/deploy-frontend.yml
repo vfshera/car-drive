@@ -28,9 +28,12 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.PASSWORD }}
-        local-dir: /public/
+        local-dir: ./public/
         server-dir: ${{ secrets.FRONTEND_DIR }}
         protocol: ftps
+
+        exclude:
+          - index.php
 
     - name: Post to a Slack channel
       id: slack
