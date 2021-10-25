@@ -23,8 +23,6 @@ jobs:
         server-dir: ${{ secrets.BACKEND_DIR }}
         protocol: ftps
         exclude:
-          - **/.git*/**
-          - **/node_modules/**
           - public
           - .env
           - storage
