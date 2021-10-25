@@ -4864,8 +4864,8 @@ var socialLogin = function socialLogin(code, provider) {
               dispatch({
                 type: _constants_AuthConstants__WEBPACK_IMPORTED_MODULE_1__.TIME_SUCCESS,
                 payload: {
-                  tst: data.tst,
-                  overtime: data.overtime
+                  tst: res.data.tst,
+                  overtime: res.data.overtime
                 }
               });
               dispatch({
@@ -4904,8 +4904,7 @@ var socialLogin = function socialLogin(code, provider) {
 var registerUser = function registerUser(user) {
   return /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(dispatch) {
-      var _data;
-
+      var data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
@@ -4921,7 +4920,7 @@ var registerUser = function registerUser(user) {
               return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/register", user);
 
             case 5:
-              _data = _context3.sent;
+              data = _context3.sent;
               dispatch({
                 type: USER_REGISTER_SUCCESS
               });

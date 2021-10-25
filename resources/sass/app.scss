@@ -569,7 +569,7 @@ html,
     @apply min-h-screen flex flex-col justify-center items-center;
 
     section.provider-buttons {
-        @apply flex flex-col justify-center items-center w-1/3;
+        @apply flex flex-col justify-center items-center w-95/100 md:w-2/3 lg:w-1/3;
 
         button {
             @apply py-4 text-white rounded-md bg-brand-1 w-3/5 flex justify-center items-center;

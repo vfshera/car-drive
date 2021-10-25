@@ -111,8 +111,9 @@ export const socialLogin = (code, provider) => async (dispatch) => {
 
         const loggedUser = await axios.get("/auth/profile");
 
+
         dispatch({type: TIME_SUCCESS,
-            payload: { tst: data.tst, overtime :data.overtime}
+            payload: { tst: res.data.tst, overtime :res.data.overtime}
         })
 
 
@@ -124,6 +125,8 @@ export const socialLogin = (code, provider) => async (dispatch) => {
 
 
     } catch (error) {
+
+        
 
         dispatch({
             type: USER_LOGIN_FAIL,
