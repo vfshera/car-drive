@@ -1,6 +1,8 @@
 name: Deploy CarDrive Application
 
 on: 
+  push:
+    branches: [ dev ]
   pull_request:
     branches: [ main ]
 
@@ -22,25 +24,18 @@ jobs:
         npm install
         npm run prod  
 
-    - name: Upload Frontend
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        local-dir: ./public/
-        server-dir: ${{ secrets.FRONTEND_DIR }}
-        protocol: ftps
-        exclude: "[index.php]"
+    # - name: Upload Frontend
+    #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
+    #   with:
+    #     server: ${{ secrets.FTP_SERVER }}
+    #     username: ${{ secrets.FTP_USERNAME }}
+    #     password: ${{ secrets.PASSWORD }}
+    #     local-dir: ./public/
+    #     server-dir: ${{ secrets.FRONTEND_DIR }}
+    #     protocol: ftps
+    #     exclude: "[index.php]"
 
-    - name: Post to a Slack channel
-      id: slack
-      uses: slackapi/slack-github-action@v1.14.0
-      with:
-        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}  
-        slack-message: 'CarDrive Frontend Deployed Successful!'
-      env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}   
+      
 
   Deploy-Backend:
     name: Build Laravel Backend
@@ -57,21 +52,22 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-    - name: Upload Backend
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+    # - name: Upload Backend
+    #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
+    #   with:
+    #     server: ${{ secrets.FTP_SERVER }}
+    #     username: ${{ secrets.FTP_USERNAME }}
+    #     password: ${{ secrets.PASSWORD }}
+    #     server-dir: ${{ secrets.BACKEND_DIR }}
+    #     protocol: ftps
+    #     exclude: "[**/public/**,.env,**/storage/**,server.php]"
+    - name: SSH Into server
+      uses: appleboy/ssh-action@master
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        server-dir: ${{ secrets.BACKEND_DIR }}
-        protocol: ftps
-        exclude: "[**/public/**,.env,**/storage/**,server.php]"
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.GD_SECRET }}
+        port: ${{ secrets.SSH_PORT }}
+        script: whoami
 
-    - name: Post to a Slack channel
-      id: slack
-      uses: slackapi/slack-github-action@v1.14.0
-      with:
-        channel-id: ${{ secrets.SLACK_CHANNEL_ID }}  
-        slack-message: 'CarDrive Backend Deployed Successfully!'
-      env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }} 
+    
