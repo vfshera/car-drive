@@ -1,84 +1,68 @@
-# name: Deploy CarDrive Application
+name: Deploy CarDrive Application
 
-# on: 
-#   push:
-#     branches: [ dev ]
-#   pull_request:
-#     branches: [ main ]
+on: 
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ main ]
 
-# jobs:
-#   Deploy-Frontend:
-#     name: Compile React Frontend & Css
-#     runs-on: ubuntu-latest
+jobs:
+  Deploy-Frontend:
+    name: Compile React Frontend & Css
+    runs-on: ubuntu-latest
 
-#     steps:
-#     - name: 🚚 Get latest code
-#       uses: actions/checkout@v2   
-#     - name: Use Node.js 12
-#       uses: actions/setup-node@v2-beta
-#       with:
-#         node-version: '12'   
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2   
+    - name: Use Node.js 12
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: '12'   
 
-#     - name: 🔨 Build Project
-#       run: |
-#         npm install
-#         npm run prod  
+    - name: 🔨 Build Project
+      run: |
+        npm install
+        npm run prod  
 
-#     # - name: Upload Frontend
-#     #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
-#     #   with:
-#     #     server: ${{ secrets.FTP_SERVER }}
-#     #     username: ${{ secrets.FTP_USERNAME }}
-#     #     password: ${{ secrets.PASSWORD }}
-#     #     local-dir: ./public/
-#     #     server-dir: ${{ secrets.FRONTEND_DIR }}
-#     #     protocol: ftps
-#     #     exclude: "[index.php]"
+    - name: Upload Frontend
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        local-dir: ./public/
+        server-dir: ${{ secrets.FRONTEND_DIR }}
+        protocol: ftps
+        exclude: "[index.php]"
 
       
 
-#   Deploy-Backend:
-#     name: Build Laravel Backend
-#     runs-on: ubuntu-latest
+  Deploy-Backend:
+    name: Build Laravel Backend
+    runs-on: ubuntu-latest
 
-#     steps:   
-#     - name: 🚚 Get latest code 
-#       uses: actions/checkout@v2
-#     - name: Setup PHP
-#       uses: shivammathur/setup-php@v2
-#       with:
-#         php-version: '7.4'  
+    steps:   
+    - name: 🚚 Get latest code 
+      uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'  
               
-#     - name: Install Dependencies
-#       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-#     # - name: Upload Backend
-#     #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
-#     #   with:
-#     #     server: ${{ secrets.FTP_SERVER }}
-#     #     username: ${{ secrets.FTP_USERNAME }}
-#     #     password: ${{ secrets.PASSWORD }}
-#     #     server-dir: ${{ secrets.BACKEND_DIR }}
-#     #     protocol: ftps
-#     #     exclude: "[**/public/**,.env,**/storage/**,server.php]"
-#     # - name: SSH Into server
-#     #   uses: appleboy/ssh-action@v0.1.4
-#     #   with:
-#     #     host: ${{ secrets.SSH_HOST }}
-#     #     port: ${{ secrets.SSH_PORT }}
-#     #     username: ${{ secrets.SSH_USERNAME }}
-#     #     key: ${{ secrets.GD_SECRET }}
-#     #     script_stop: true
-#     #     script: whoami
-#     - name: new ssh action
-#       uses: fifsky/ssh-action@master
-#       with:
-#         command: |
-#           whoami
-#         host: ${{ secrets.SSH_HOST }}
-#         user: ${{ secrets.SSH_USERNAME }}
-#         key: ${{ secrets.GD_SECRET }}
-#         port: ${{ secrets.SSH_PORT  }}
+    - name: Upload Backend
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        server-dir: ${{ secrets.BACKEND_DIR }}
+        protocol: ftps
+        exclude: "[**/public/**,.env,**/storage/**,server.php]"
+  
+   
 
 
     
