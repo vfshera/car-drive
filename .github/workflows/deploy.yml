@@ -1,4 +1,4 @@
-name: 🚀 Deploy Laravel Application
+name: Deploy CarDrive Application
 
 on: 
   pull_request:
@@ -48,7 +48,7 @@ jobs:
 
     steps:   
     - name: 🚚 Get latest code 
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
