@@ -24,43 +24,53 @@ jobs:
         npm install
         npm run prod  
 
-    - name: Upload Frontend
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+    - name: Deploying Frontend
+      uses: wlixcc/SFTP-Deploy-Action@v1.0
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        local-dir: ./public/
-        server-dir: ${{ secrets.FRONTEND_DIR }}
-        protocol: ftps
-        exclude: "[index.php]"
+        username: 'root'
+        server: ${{ secrets.SSH_HOST }}
+        ssh_private_key: ${{ secrets.GD_SECRET }} 
+        local_path: './public/*'
+        remote_path: ${{ secrets.FRONTEND_DIR }}
+        args: '-o ConnectTimeout=5'
+
+    # - name: Upload Frontend
+    #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
+    #   with:
+    #     server: ${{ secrets.FTP_SERVER }}
+    #     username: ${{ secrets.FTP_USERNAME }}
+    #     password: ${{ secrets.PASSWORD }}
+    #     local-dir: ./public/
+    #     server-dir: ${{ secrets.FRONTEND_DIR }}
+    #     protocol: ftps
+    #     exclude: "[index.php]"
 
       
 
-  Deploy-Backend:
-    name: Build Laravel Backend
-    runs-on: ubuntu-latest
+  # Deploy-Backend:
+  #   name: Build Laravel Backend
+  #   runs-on: ubuntu-latest
 
-    steps:   
-    - name: 🚚 Get latest code 
-      uses: actions/checkout@v2
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'  
+  #   steps:   
+  #   - name: 🚚 Get latest code 
+  #     uses: actions/checkout@v2
+  #   - name: Setup PHP
+  #     uses: shivammathur/setup-php@v2
+  #     with:
+  #       php-version: '7.4'  
               
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+  #   - name: Install Dependencies
+  #     run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-    - name: Upload Backend
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        server-dir: ${{ secrets.BACKEND_DIR }}
-        protocol: ftps
-        exclude: "[**/public/**,.env,**/storage/**,server.php]"
+    # - name: Upload Backend
+    #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
+    #   with:
+    #     server: ${{ secrets.FTP_SERVER }}
+    #     username: ${{ secrets.FTP_USERNAME }}
+    #     password: ${{ secrets.PASSWORD }}
+    #     server-dir: ${{ secrets.BACKEND_DIR }}
+    #     protocol: ftps
+    #     exclude: "[**/public/**,.env,**/storage/**,server.php]"
   
    
 
