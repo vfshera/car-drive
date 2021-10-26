@@ -61,14 +61,23 @@ jobs:
     #     server-dir: ${{ secrets.BACKEND_DIR }}
     #     protocol: ftps
     #     exclude: "[**/public/**,.env,**/storage/**,server.php]"
-    - name: SSH Into server
-      uses: appleboy/ssh-action@v0.1.4
+    # - name: SSH Into server
+    #   uses: appleboy/ssh-action@v0.1.4
+    #   with:
+    #     host: ${{ secrets.SSH_HOST }}
+    #     port: ${{ secrets.SSH_PORT }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     key: ${{ secrets.GD_SECRET }}
+    #     script_stop: true
+    #     script: whoami
+    - name: new ssh action
+      uses: fifsky/ssh-action@master
       with:
+        command: |
+          whoami
         host: ${{ secrets.SSH_HOST }}
-        port: ${{ secrets.SSH_PORT }}
-        username: ${{ secrets.SSH_USERNAME }}
+        user: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.GD_SECRET }}
-        script_stop: true
-        script: whoami
+
 
     
