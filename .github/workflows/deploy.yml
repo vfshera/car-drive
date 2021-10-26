@@ -29,6 +29,7 @@ jobs:
       with:
         username: 'root'
         server: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
         ssh_private_key: ${{ secrets.GD_SECRET }} 
         local_path: './public/*'
         remote_path: ${{ secrets.FRONTEND_DIR }}
