@@ -62,12 +62,13 @@ jobs:
     #     protocol: ftps
     #     exclude: "[**/public/**,.env,**/storage/**,server.php]"
     - name: SSH Into server
-      uses: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@v0.1.4
       with:
         host: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.GD_SECRET }}
-        port: ${{ secrets.SSH_PORT }}
+        script_stop: true
         script: whoami
 
     
