@@ -78,6 +78,7 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         user: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.GD_SECRET }}
+        port: ${{ secrets.SSH_PORT  }}
 
 
     
