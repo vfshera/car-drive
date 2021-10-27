@@ -8,6 +8,9 @@ import MessageBlock from "../components/MessageBlock";
 const ChatUI = ({ match }) => {
     const [thread, setThread] = useState([]);
     const [newMsg, setNewMsg] = useState("");
+    const [channel, setChannel] = useState(false);
+    const [isOnline, setOnline] = useState(false);
+    const [isTyping, setIsTyping] = useState(false);
 
     const AuthUser = useSelector((state) => state.authUser);
     const { loggedInUser } = AuthUser;
@@ -62,8 +65,6 @@ const ChatUI = ({ match }) => {
     };
     const deleteMessage = (id) => {
         if (id != null) {
-
-
             Swal.fire({
                 title: "Delete This Message?",
                 showCancelButton: true,
@@ -73,16 +74,15 @@ const ChatUI = ({ match }) => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios
-                    .delete(`/auth/messages/single-msg/${id}`)
-                    .then((res) => {
-                        if (res.status == 200) {
-                            getMessages();
-                        }
-                    })
-                    .catch((err) => console.log(err));
+                        .delete(`/auth/messages/single-msg/${id}`)
+                        .then((res) => {
+                            if (res.status == 200) {
+                                getMessages();
+                            }
+                        })
+                        .catch((err) => console.log(err));
                 }
             });
-          
         }
     };
 
@@ -93,18 +93,67 @@ const ChatUI = ({ match }) => {
             .catch((err) => console.log(err));
     };
 
+    const setTyping = (e) => {
+        
+        if(e.charCode != 13 ){            
+            Echo.join(`chat.${thread.id}`).whisper("typing", { user: loggedInUser.id })
+        }
+    };
+    
+
     const scrollToBottom = () => {
         msgBottomRef.current.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
-        document.querySelector('title').text = 'CarDrive | Chat UI'
+        document.querySelector("title").text = "CarDrive | Chat UI";
         getMessages();
     }, []);
 
     useEffect(() => {
         if (thread.messages?.length != 0) {
             scrollToBottom();
+        }
+        if (!channel && thread.id) {
+            setChannel(true);
+
+            Echo.join(`chat.${thread.id}`)
+                .listen(".new-chat", (event) => {
+                    getMessages();
+                })
+                .here((users) => {
+                    users.map((user) => {
+                        if (users.length == 2 && user.id != loggedInUser.id) {
+                            setOnline(true);
+                        }
+                    });
+                })
+                .joining(user =>{
+                    if (user.id != loggedInUser.id) {
+                        setOnline(true);
+                    }
+                })
+                .leaving(user =>{
+                    if (user.id != loggedInUser.id) {
+                        setOnline(false);
+                    }
+                })
+                .listenForWhisper("typing", id => {
+
+                    let typingTimer = null;
+
+
+                    if(typingTimer){
+                        clearTimeout(typingTimer)
+                    }
+                    
+                    if(!isTyping && id != loggedInUser.id){
+                        setIsTyping(true)
+
+                        typingTimer = setTimeout(() => setIsTyping(false) , 4500)
+                    }
+                    
+                });
         }
     }, [thread]);
 
@@ -113,13 +162,37 @@ const ChatUI = ({ match }) => {
             <section className="chat-user-wrapper">
                 <div className="user-chats">
                     <div className="chat-head">
-                        <h1>{thread?.chat_with?.name}</h1>
+                        <div className="name-status">
+                            <h1>{thread?.chat_with?.name} </h1>
+                            {thread?.chat_with && (
+                                <>
+                                <span
+                                    className={` status ${isOnline
+                                        ? " active "
+                                        : "inactive "}
+                            `}
+                                >
+                                    {isOnline ? "Online" : "Offline"}
+                                </span>
+
+                                {isTyping && (
+                                    <span className="typing">typing...</span>
+                                )}
+
+                                
+                                </>
+                            )}
+                        </div>
                         <span>{thread?.chat_with?.email}</span>
                     </div>
                     <div className="chats">
                         {thread?.messages?.map((msg, index) => (
-
-                            <MessageBlock deleteMessage={deleteMessage} key={index} fromMe={msg.sender.id == loggedInUser.id} message={msg}/>
+                            <MessageBlock
+                                deleteMessage={deleteMessage}
+                                key={index}
+                                fromMe={msg.sender.id == loggedInUser.id}
+                                message={msg}
+                            />
                         ))}
 
                         <div
@@ -137,7 +210,9 @@ const ChatUI = ({ match }) => {
                             type="text"
                             placeholder="Type your message here..."
                             value={newMsg}
+                            
                             onKeyPress={(e) => {
+                                setTyping(e);
                                 e.charCode == 13 && sendMessage();
                             }}
                             onChange={(e) => setNewMsg(e.target.value)}

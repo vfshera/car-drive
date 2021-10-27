@@ -4,8 +4,123 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71170465f9e5ce25a82985695166a340",
+    "content-hash": "ed0853b85530639e345b197a145a6503",
     "packages": [
+        {
+            "name": "ably/ably-php",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ably/ably-php.git",
+                "reference": "db4ca828378922ef85224d891dd09f9f40194120"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ably/ably-php/zipball/db4ca828378922ef85224d891dd09f9f40194120",
+                "reference": "db4ca828378922ef85224d891dd09f9f40194120",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-openssl": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5 || ^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ably\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ably",
+                    "email": "support@ably.io"
+                }
+            ],
+            "description": "Ably REST client library for PHP.",
+            "homepage": "https://www.ably.io/",
+            "keywords": [
+                "ably",
+                "messages",
+                "messaging"
+            ],
+            "support": {
+                "issues": "https://github.com/ably/ably-php/issues",
+                "source": "https://github.com/ably/ably-php/tree/1.1.4"
+            },
+            "time": "2021-03-10T14:30:30+00:00"
+        },
+        {
+            "name": "ably/ably-php-laravel",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ably/ably-php-laravel.git",
+                "reference": "e5c4549f2a3c1606de8fde603f8286cd5754c46b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ably/ably-php-laravel/zipball/e5c4549f2a3c1606de8fde603f8286cd5754c46b",
+                "reference": "e5c4549f2a3c1606de8fde603f8286cd5754c46b",
+                "shasum": ""
+            },
+            "require": {
+                "ably/ably-php": "~1.1.4",
+                "laravel/framework": ">=5.1.0",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.2",
+                "phpunit/phpunit": ">=4.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ably\\Laravel\\AblyServiceProvider"
+                    ],
+                    "aliases": {
+                        "Ably": "Ably\\Laravel\\Facades\\Ably"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ably\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Ably",
+                    "email": "support@ably.io"
+                }
+            ],
+            "description": "Ably realtime REST PHP library wrapper for Laravel",
+            "homepage": "https://www.ably.io/",
+            "keywords": [
+                "ably",
+                "laravel",
+                "messaging",
+                "rest"
+            ],
+            "support": {
+                "issues": "https://github.com/ably/ably-php-laravel/issues",
+                "source": "https://github.com/ably/ably-php-laravel/tree/1.0.3"
+            },
+            "time": "2021-04-12T16:30:33+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.3",
