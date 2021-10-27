@@ -926,6 +926,7 @@ section.admin-content {
         .chat-head {
             @apply px-3 sm:px-10 mt-5 sm:mt-3;
 
+           
             h1 {
                 @apply text-2xl lg:text-3xl  text-brand-1 font-bold;
             }
@@ -999,9 +1000,30 @@ section.admin-content {
                 .chat-head {
                     @apply px-4 py-1 mt-0 bg-white;
 
-                    h1 {
-                        @apply text-lg md:text-xl lg:text-2xl  text-brand-1 font-bold;
+                    .name-status{
+                        @apply flex items-center;
+
+                        h1 {
+                            @apply inline text-lg md:text-xl lg:text-2xl  text-brand-1 font-bold;
+                        }
+
+                        .status{
+                            @apply ml-2;
+
+                            &.active{
+                                @apply text-green-500;
+                            }
+
+                            &.inactive{
+                                @apply text-red-500;
+                            }
+                        }
+
+                        .typing{
+                            @apply ml-2 text-gray-700;
+                        }
                     }
+                    
 
                     span {
                         @apply text-xs md:text-sm  text-gray-500;

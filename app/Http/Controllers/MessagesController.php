@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Events\NewMessageEvent;
 use App\Models\User;
 use Carbon\Carbon;
 use Cmgmyr\Messenger\Models\{
@@ -117,6 +117,7 @@ class MessagesController extends Controller
         // Recipients
         $thread->addParticipant($request->recipient);
 
+
         return response(['message' => 'Message sent successfully!'] , Response::HTTP_CREATED);
     }
 
@@ -144,12 +145,21 @@ class MessagesController extends Controller
         $participant->last_read = new Carbon;
         $participant->save();
 
+        broadcast(new NewMessageEvent($thread->id));
+
+
         return response(['message' => 'Message updated successfully!'] , Response::HTTP_CREATED);
     }
 
     public function destroyMessage(Message $message)
     {
+
+        $threadID = $message->thread->id;
+        
         $message->delete();
+
+        broadcast(new NewMessageEvent($threadID));
+
 
         return response(['message' => 'Message deleted successfully!'] , Response::HTTP_OK);
     }
