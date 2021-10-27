@@ -1,13 +1,11 @@
 name: Deploy CarDrive Application
 
 on: 
-  push:
-    branches: [ dev ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  Deploy-Frontend:
+  Build-App:
     name: Compile React Frontend & Css
     runs-on: ubuntu-latest
 
@@ -19,43 +17,13 @@ jobs:
       with:
         node-version: '12'   
 
-    - name: 🔨 Build Project
+    - name: 🔨 Build Frontend
       run: |
         npm install
         npm run prod  
 
-    # - name: Deploying Frontend
-    #   uses: wlixcc/SFTP-Deploy-Action@v1.0
-    #   with:
-    #     username: 'root'
-    #     server: ${{ secrets.SSH_HOST }}
-    #     port: ${{ secrets.SSH_PORT }}
-    #     ssh_private_key: ${{ secrets.GD_SECRET }} 
-    #     local_path: './public/*'
-    #     remote_path: ${{ secrets.FRONTEND_DIR }}
-    #     args: '-o ConnectTimeout=5'
 
-    # - name: Upload Frontend
-    #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
-    #   with:
-    #     server: ${{ secrets.FTP_SERVER }}
-    #     username: ${{ secrets.FTP_USERNAME }}
-    #     password: ${{ secrets.PASSWORD }}
-    #     local-dir: ./public/
-    #     server-dir: ${{ secrets.FRONTEND_DIR }}
-    #     protocol: ftps
-    #     exclude: "[index.php]"
-
-      
-
-  Deploy-Backend:
-    name: Build Laravel Backend
-    runs-on: ubuntu-latest
-
-    steps:   
-    - name: 🚚 Get latest code 
-      uses: actions/checkout@v2
-    - name: Setup PHP
+    - name: Setup PHP & Build Laravel
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'  
@@ -63,15 +31,15 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-    # - name: Upload Backend
-    #   uses: SamKirkland/FTP-Deploy-Action@4.1.0
-    #   with:
-    #     server: ${{ secrets.FTP_SERVER }}
-    #     username: ${{ secrets.FTP_USERNAME }}
-    #     password: ${{ secrets.PASSWORD }}
-    #     server-dir: ${{ secrets.BACKEND_DIR }}
-    #     protocol: ftps
-    #     exclude: "[**/public/**,.env,**/storage/**,server.php]"
+    - name: Upload Backend
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        server-dir: ${{ secrets.BACKEND_DIR }}
+        protocol: ftps
+        exclude: "[.env,server.php]"
   
    
 
