@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  Build-App:
+  Build-Frontend:
     name: Compile React Frontend & Css
     runs-on: ubuntu-latest
 
@@ -22,7 +22,24 @@ jobs:
         npm install
         npm run prod  
 
+    - name: Upload Frontend
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        local-dir: ./public/
+        server-dir: ${{ secrets.FRONTEND_DIR }}
+        protocol: ftps
+        exclude: "[index.php]"
 
+  Deploy-Backend:
+    name: Build Laravel Backend
+    runs-on: ubuntu-latest
+
+    steps:   
+    - name: 🚚 Get latest code 
+      uses: actions/checkout@v2
     - name: Setup PHP & Build Laravel
       uses: shivammathur/setup-php@v2
       with:
@@ -39,7 +56,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         server-dir: ${{ secrets.BACKEND_DIR }}
         protocol: ftps
-        exclude: "[.env,server.php]"
+        exclude: "[**/public/**,.git,.github,.env,**/storage/**,server.php]"
   
    
 
