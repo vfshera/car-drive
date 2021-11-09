@@ -22,10 +22,11 @@ const GoogleMapAutocomplete = ({ setLoc, setSearchView }) => {
         setIsSearching(true);
 
         delete axios.defaults.headers.common["X-Requested-With"];
+        delete axios.defaults.headers.common["x-socket-id"];
         
         axios
             .get(
-                `https://api.tomtom.com/search/2/search/${place}.json?typeahead=true&key=${process.env.MIX_REACT_APP_SEARCH_API_KEY}`,
+                `https://api.tomtom.com/search/2/search/${place}.json?typeahead=true&key=${process.env.REACT_APP_SEARCH_API_KEY}`,
                 {
                     withCredentials: false,
                 }

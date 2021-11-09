@@ -5840,7 +5840,8 @@ var GoogleMapAutocomplete = function GoogleMapAutocomplete(_ref) {
     setSearched(true);
     setIsSearching(true);
     delete (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["X-Requested-With"]);
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.tomtom.com/search/2/search/".concat(place, ".json?typeahead=true&key=").concat("ezzexUpx6KNyutaFA07IVNShsvkKzGJw"), {
+    delete (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["x-socket-id"]);
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("https://api.tomtom.com/search/2/search/".concat(place, ".json?typeahead=true&key=ezzexUpx6KNyutaFA07IVNShsvkKzGJw"), {
       withCredentials: false
     }).then(function (res) {
       setResult(res.data.results);
@@ -5997,7 +5998,7 @@ var GoogleMapView = function GoogleMapView(_ref) {
               height: "100vh"
             }
           }),
-          googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=".concat("AIzaSyBfMWjysVMFkDoFq_xi1zkGspZKjQlM1RI")
+          googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBfMWjysVMFkDoFq_xi1zkGspZKjQlM1RI"
         })
       })]
     })
@@ -7733,7 +7734,7 @@ var ChatUI = function ChatUI(_ref) {
     return state.authUser;
   });
   var loggedInUser = AuthUser.loggedInUser;
-  var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
+  var homeImages = ["car-one.webp", "car-two.webp", "car-three.webp"];
   var msgBottomRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
 
   var getCarPhoto = function getCarPhoto(singleCar) {
@@ -8292,7 +8293,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Home = function Home() {
-  var homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
+  var homeImages = ["car-one.webp", "car-two.webp", "car-three.webp"];
 
   var trimTitle = function trimTitle(make, model) {
     var title = make + model;

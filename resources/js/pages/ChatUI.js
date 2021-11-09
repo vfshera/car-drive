@@ -15,7 +15,7 @@ const ChatUI = ({ match }) => {
     const AuthUser = useSelector((state) => state.authUser);
     const { loggedInUser } = AuthUser;
 
-    const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
+    const homeImages = ["car-one.webp", "car-two.webp", "car-three.webp"];
 
     const msgBottomRef = useRef();
 
