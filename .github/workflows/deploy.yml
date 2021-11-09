@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  Build-Frontend:
+  build-frontend:
     name: Compile React Frontend & Css
     runs-on: ubuntu-latest
 
@@ -33,7 +33,7 @@ jobs:
         protocol: ftps
         exclude: "[index.php]"
 
-  Deploy-Backend:
+  deploy-backend:
     name: Build Laravel Backend
     runs-on: ubuntu-latest
 

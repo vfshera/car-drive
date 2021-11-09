@@ -14,7 +14,7 @@ const Home = () => {
 
 
 
-    const homeImages = ["car-one.jpg", "car-two.jpg", "car-three.jpg"];
+    const homeImages = ["car-one.webp", "car-two.webp", "car-three.webp"];
 
     const trimTitle = (make, model) => {
         let title = make + model;
