@@ -1,6 +1,6 @@
 /node_modules
 /public/hot
-/**/medialib/**
+/storage/app/public/medialib/**
 /storage/*.key
 /vendor
 .env
