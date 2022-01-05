@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
-        // $this->call([
-        //     UsersSeeder::class,
-        //     CarSeeder::class
-        // ]);
+        $this->call([
+            UsersSeeder::class,
+            CarSeeder::class
+        ]);
 
     }
 }
