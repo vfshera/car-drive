@@ -13,7 +13,7 @@ const GoogleMapAutocomplete = ({ setLoc, setSearchView }) => {
     const dispatch = useDispatch();
 
     const getCoordinates = (place) => {
-        if (place == "") {
+        if (place === "") {
             return;
         }
 
@@ -21,20 +21,11 @@ const GoogleMapAutocomplete = ({ setLoc, setSearchView }) => {
         setSearched(true);
         setIsSearching(true);
 
-        delete axios.defaults.headers.common["X-Requested-With"];
-        delete axios.defaults.headers.common["x-socket-id"];
         
-        axios
-            .get(
-                `https://api.tomtom.com/search/2/search/${place}.json?typeahead=true&key=${process.env.REACT_APP_SEARCH_API_KEY}`,
-                {
-                    withCredentials: false,
-                }
-            )
-            .then((res) => {
-                setResult(res.data.results);
-            })
-            .catch((err) => console.log(err));
+        axios.post('/search-location',{location: place})
+            .then(res => setResult(res.data.results))
+            .catch(err => console.error(err))
+        
 
         setIsSearching(false);
 

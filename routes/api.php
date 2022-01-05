@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     InboxController,
     MessagesController
 };
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 //LARAVEL SOCIALITE SOCIAL LOGIN
 
@@ -21,6 +22,14 @@ Route::prefix('/social-login/authorize')->group(function (){
 // SOCIAL LOGIN END
 
 
+Route::post('/search-location', function(Request $request){
+
+    $url = 'https://api.tomtom.com/search/2/search/'. $request->location .'.json?typeahead=true&key=' . env('TOM_TOM_SEARCH_API_KEY');
+    
+    $res = Http::get($url);
+
+    return $res->json();
+});
 
 
 
